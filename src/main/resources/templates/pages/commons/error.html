@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>运维审计系统</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link th:href="@{/fonts.googleapis.com/css?family=Open+Sans:300,400,600,700}" rel="stylesheet" />
+	<link th:href="@{/assets/plugins/jquery-ui/jquery-ui.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/plugins/bootstrap/4.1.0/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/plugins/ionicons/css/ionicons.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/plugins/animate/animate.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/css/apple/style.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/css/apple/style-responsive.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/css/apple/theme/default.css}" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script th:src="@{/assets/plugins/pace/pace.min.js}"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body class="pace-top">
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade">
+	    <!-- begin error -->
+        <div class="error">
+            <div class="error-code m-b-10" th:text="${status}"></div>
+            <div class="error-content">
+                <div class="error-message">
+                	<span th:if="${status eq 403}">你没有权限访问该功能</span>
+					<span th:if="${status eq 404}">该页面被老鼠偷吃了</span>
+					<span th:if="${status eq 500}">系统出现了一点故障</span>
+                </div>
+                <div class="error-desc m-b-30">
+					<span th:text="${roncooException}"></span>
+                </div>
+                <div>
+                    <a th:href="@{/home}" class="btn btn-success p-l-20 p-r-20">返回首页</a>
+                </div>
+            </div>
+        </div>
+        <!-- end error -->
+        
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script th:src="@{/assets/plugins/jquery/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/assets/plugins/jquery-ui/jquery-ui.min.js}"></script>
+	<script th:src="@{/assets/plugins/bootstrap/4.1.0/js/bootstrap.bundle.min.js}"></script>
+	<!--[if lt IE 9]>
+		<script th:src="@{/assets/crossbrowserjs/html5shiv.js}"></script>
+		<script th:src="@{/assets/crossbrowserjs/respond.min.js}"></script>
+		<script th:src="@{/assets/crossbrowserjs/excanvas.min.js}"></script>
+	<![endif]-->
+	<script th:src="@{/assets/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+	<script th:src="@{/assets/plugins/js-cookie/js.cookie.js}"></script>
+	<script th:src="@{/assets/js/theme/apple.min.js}"></script>
+	<script th:src="@{/assets/js/apps.min.js}"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+</body>
+</html>

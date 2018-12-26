@@ -1,0 +1,16 @@
+server: 
+  port: 9997
+spring:
+  thymeleaf:
+    cache: false
+    mode: HTML
+  web: 
+    oauth:
+      clientId: fort
+      clientSecret: j1d1sec.c0m
+      scope: web
+      tokenUrl: http://dev.server:9999/oauth/token
+      refreshTokenUrl: http://dev.server:9999/oauth/token
+      checkTokenUrl: http://dev.server:9999/oauth/check_token
+logging:
+  config: classpath:log4j2.xml
