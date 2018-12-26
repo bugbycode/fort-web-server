@@ -109,10 +109,10 @@ public class HttpClient {
 			}
 			return build.toString();
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		} finally {
 			try {

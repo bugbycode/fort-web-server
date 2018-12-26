@@ -65,7 +65,14 @@ public class FortUsernamePasswordAuthenticationFilter extends UsernamePasswordAu
 		}else if(!imgCode.toUpperCase().equals(rand)) {
 			throw new ImgCodeAuthenticationException("验证码错误");
 		}
-		UserAccessToken token = this.tokenRequestService.getToken(tokenUrl, "password", clientId, clientSecret, username, password, scope);
+		session.removeAttribute("loginName");
+		session.removeAttribute("password");
+		UserAccessToken token = null;
+		try {
+			token = this.tokenRequestService.getToken(tokenUrl, "password", clientId, clientSecret, username, password, scope);
+		}catch (Exception e) {
+			throw new UsernameAuthenticationException("身份认证服务器故障");
+		}
 		SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(token));
 		return super.getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(username, ""));
 	}
