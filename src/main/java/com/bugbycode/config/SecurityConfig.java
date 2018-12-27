@@ -60,8 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/imgCode").permitAll()
 		//凡是登录成功的用户都可访问
 		.antMatchers("/main").hasRole(RoleConfig.LOGIN_USER)
-		.and().headers().frameOptions().disable()
 		
+		.antMatchers("/user/query").hasAnyRole(RoleConfig.USER_QUERY)
+		
+		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问
 				.and().formLogin().loginPage("/login").permitAll()
 				.and().logout().invalidateHttpSession(true)
