@@ -1,4 +1,4 @@
-package com.bugbycode.webapp.controller.home;
+package com.bugbycode.webapp.controller.main;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,9 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController {
+public class MainController {
 	
-	@RequestMapping("/home")
+	@RequestMapping("/main")
 	public String home(ModelMap model) {
 		UserDetails employee =  (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		model.put("ONLINE_USER", employee);

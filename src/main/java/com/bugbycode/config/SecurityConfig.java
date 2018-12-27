@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/imgCode").permitAll()
 		//凡是登录成功的用户都可访问
-		.antMatchers("/home").hasRole(RoleConfig.LOGIN_USER)
+		.antMatchers("/main").hasRole(RoleConfig.LOGIN_USER)
 		.and().headers().frameOptions().disable()
 		
 		//用户登录页面 所有人均可访问
