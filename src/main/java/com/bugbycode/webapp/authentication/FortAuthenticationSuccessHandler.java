@@ -18,7 +18,7 @@ public class FortAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication arg2)
 			throws IOException, ServletException {
-		redirectStrategy.sendRedirect(request, response, "/home");
+		redirectStrategy.sendRedirect(request, response, "/main");
 	}
 
 }
