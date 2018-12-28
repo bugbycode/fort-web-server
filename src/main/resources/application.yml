@@ -12,5 +12,8 @@ spring:
       tokenUrl: http://dev.server:9999/oauth/token
       refreshTokenUrl: http://dev.server:9999/oauth/token
       checkTokenUrl: http://dev.server:9999/oauth/check_token
+  resource:
+    server:
+      userServerUrl: http://dev.server:9998
 logging:
   config: classpath:log4j2.xml

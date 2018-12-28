@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<body th:fragment="left (page,menu)">
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<a href="javascript:;" data-toggle="nav-profile">
+							<div class="cover with-shadow"></div>
+							<div class="image">
+								<img src="../images/user/user.gif" alt="" />
+							</div>
+							<div class="info">
+								<b class="caret"></b>
+								<span th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></span>
+								<small>欢迎使用运维审计系统</small>
+							</div>
+						</a>
+					</li>
+					<li>
+						<ul class="nav nav-profile">
+                            <li><a href="javascript:;"><i class="ion-ios-cog-outline"></i>个人设置</a></li>
+                            <li><a href="javascript:;"><i class="ion-ios-compose-outline"></i>反馈建议</a></li>
+                            <li><a href="javascript:;"><i class="ion-ios-help-outline"></i>帮助信息</a></li>
+                        </ul>
+					</li>
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li th:class="${page=='main'} ? 'has-sub active' : 'has-sub'">
+						<a href="javascript:;">
+						    <b class="caret"></b>
+						    <i class="ion-ios-pulse-strong bg-blue"></i>
+						    <span>数据分析</span>
+					    </a>
+						<ul class="sub-menu">
+						    <li th:class="${menu=='chart' ? 'active' : ''}"><a th:href="@{/main}">系统分析</a></li>
+						    <li><a href="index_v2.html">运维分析</a></li>
+						</ul>
+					</li>
+					<li  th:class="${page=='user'} ? 'has-sub active' : 'has-sub'">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-ios-people bg-blue"></i> 
+							<span>用户管理</span>
+						</a>
+						<ul class="sub-menu">
+						    <li th:class="${menu=='user' ? 'active' : ''}">
+						    	<a href="/user/query">
+									用户信息
+						 		</a>
+						 	</li>
+						    <li><a href="email_compose.html">分组信息</a></li>
+						    <li><a href="email_detail.html">角色信息</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<span class="badge pull-right">10</span>
+							<i class="ion-ios-email bg-blue"></i> 
+							<span>邮件消息</span>
+						</a>
+						<ul class="sub-menu">
+						    <li><a href="email_inbox.html">接收信息</a></li>
+						    <li><a href="email_compose.html">发送信息</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-android-desktop bg-blue"></i> 
+							<span>设备管理</span>
+						</a>
+						<ul class="sub-menu">
+						    <li><a href="email_inbox.html">设备信息</a></li>
+						    <li><a href="email_compose.html">分组信息</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-settings bg-blue"></i> 
+							<span>运维工作</span>
+						</a>
+						<ul class="sub-menu">
+						    <li><a href="email_inbox.html">设备信息</a></li>
+						    <li><a href="email_compose.html">运维记录</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-ios-film bg-blue"></i> 
+							<span>运维审计</span>
+						</a>
+						<ul class="sub-menu">
+						    <li><a href="email_inbox.html">实时监控</a></li>
+						    <li><a href="email_compose.html">运维记录</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-clipboard bg-blue"></i> 
+							<span>运维工单</span>
+						</a>
+						<ul class="sub-menu">
+						    <li><a href="email_inbox.html">我的工单</a></li>
+						    <li><a href="email_compose.html">其他工单</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-ios-compose bg-blue"></i> 
+							<span>系统日志</span>
+						</a>
+						<ul class="sub-menu">
+						    <li><a href="email_inbox.html">操作记录</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-ios-gear bg-blue"></i> 
+							<span>系统设置</span>
+						</a>
+						<ul class="sub-menu">
+						    
+						</ul>
+					</li>
+			        <!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-left"></i> <span></span></a></li>
+			        <!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+	</body>
+</html>      

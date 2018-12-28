@@ -4,6 +4,7 @@ import javax.servlet.Filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,6 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.bugbycode.module.server.ResourceServer;
 import com.bugbycode.service.TokenRequestService;
 import com.bugbycode.webapp.authentication.EmployeeDetailsService;
 import com.bugbycode.webapp.authentication.FortAuthenticationFailureHandler;
@@ -73,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private Filter getUsernamePasswordAuthenticationFilter() throws Exception {
 		UsernamePasswordAuthenticationFilter authFilter = 
 				new FortUsernamePasswordAuthenticationFilter(clientId, clientSecret, 
-						scope,tokenUrl, refreshTokenUrl, checkTokenUrl,new TokenRequestService());
+						scope,tokenUrl, refreshTokenUrl, checkTokenUrl,tokenRequestService());
 		authFilter.setAuthenticationManager(this.authenticationManager());
 		authFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
 		authFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
@@ -98,7 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean("userDetailsService")
 	public UserDetailsService getUserDetailsService() {
 		return new EmployeeDetailsService(clientId, clientSecret, 
-				refreshTokenUrl, checkTokenUrl,new TokenRequestService());
+				refreshTokenUrl, checkTokenUrl,tokenRequestService());
 	}
 	
 	@Bean
@@ -116,5 +118,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				return rawPassword.toString();
 			}
 		};
+	}
+	
+	@Bean
+	public TokenRequestService tokenRequestService() {
+		return new TokenRequestService();
+	}
+	
+	@Bean
+	@ConfigurationProperties(prefix="spring.resource.server")
+	public ResourceServer resourceServer() {
+		return new ResourceServer();
 	}
 }

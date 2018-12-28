@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      <style>
+			#page_table{
+				margin-top: 10px;
+				margin-right: 20px;
+			}
+	  </style>
+	<body th:fragment="page">
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="dataTables_info" id="data-table-default_info" role="status" aria-live="polite">
+					<span th:text="${'共计 ' + page.totalCount + ' 条记录，' + '当前第 ' + page.currentPage + '/' + page.pageCount + ' 页'}"></span>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<ul class="pagination">
+					<li th:if="${page.startIndex eq 0}" class="page-item disabled">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-double-left"></i>
+						</a>
+					</li>
+					<li th:if="${page.startIndex ne 0}" class="page-item">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-double-left"></i>
+						</a>
+					</li>
+					<li th:if="${page.startIndex eq 0}" class="page-item disabled">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-left"></i>
+						</a>
+					</li>
+					<li th:if="${page.startIndex ne 0}" class="page-item">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-left"></i>
+						</a>
+					</li>
+					<li th:if="${page.nextIndex eq page.startIndex}" class="page-item disabled">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-right"></i>
+						</a>
+					</li>
+					<li th:if="${page.nextIndex ne page.startIndex}" class="page-item">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-right"></i>
+						</a>
+					</li>
+					<li th:if="${page.lastIndex eq page.startIndex}" class="page-item disabled">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-double-right"></i>
+						</a>
+					</li>
+					<li th:if="${page.lastIndex ne page.startIndex or page.lastIndex gt page.startIndex}" class="page-item">
+						<a href="#" class="page-link">
+							<i class="fas fa-angle-double-right"></i>
+						</a>
+					</li>
+					<li class="page-item">
+						<input id="page" class="form-control pageText" th:value="${page.currentPage}" />
+					</li>
+					<li class="page-item">
+						<a href="#" class="page-link">
+							<i class="fas fa-search"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+		     function gopage(lastnum){
+		    	 var page = $("#page").val();
+		    	 var num = parseInt(page * 15) - parseInt(15);
+		    	 if (num > lastnum) {
+		    		 num = lastnum;
+		 		 }
+		    	 if(num < 0){
+		    		 num = 0;
+		    	 }
+		    	 $("#startIndex").val(num);
+		    	 query();
+		     }
+		     function query(){
+		    	 $.ajax({
+		             type: "POST",
+		             url: $("#page_table").parents("form").prop("action"),
+		             data: $("#page_table").parents("form").serialize(),
+		             success: function (result) {
+		            	 $("#content").html(result);
+		             }
+		    	 });
+		     }
+		</script>
+	</body>
+</html>

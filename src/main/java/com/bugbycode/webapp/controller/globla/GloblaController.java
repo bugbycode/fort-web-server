@@ -10,14 +10,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
 public class GloblaController{
-	
+	/*
 	@ExceptionHandler({ RuntimeException.class })
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
 	public ModelAndView processException(HttpServletResponse response,RuntimeException exception) {
         ModelAndView m = new ModelAndView();
         m.addObject("status", response.getStatus());
         m.addObject("roncooException", exception.getMessage());
         m.setViewName("pages/commons/error");
         return m;
-    }
+    }*/
 }
