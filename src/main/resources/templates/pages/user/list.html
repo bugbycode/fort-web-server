@@ -99,9 +99,9 @@
 									<thead>
 										<tr>
 											<th width="1%">
-												<div class="checkbox checkbox-css cssCheckboxAll">
+												<div class="checkbox checkbox-css cssCheckboxAll hand">
 			                                         <input type="checkbox" id="cssCheckboxAll" />
-			                                         <label for="cssCheckboxAll"></label>
+			                                         <label class="hand" for="cssCheckboxAll"></label>
 			                                     </div>
 											</th>
 											<th class="text-nowrap">姓名</th>
@@ -124,7 +124,7 @@
 											<td>
 												<div class="checkbox checkbox-css cssTabCheckBox">
 			                                         <input type="checkbox" th:id="${'cssCheckbox' + e.id}" th:value="${e.id}" />
-			                                         <label th:for="${'cssCheckbox' + e.id}"></label>
+			                                         <label class="hand" th:for="${'cssCheckbox' + e.id}"></label>
 			                                     </div>
 											</td>
 											<td th:text="${e.name}"></td>
@@ -205,6 +205,13 @@
 		});
 		$(".logout").click(function(){
 			$("#logoutForm").submit();
+		});
+		$("#cssCheckboxAll").click(function(){
+			if($(this).prop("checked")){
+				$("div.checkbox").find("input").prop("checked",true);
+			}else{
+				$("div.checkbox").find("input").prop("checked",false);
+			}
 		});
 	</script>
 </body>
