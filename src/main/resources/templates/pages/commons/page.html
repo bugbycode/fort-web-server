@@ -17,42 +17,42 @@
 			<div class="col-sm-7">
 				<ul class="pagination">
 					<li th:if="${page.startIndex eq 0}" class="page-item disabled">
-						<a href="#" class="page-link">
+						<a href="javascript:;" class="page-link">
 							<i class="fas fa-angle-double-left"></i>
 						</a>
 					</li>
 					<li th:if="${page.startIndex ne 0}" class="page-item">
-						<a href="#" class="page-link">
+						<a href="javascript:;" th:onclick="'changeRecord(\'0\')'" class="page-link">
 							<i class="fas fa-angle-double-left"></i>
 						</a>
 					</li>
 					<li th:if="${page.startIndex eq 0}" class="page-item disabled">
-						<a href="#" class="page-link">
+						<a href="javascript:;" class="page-link">
 							<i class="fas fa-angle-left"></i>
 						</a>
 					</li>
 					<li th:if="${page.startIndex ne 0}" class="page-item">
-						<a href="#" class="page-link">
+						<a href="javascript:;" th:onclick="'changeRecord(\'' + ${page.previousIndex} + '\')'" class="page-link">
 							<i class="fas fa-angle-left"></i>
 						</a>
 					</li>
 					<li th:if="${page.nextIndex eq page.startIndex}" class="page-item disabled">
-						<a href="#" class="page-link">
+						<a href="javascript:;" class="page-link">
 							<i class="fas fa-angle-right"></i>
 						</a>
 					</li>
 					<li th:if="${page.nextIndex ne page.startIndex}" class="page-item">
-						<a href="#" class="page-link">
+						<a href="javascript:;" th:onclick="'changeRecord(\'' + ${page.nextIndex} + '\')'" class="page-link">
 							<i class="fas fa-angle-right"></i>
 						</a>
 					</li>
 					<li th:if="${page.lastIndex eq page.startIndex}" class="page-item disabled">
-						<a href="#" class="page-link">
+						<a href="javascript:;" class="page-link">
 							<i class="fas fa-angle-double-right"></i>
 						</a>
 					</li>
 					<li th:if="${page.lastIndex ne page.startIndex or page.lastIndex gt page.startIndex}" class="page-item">
-						<a href="#" class="page-link">
+						<a href="javascript:;" th:onclick="'changeRecord(\'' + ${page.lastIndex} + '\')'" class="page-link">
 							<i class="fas fa-angle-double-right"></i>
 						</a>
 					</li>
@@ -60,7 +60,9 @@
 						<input id="page" class="form-control pageText" th:value="${page.currentPage}" />
 					</li>
 					<li class="page-item">
-						<a href="#" class="page-link">
+						<input type="hidden" name="startIndex" id="startIndex" value="0">
+	     				<input type="hidden" name="lastIndex" id="lastIndex" th:value='${page.lastIndex}'>
+						<a href="javascript:;" th:onclick="'gopage(\'' + ${page.lastIndex} + '\')'" class="page-link">
 							<i class="fas fa-search"></i>
 						</a>
 					</li>
@@ -68,9 +70,13 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			function changeRecord(num){
+				$("#startIndex").val(num);
+				query();
+			}
 		     function gopage(lastnum){
 		    	 var page = $("#page").val();
-		    	 var num = parseInt(page * 15) - parseInt(15);
+		    	 var num = parseInt(page * 10) - parseInt(10);
 		    	 if (num > lastnum) {
 		    		 num = lastnum;
 		 		 }
@@ -81,14 +87,7 @@
 		    	 query();
 		     }
 		     function query(){
-		    	 $.ajax({
-		             type: "POST",
-		             url: $("#page_table").parents("form").prop("action"),
-		             data: $("#page_table").parents("form").serialize(),
-		             success: function (result) {
-		            	 $("#content").html(result);
-		             }
-		    	 });
+		    	 $("form").submit();
 		     }
 		</script>
 	</body>

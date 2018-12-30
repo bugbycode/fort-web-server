@@ -69,6 +69,7 @@
 					<h4 class="panel-title">用户列表</h4>
 				</div>
 				<div class="panel-body">
+					<form th:action="@{/user/query}" method="get" autocomplete="off">
 					<table id="data-table-default" class="table table-striped table-bordered">
 						<thead>
 							<tr>
@@ -114,6 +115,7 @@
 					<div class="row-fluid">
 						<div th:include="pages/commons/page :: page"></div>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
