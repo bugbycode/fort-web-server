@@ -33,10 +33,18 @@
 	<script src="../assets/plugins/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
 	<style type="text/css">
-		.pageText{
-			height: 30px;
-    		margin: 0px 0px 0px 4px;
-    		width: 60px;
+		.dataTables_filter{
+			text-align: right;
+		}
+		.hand{
+			cursor: pointer;
+		}
+		.cssCheckboxAll{
+			margin-top: -24px;
+		}
+		
+		.cssTabCheckBox{
+			margin-top: -6px;
 		}
 	</style>
 </head>
@@ -60,6 +68,10 @@
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-plus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-trash-alt"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-cloud-upload-alt"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-cloud-download-alt"></i></a>
 						<!-- 
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
@@ -70,50 +82,73 @@
 				</div>
 				<div class="panel-body">
 					<form th:action="@{/user/query}" method="get" autocomplete="off">
-					<table id="data-table-default" class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th width="1%"></th>
-								<th class="text-nowrap">姓名</th>
-								<th class="text-nowrap">用户名</th>
-								<th class="text-nowrap">角色</th>
-								<th class="text-nowrap">所属组</th>
-								<th class="text-nowrap">手机号码</th>
-								<th class="text-nowrap">电子邮件</th>
-								<th class="text-nowrap">状态</th>
-								<th class="text-nowrap">创建时间</th>
-								<th class="text-nowrap">修改时间</th>
-								<th class="text-nowrap">操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="gradeA odd" th:if="${#lists.isEmpty(list)}">
-								<td colspan="7" style="text-align: center;">没有查询到匹配的信息</td>
-							</tr>
-							<tr class="odd gradeA" th:each="e:${list}">
-								<td>
-									<div class="checkbox checkbox-css">
-                                         <input type="checkbox" th:id="${'cssCheckbox' + e.id}" th:value="${e.id}" />
-                                         <label th:for="${'cssCheckbox' + e.id}"></label>
-                                     </div>
-								</td>
-								<td th:text="${e.name}"></td>
-								<td th:text="${e.username}"></td>
-								<td th:text="${e.roleName}"></td>
-								<td th:text="${e.groupName}"></td>
-								<td th:text="${e.mobile}"></td>
-								<td th:text="${e.email}"></td>
-								<td>
-									<span th:text="${e.status eq 0 ? '锁定' : '激活'}"></span>
-								</td>
-								<td th:text="${e.createTime==null ? '' : #dates.format(e.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-								<td th:text="${e.updateTime==null ? '' : #dates.format(e.updateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="row-fluid">
-						<div th:include="pages/commons/page :: page"></div>
+					<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="dataTables_filter">
+									<label>
+										<input type="text" name="paramQuery" th:value="${paramQuery}" class="form-control input-sm" placeholder="请输入查询条件" aria-controls="data-table-default">
+										<i class="ion-ios-search-strong fa-2x fa-fw pull-right m-r-0 text-black-lighter hand"></i>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="data-table-default" class="table table-striped table-bordered dataTable no-footer dtr-inline">
+									<thead>
+										<tr>
+											<th width="1%">
+												<div class="checkbox checkbox-css cssCheckboxAll">
+			                                         <input type="checkbox" id="cssCheckboxAll" />
+			                                         <label for="cssCheckboxAll"></label>
+			                                     </div>
+											</th>
+											<th class="text-nowrap">姓名</th>
+											<th class="text-nowrap">用户名</th>
+											<th class="text-nowrap">角色</th>
+											<th class="text-nowrap">所属组</th>
+											<th class="text-nowrap">手机号码</th>
+											<th class="text-nowrap">电子邮件</th>
+											<th class="text-nowrap" width="1%">状态</th>
+											<th class="text-nowrap">创建时间</th>
+											<th class="text-nowrap">修改时间</th>
+											<th class="text-nowrap">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="gradeA odd" th:if="${#lists.isEmpty(list)}">
+											<td colspan="11" style="text-align: center;">没有查询到匹配的信息</td>
+										</tr>
+										<tr class="odd gradeA" th:each="e:${list}">
+											<td>
+												<div class="checkbox checkbox-css cssTabCheckBox">
+			                                         <input type="checkbox" th:id="${'cssCheckbox' + e.id}" th:value="${e.id}" />
+			                                         <label th:for="${'cssCheckbox' + e.id}"></label>
+			                                     </div>
+											</td>
+											<td th:text="${e.name}"></td>
+											<td th:text="${e.username}"></td>
+											<td th:text="${e.roleName}"></td>
+											<td th:text="${e.groupName}"></td>
+											<td th:text="${e.mobile}"></td>
+											<td th:text="${e.email}"></td>
+											<td>
+												<span th:text="${e.status eq 0 ? '锁定' : '激活'}"></span>
+											</td>
+											<td th:text="${e.createTime==null ? '' : #dates.format(e.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+											<td th:text="${e.updateTime==null ? '' : #dates.format(e.updateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div th:include="pages/commons/page :: page"></div>
+						</div>
 					</div>
 					</form>
 				</div>
@@ -151,6 +186,7 @@
 	<script src="../assets/plugins/jquery-jvectormap/jquery-jvectormap.min.js"></script>
 	<script src="../assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="../javascript/custom/bugbycode.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>
@@ -159,6 +195,14 @@
 		});
 	</script>
 	<script type="text/javascript">
+		$("input[name='paramQuery']").keypress(function(event){
+			if(event.keyCode == 13){
+				query();
+			}
+		});
+		$(".ion-ios-search-strong").click(function(){
+			query();
+		});
 		$(".logout").click(function(){
 			$("#logoutForm").submit();
 		});

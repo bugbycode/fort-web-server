@@ -38,6 +38,7 @@ public class UserController {
 		SearchResult<User> sr = dataRequestService.search(AppConfig.USER_QUERY_PATH,param, SearchResult.class,User.class);
 		model.put("list", sr.getList());
 		model.put("page", sr.getPage());
+		model.put("paramQuery", keyword);
 		return "pages/user/list";
 	}
 }
