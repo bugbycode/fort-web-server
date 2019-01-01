@@ -67,90 +67,130 @@
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-						<a th:href="@{/user/edit}" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-plus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-trash-alt"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-cloud-upload-alt"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-cloud-download-alt"></i></a>
-						<!-- 
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-						 -->
+						
 					</div>
-					<h4 class="panel-title">用户列表</h4>
+					<h4 class="panel-title"><span class="hand" th:onclick="'location.href=\'/user/query\';'">用户列表</span>&nbsp;/&nbsp;新建用户</h4>
 				</div>
-				<div class="panel-body">
-					<form th:action="@{/user/query}" method="get" autocomplete="off">
-					<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="dataTables_filter">
-									<label>
-										<input type="text" name="paramQuery" th:value="${paramQuery}" class="form-control input-sm" placeholder="请输入查询条件" aria-controls="data-table-default">
-										<i class="ion-ios-search-strong fa-2x fa-fw pull-right m-r-0 text-black-lighter hand"></i>
-									</label>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div>
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
 								</div>
+								<h4 class="panel-title">基本信息</h4>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<table id="data-table-default" class="table table-striped table-bordered dataTable no-footer dtr-inline">
-									<thead>
-										<tr>
-											<th width="1%">
-												<div class="checkbox checkbox-css cssCheckboxAll hand">
-			                                         <input type="checkbox" id="cssCheckboxAll" />
-			                                         <label class="hand" for="cssCheckboxAll"></label>
-			                                     </div>
-											</th>
-											<th class="text-nowrap">姓名</th>
-											<th class="text-nowrap">用户名</th>
-											<th class="text-nowrap">角色</th>
-											<th class="text-nowrap">所属组</th>
-											<th class="text-nowrap">手机号码</th>
-											<th class="text-nowrap">电子邮件</th>
-											<th class="text-nowrap" width="1%">状态</th>
-											<th class="text-nowrap">创建时间</th>
-											<th class="text-nowrap">修改时间</th>
-											<th class="text-nowrap">操作</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="gradeA odd" th:if="${#lists.isEmpty(list)}">
-											<td colspan="11" style="text-align: center;">没有查询到匹配的信息</td>
-										</tr>
-										<tr class="odd gradeA" th:each="e:${list}">
-											<td>
-												<div class="checkbox checkbox-css cssTabCheckBox">
-			                                         <input type="checkbox" th:id="${'cssCheckbox' + e.id}" th:value="${e.id}" />
-			                                         <label class="hand" th:for="${'cssCheckbox' + e.id}"></label>
-			                                     </div>
-											</td>
-											<td th:text="${e.name}"></td>
-											<td th:text="${e.username}"></td>
-											<td th:text="${e.roleName}"></td>
-											<td th:text="${e.groupName}"></td>
-											<td th:text="${e.mobile}"></td>
-											<td th:text="${e.email}"></td>
-											<td>
-												<span th:text="${e.status eq 0 ? '锁定' : '激活'}"></span>
-											</td>
-											<td th:text="${e.createTime==null ? '' : #dates.format(e.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-											<td th:text="${e.updateTime==null ? '' : #dates.format(e.updateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
+							<div class="panel-body">
+								<form>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">姓名</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<input type="text" class="form-control is-invalid">
+												<div class="invalid-feedback">请输入姓名</div>
+											</div>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">锁定状态</label>
+										<div class="col-md-9">
+											<select class="form-control">
+												<option>普通用户</option>
+												<option>系统管理员</option>
+											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">角色</label>
+										<div class="col-md-9">
+											<select class="form-control">
+												<option>普通用户</option>
+												<option>系统管理员</option>
+											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">所属组</label>
+										<div class="col-md-9">
+											<select class="form-control">
+												<option>请选择</option>
+												<option>普通用户</option>
+												<option>系统管理员</option>
+											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">手机号码</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<input type="text" class="form-control is-valid">
+											</div>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">邮箱地址</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<input type="text" class="form-control is-valid">
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div th:include="pages/commons/page :: page"></div>
+				</div>
+				<div class="col-lg-6">
+					<div>
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">认证信息</h4>
+							</div>
+							<div class="panel-body">
+								<form>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">用户名</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<input type="text" class="form-control is-valid">
+											</div>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">密码</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<input type="text" class="form-control is-invalid">
+												<div class="invalid-feedback">请输入密码</div>
+											</div>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">确认密码</label>
+										<div class="col-md-9">
+											<div class="input-group">
+												<input type="text" class="form-control is-invalid">
+												<div class="invalid-feedback">两次输入的密码不一致</div>
+											</div>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">认证方式</label>
+										<div class="col-md-9">
+											<select class="form-control">
+												<option>密码认证</option>
+											</select>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
-					</form>
 				</div>
 			</div>
 		</div>
@@ -195,23 +235,8 @@
 		});
 	</script>
 	<script type="text/javascript">
-		$("input[name='paramQuery']").keypress(function(event){
-			if(event.keyCode == 13){
-				query();
-			}
-		});
-		$(".ion-ios-search-strong").click(function(){
-			query();
-		});
 		$(".logout").click(function(){
 			$("#logoutForm").submit();
-		});
-		$("#cssCheckboxAll").click(function(){
-			if($(this).prop("checked")){
-				$("div.checkbox").find("input").prop("checked",true);
-			}else{
-				$("div.checkbox").find("input").prop("checked",false);
-			}
 		});
 	</script>
 </body>

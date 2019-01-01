@@ -41,4 +41,9 @@ public class UserController {
 		model.put("paramQuery", keyword);
 		return "pages/user/list";
 	}
+	
+	@RequestMapping("/edit")
+	public String edit() {
+		return "pages/user/edit";
+	}
 }
