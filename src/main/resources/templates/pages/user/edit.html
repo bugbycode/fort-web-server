@@ -64,14 +64,24 @@
 		
 		<!-- begin #content -->
 		<div id="content" class="content">
-			<div class="panel panel-inverse">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/user/query\';'">用户列表</a></li>
+				<li class="breadcrumb-item active">添加用户</li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">用户信息<small></small></h1>
+			<!-- end page-header -->
+			<!-- <div class="panel panel-inverse">
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
 						
 					</div>
 					<h4 class="panel-title"><span class="hand" th:onclick="'location.href=\'/user/query\';'">用户列表</span>&nbsp;/&nbsp;新建用户</h4>
 				</div>
-			</div>
+			</div> -->
+			<form id="userForm" method="post" action="/insert">
 			<div class="row">
 				<div class="col-lg-6">
 					<div>
@@ -83,61 +93,62 @@
 								<h4 class="panel-title">基本信息</h4>
 							</div>
 							<div class="panel-body">
-								<form>
+								<fieldset>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">姓名</label>
 										<div class="col-md-9">
-											<div class="input-group">
-												<input type="text" class="form-control is-invalid">
-												<div class="invalid-feedback">请输入姓名</div>
-											</div>
+											<input name="name" id="name" type="text" class="form-control is-invalid" value="中文">
+											<div class="invalid-feedback">请输入姓名</div>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">锁定状态</label>
 										<div class="col-md-9">
-											<select class="form-control">
-												<option>普通用户</option>
-												<option>系统管理员</option>
+											<select id="status" name="status" class="form-control">
+												<option value="0">锁定</option>
+												<option value="1">激活</option>
 											</select>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">角色</label>
 										<div class="col-md-9">
-											<select class="form-control">
-												<option>普通用户</option>
-												<option>系统管理员</option>
+											<select id="roleId" name="roleId" class="form-control">
+												<option value="1">普通用户</option>
+												<option value="1">系统管理员</option>
 											</select>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">所属组</label>
 										<div class="col-md-9">
-											<select class="form-control">
-												<option>请选择</option>
-												<option>普通用户</option>
-												<option>系统管理员</option>
+											<select id="groupId" name="groupId" class="form-control">
+												<option value="-1">请选择</option>
+												<option value="1">普通用户</option>
+												<option value="2">系统管理员</option>
 											</select>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">手机号码</label>
 										<div class="col-md-9">
-											<div class="input-group">
-												<input type="text" class="form-control is-valid">
-											</div>
+											<input id="mobile" name="mobile" type="text" class="form-control is-valid">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">邮箱地址</label>
 										<div class="col-md-9">
-											<div class="input-group">
-												<input type="text" class="form-control is-valid">
-											</div>
+											<input id="email" name="email" type="text" class="form-control is-valid" value="example@gmail.com">
 										</div>
 									</div>
-								</form>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label"></label>
+										<div class="col-md-9">
+											<button type="submit" class="btn btn-sm btn-primary m-r-5">提交</button>
+											<button class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/user/query\';'">返回</button>
+										</div>
+									</div>
+								</fieldset>
 							</div>
 						</div>
 					</div>
@@ -152,47 +163,42 @@
 								<h4 class="panel-title">认证信息</h4>
 							</div>
 							<div class="panel-body">
-								<form>
+								<fieldset>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">用户名</label>
 										<div class="col-md-9">
-											<div class="input-group">
-												<input type="text" class="form-control is-valid">
-											</div>
+											<input id="username" name="username" type="text" class="form-control is-valid">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">密码</label>
 										<div class="col-md-9">
-											<div class="input-group">
-												<input type="text" class="form-control is-invalid">
-												<div class="invalid-feedback">请输入密码</div>
-											</div>
+											<input id="password" name="password" type="password" class="form-control is-invalid" value="">
+											<div class="invalid-feedback">请输入密码</div>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">确认密码</label>
 										<div class="col-md-9">
-											<div class="input-group">
-												<input type="text" class="form-control is-invalid">
-												<div class="invalid-feedback">两次输入的密码不一致</div>
-											</div>
+											<input id="password2" name="password2" type="password" class="form-control is-invalid" value="">
+											<div class="invalid-feedback">两次输入的密码不一致</div>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">认证方式</label>
 										<div class="col-md-9">
-											<select class="form-control">
-												<option>密码认证</option>
+											<select id="authType" name="authType" class="form-control">
+												<option value="0">密码认证</option>
 											</select>
 										</div>
 									</div>
-								</form>
+								</fieldset>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			</form>
 		</div>
 		<!-- end #content -->
 		<!-- begin scroll to top btn -->
@@ -227,17 +233,49 @@
 	<script src="../assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="../javascript/custom/bugbycode.js"></script>
+	<script type="text/javascript" src="../validator/validator.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>
-		$(document).ready(function() {
-			App.init();
-		});
+		App.init();
 	</script>
 	<script type="text/javascript">
-		$(".logout").click(function(){
-			$("#logoutForm").submit();
+		$(document).ready(function(){
+			$(".logout").click(function(){
+				$("#logoutForm").submit();
+			});
 		});
+		
+		var rules = {
+			name:{
+				required:false,
+				name:true
+			},email:{
+				required:true,
+				email:true
+			},username:{
+				
+			},password:{
+				required:true
+			},password2:{
+				compare:"password"
+			}
+		};
+		var messages = {
+			name:{
+				required:"请输入用户姓名",
+				name:"用户姓名格式错误"
+			},email:{
+				required:"请输入邮箱地址",
+				email:"邮箱地址格式不正确"
+			},password:{
+				required:"请输入密码",
+			},password2:{
+				compare:"两次输入的密码不一致"
+			}	
+		};
+		$.validator("#userForm");
+		//$.validatorForm("#userForm");
 	</script>
 </body>
 </html>

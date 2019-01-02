@@ -59,11 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/imgCode").permitAll()
+		http.authorizeRequests()
+		
+		.antMatchers("/imgCode").permitAll()
 		//凡是登录成功的用户都可访问
 		.antMatchers("/main").hasRole(RoleConfig.LOGIN_USER)
 		
 		.antMatchers("/user/query").hasAnyRole(RoleConfig.USER_QUERY)
+		.antMatchers("/user/edit").hasAnyRole(RoleConfig.USER_QUERY,RoleConfig.USER_INSERT,
+				RoleConfig.USER_UPDATE,RoleConfig.USER_DELETE)
 		
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问
