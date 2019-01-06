@@ -81,7 +81,7 @@
 					<h4 class="panel-title"><span class="hand" th:onclick="'location.href=\'/user/query\';'">用户列表</span>&nbsp;/&nbsp;新建用户</h4>
 				</div>
 			</div> -->
-			<form id="userForm" method="post" action="/insert" autocomplete="off">
+			<form id="userForm" method="post" th:action="@{/insert}" autocomplete="off">
 			<div class="row">
 				<div class="col-lg-6">
 					<div>
@@ -145,7 +145,7 @@
 										<label class="col-md-3 col-form-label"></label>
 										<div class="col-md-9">
 											<button type="submit" class="btn btn-sm btn-primary m-r-5">提交</button>
-											<button class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/user/query\';'">返回</button>
+											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/user/query\';'">返回</button>
 										</div>
 									</div>
 								</fieldset>
@@ -265,7 +265,7 @@
 		});
 		$.addValidator('checkName',function(element,value){
 			console.log(value);
-			return false;
+			return true;
 		});
 		var rules = {
 			name:{
