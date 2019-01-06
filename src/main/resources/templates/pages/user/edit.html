@@ -81,7 +81,7 @@
 					<h4 class="panel-title"><span class="hand" th:onclick="'location.href=\'/user/query\';'">用户列表</span>&nbsp;/&nbsp;新建用户</h4>
 				</div>
 			</div> -->
-			<form id="userForm" method="post" action="/insert">
+			<form id="userForm" method="post" action="/insert" autocomplete="off">
 			<div class="row">
 				<div class="col-lg-6">
 					<div>
@@ -97,14 +97,14 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">姓名</label>
 										<div class="col-md-9">
-											<input name="name" id="name" type="text" class="form-control is-invalid" value="中文">
+											<input name="name" id="name" type="text" class="form-control is-invalid" value="">
 											<div class="invalid-feedback">请输入姓名</div>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">锁定状态</label>
 										<div class="col-md-9">
-											<select id="status" name="status" class="form-control">
+											<select id="status" name="status" class="form-control is-valid">
 												<option value="0">锁定</option>
 												<option value="1">激活</option>
 											</select>
@@ -113,7 +113,7 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">角色</label>
 										<div class="col-md-9">
-											<select id="roleId" name="roleId" class="form-control">
+											<select id="roleId" name="roleId" class="form-control is-valid">
 												<option value="1">普通用户</option>
 												<option value="1">系统管理员</option>
 											</select>
@@ -122,7 +122,7 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">所属组</label>
 										<div class="col-md-9">
-											<select id="groupId" name="groupId" class="form-control">
+											<select id="groupId" name="groupId" class="form-control is-valid">
 												<option value="-1">请选择</option>
 												<option value="1">普通用户</option>
 												<option value="2">系统管理员</option>
@@ -138,7 +138,7 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">邮箱地址</label>
 										<div class="col-md-9">
-											<input id="email" name="email" type="text" class="form-control is-valid" value="example@gmail.com">
+											<input id="email" name="email" type="text" class="form-control is-valid" value="">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
@@ -173,23 +173,37 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">密码</label>
 										<div class="col-md-9">
-											<input id="password" name="password" type="password" class="form-control is-invalid" value="">
-											<div class="invalid-feedback">请输入密码</div>
+											<input id="password" name="password" type="password" class="form-control is-valid" value="">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">确认密码</label>
 										<div class="col-md-9">
-											<input id="password2" name="password2" type="password" class="form-control is-invalid" value="">
-											<div class="invalid-feedback">两次输入的密码不一致</div>
+											<input id="password2" name="password2" type="password" class="form-control is-valid" value="">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">认证方式</label>
 										<div class="col-md-9">
-											<select id="authType" name="authType" class="form-control">
+											<select id="authType" name="authType" class="form-control is-valid">
 												<option value="0">密码认证</option>
 											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label"></label>
+										<div class="col-md-9">
+											<div class="checkbox checkbox-css checkbox-inline">
+												<input name="auth" type="checkbox" value="dymic" id="dymic"/>
+												<label for="dymic">动态令牌&nbsp;<a href="javascript:;">私钥信息</a></label>
+	                                    	</div>
+	                                    	<div class="checkbox checkbox-css checkbox-inline">
+												<input name="auth" type="checkbox" value="ca" id="ca"/>
+												<label for="ca">数字证书&nbsp;<a href="javascript:;">下载证书</a></label>
+	                                    	</div>
+											<ul class="parsley-errors-list filled" id="parsley-id-multiple-mincheck">
+												<li class="parsley-required">至少需要附加一项认证方式</li>
+											</ul>
 										</div>
 									</div>
 								</fieldset>
@@ -245,33 +259,61 @@
 				$("#logoutForm").submit();
 			});
 		});
-		
+		$.addValidator('checkUserName',function(element,value){
+			console.log(value);
+			return true;
+		});
+		$.addValidator('checkName',function(element,value){
+			console.log(value);
+			return false;
+		});
 		var rules = {
 			name:{
-				required:false,
-				name:true
-			},email:{
 				required:true,
+				name:true,
+				min:2,
+				max:10,
+				checkName:true
+			},email:{
 				email:true
 			},username:{
-				
+				required:true,
+				username:true,
+				checkUserName:true
 			},password:{
 				required:true
 			},password2:{
+				required:true,
 				compare:"password"
+			},auth:{
+				required:false
+			},mobile:{
+				mobile:true
 			}
 		};
 		var messages = {
 			name:{
 				required:"请输入用户姓名",
-				name:"用户姓名格式错误"
+				name:"用户姓名格式错误，请输入中文、字母、数字或下划线",
+				min:"用户姓名至少由两个字符组成",
+				max:"用户姓名不能超过十个字符",
+				checkName:"该姓名已存在"
 			},email:{
 				required:"请输入邮箱地址",
 				email:"邮箱地址格式不正确"
+			},username:{
+				required:"请输入用户名",
+				username:"用户名格式错误，请输入字母、数字或下划线",
+				checkUserName:"该用户名已存在"
 			},password:{
 				required:"请输入密码",
 			},password2:{
+				required:"请输入密码",
 				compare:"两次输入的密码不一致"
+			},auth:{
+				required:"请选择至少一项认证方式"
+			},mobile:{
+				mobile:"请输入正确的手机号码"
 			}	
 		};
 		$.validator("#userForm");
