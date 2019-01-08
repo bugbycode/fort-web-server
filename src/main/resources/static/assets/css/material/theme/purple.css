@@ -1,49 +1,45 @@
 /*
-Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3 & 4
-Version: 4.1.0
+Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
+Version: 4.2.0
 Author: Sean Ngu
-Website: https://www.seantheme.com/color-admin-v4.1/admin/
+Website: http://www.seantheme.com/color-admin-v4.2/admin/
 */
 
-.header .navbar-nav > li > a .label,
+.navbar-logo,
+.coming-soon .brand .logo,
+.login .login-header .brand .logo {
+	border-color: #BA68C8 #9C27B0 #7B1FA2;
+}
+.sidebar .nav > li.active > a, 
+.sidebar .nav > li.active > a:focus, 
+.sidebar .nav > li.active > a:hover,
+.page-sidebar-minified .sidebar .nav > li.has-sub.active:focus > a, 
+.page-sidebar-minified .sidebar .nav > li.has-sub.active:hover > a, 
+.page-sidebar-minified .sidebar .nav > li.has-sub.active > a,
 .label.label-theme,
 .btn.btn-scroll-to-top {
-    background: #9800ff;
+	background: #9C27B0;
 }
-.header.navbar-inverse .navbar-brand {
-    color: #fff !important;
+.navbar.navbar-inverse .navbar-brand {
+	color: #fff !important;
 }
-.text-theme {
-    color: #9800ff;
+.text-theme,
+.sidebar .sub-menu > li.active > a:before {
+	color: #9C27B0;
 }
-a,
-.breadcrumb > li a,
-.header .navbar-brand > b {
-    color: #cf93ff;
-}
-a:hover,
-a:focus,
-.breadcrumb > li a:hover,
-.breadcrumb > li a:focus {
-	color: #daaefd;
-}
-.header .navbar-logo:before {
-	border-color: rgba(207, 147, 255, 0.75);
-}
-.header .navbar-brand .navbar-logo:after {
-	background: #cf93ff;
-}
-.header .navbar-logo {
-	border-color: rgba(207, 147, 255, 0.5);
+@media (max-width: 767px) {
+	.navbar-inverse .navbar-header {
+		background: #9C27B0;
+	}
 }
 
 
 /* Added in v1.5 */
 
+.gradient-enabled .navbar.navbar-inverse .navbar-brand,
 .gradient-enabled .sidebar .nav > li.active > a, 
 .gradient-enabled .sidebar .nav > li.active > a:focus, 
 .gradient-enabled .sidebar .nav > li.active > a:hover,
-.gradient-enabled .header .navbar-nav > li > a .label,
 .gradient-enabled.page-sidebar-minified .sidebar .nav > li.has-sub.active:focus > a, 
 .gradient-enabled.page-sidebar-minified .sidebar .nav > li.has-sub.active:hover > a, 
 .gradient-enabled.page-sidebar-minified .sidebar .nav > li.has-sub.active > a,
@@ -52,20 +48,36 @@ a:focus,
 .gradient-enabled .top-menu .nav > li.active > a, 
 .gradient-enabled .top-menu .nav > li.active > a:focus, 
 .gradient-enabled .top-menu .nav > li.active > a:hover {
-	color: #fff !important;
-	background: rgb(178,64,255) !important;
-	background: -moz-linear-gradient(top, rgba(178,64,255,1) 0%, rgba(114,0,191,1) 100%) !important;
-	background: -webkit-linear-gradient(top, rgba(178,64,255,1) 0%,rgba(114,0,191,1) 100%) !important;
-	background: linear-gradient(to bottom, rgba(178,64,255,1) 0%,rgba(114,0,191,1) 100%) !important;
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b240ff', endColorstr='#7200bf',GradientType=0 ) !important;
-}
-.gradient-enabled .sidebar .nav > li.active > a {
-	z-index: 10;
+	background: #ba68c8; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ba68c8 0%, #8e24aa 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #ba68c8 0%,#8e24aa 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #ba68c8 0%,#8e24aa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ba68c8', endColorstr='#8e24aa',GradientType=0 ); /* IE6-9 */
 }
 .pace-progress {
-    background: #9800ff;
+	background: #9C27B0;
 }
 .pace .pace-activity {
-    border-top-color: #9800ff;
-    border-left-color: #9800ff;
+	border-top-color: #9C27B0;
+	border-left-color: #9C27B0;
+}
+
+
+/* Added in v1.7 */
+
+.page-with-light-sidebar .sidebar .nav > li.active > a > i {
+	color: #9C27B0;
+}
+.page-with-light-sidebar .sidebar .nav > li.active > a .badge,
+.page-with-light-sidebar .sidebar .nav > li.active > a .label.label-theme {
+	background: #9C27B0;
+}
+
+
+/* Added in v1.9 */
+
+.top-menu .nav > li.active > a, 
+.top-menu .nav > li.active > a:focus, 
+.top-menu .nav > li.active > a:hover {
+	background: #9C27B0;
 }

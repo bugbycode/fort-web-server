@@ -1,40 +1,26 @@
 /*
-Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3 & 4
-Version: 4.1.0
+Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
+Version: 4.2.0
 Author: Sean Ngu
-Website: https://www.seantheme.com/color-admin-v4.1/admin/
+Website: http://www.seantheme.com/color-admin-v4.2/admin/
 */
 
+.header .navbar-logo,
+.login .login-header .brand .logo,
 .header .navbar-nav > li > a .label,
 .label.label-theme,
 .btn.btn-scroll-to-top {
-    background: #5600ff;
+	background: #8753de;
 }
 .header.navbar-inverse .navbar-brand {
-    color: #fff !important;
+	color: #fff !important;
 }
-.text-theme {
-    color: #fff;
+.text-theme,
+.sidebar .nav > li.active > a i {
+	color: #8753de;
 }
-a,
-.breadcrumb > li a,
-.header .navbar-brand > b {
-    color: #ab90ff;
-}
-a:hover,
-a:focus,
-.breadcrumb > li a:hover,
-.breadcrumb > li a:focus {
-	color: #cab8ff;
-}
-.header .navbar-logo:before {
-	border-color: rgba(171, 144, 255, 0.75);
-}
-.header .navbar-brand .navbar-logo:after {
-	background: #ab90ff;
-}
-.header .navbar-logo {
-	border-color: rgba(171, 144, 255, 0.5);
+.sidebar .sub-menu > li.active:after {
+	border-color: #8753de;
 }
 
 
@@ -43,7 +29,6 @@ a:focus,
 .gradient-enabled .sidebar .nav > li.active > a, 
 .gradient-enabled .sidebar .nav > li.active > a:focus, 
 .gradient-enabled .sidebar .nav > li.active > a:hover,
-.gradient-enabled .header .navbar-nav > li > a .label,
 .gradient-enabled.page-sidebar-minified .sidebar .nav > li.has-sub.active:focus > a, 
 .gradient-enabled.page-sidebar-minified .sidebar .nav > li.has-sub.active:hover > a, 
 .gradient-enabled.page-sidebar-minified .sidebar .nav > li.has-sub.active > a,
@@ -52,13 +37,43 @@ a:focus,
 .gradient-enabled .top-menu .nav > li.active > a, 
 .gradient-enabled .top-menu .nav > li.active > a:focus, 
 .gradient-enabled .top-menu .nav > li.active > a:hover {
-	color: #fff !important;
-	background: rgb(136,76,255) !important;
-	background: -moz-linear-gradient(top, rgba(136,76,255,1) 0%, rgba(60,0,179,1) 100%) !important;
-	background: -webkit-linear-gradient(top, rgba(136,76,255,1) 0%,rgba(60,0,179,1) 100%) !important;
-	background: linear-gradient(to bottom, rgba(136,76,255,1) 0%,rgba(60,0,179,1) 100%) !important;
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#884cff', endColorstr='#3c00b3',GradientType=0 ) !important;
+	background: rgb(159,117,229);
+	background: -moz-linear-gradient(top, rgba(159,117,229,1) 0%, rgba(135,83,222,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(159,117,229,1) 0%,rgba(135,83,222,1) 100%);
+	background: linear-gradient(to bottom, rgba(159,117,229,1) 0%,rgba(135,83,222,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9f75e5', endColorstr='#8753de',GradientType=0 );
 }
 .gradient-enabled .sidebar .nav > li.active > a {
 	z-index: 10;
+}
+.gradient-enabled .sidebar .nav > li.active > a i,
+.gradient-enabled .sidebar .nav > li.active > a .caret {
+	color: rgba(0,0,0,0.5);
+}
+.pace-progress {
+	background: #8753de;
+}
+.pace .pace-activity {
+	border-top-color: #8753de;
+	border-left-color: #8753de;
+}
+
+
+/* Added in v1.7 */
+
+.page-with-light-sidebar .sidebar .nav > li.active > a > i {
+	color: #8753de;
+}
+.page-with-light-sidebar .sidebar .nav > li.active > a .badge,
+.page-with-light-sidebar .sidebar .nav > li.active > a .label.label-theme {
+	background: #8753de;
+}
+
+
+/* Added in v1.9 */
+
+.top-menu .nav > li.active > a i, 
+.top-menu .nav > li.active > a:focus i, 
+.top-menu .nav > li.active > a:hover i {
+	color: #8753de;
 }

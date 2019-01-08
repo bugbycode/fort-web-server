@@ -1,8 +1,8 @@
 /*
-Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3 & 4
-Version: 4.1.0
+Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
+Version: 4.2.0
 Author: Sean Ngu
-Website: https://www.seantheme.com/color-admin-v4.1/admin/
+Website: http://www.seantheme.com/color-admin-v4.2/admin/
 */
 
 var handleRenderHighlight = function() { 
@@ -13,10 +13,10 @@ var handleRenderHighlight = function() {
 
 var Highlight = function () {
 	"use strict";
-    return {
-        //main function
-        init: function () {
-            handleRenderHighlight();
-        }
-    };
+	return {
+		//main function
+		init: function () {
+			handleRenderHighlight();
+		}
+	};
 }();
