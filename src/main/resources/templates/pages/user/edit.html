@@ -185,7 +185,7 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">用户名</label>
 										<div class="col-md-9">
-											<input id="username" name="username" th:value="*{username}" type="text" class="form-control is-valid">
+											<input id="username" name="username" th:readonly="*{id > 0}" th:value="*{username}" type="text" class="form-control is-valid">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
