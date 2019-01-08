@@ -45,4 +45,36 @@ public class DataRequestService {
 		result.put("page", json.getJSONObject("page"));
 		return result.toJavaObject(claszz);
 	}
+	
+	public <T> T query(String path,Map<String,Object> param,Class<T> claszz) {
+		LoginUserDetails loginUser = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserAccessToken accessToken = loginUser.getUserToken();
+		HttpClient client = new HttpClient();
+		String url = resourceServer.getUserServerUrl() + path;
+		String jsonStr = client.getResource(url, accessToken.getAccess_token(), param);
+		JSONObject json = JSONObject.parseObject(jsonStr);
+		if(json.containsKey("error")) {
+			String description = json.getString("error_description");
+			throw new RuntimeException(json.getString(description));
+		}
+		if(json.containsKey("data")) {
+			JSONObject jsonObj = json.getJSONObject("data");
+			return jsonObj.toJavaObject(claszz);
+		}
+		return null;
+	}
+	
+	public JSONObject modify(String path,Map<String,Object> param) {
+		LoginUserDetails loginUser = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserAccessToken accessToken = loginUser.getUserToken();
+		HttpClient client = new HttpClient();
+		String url = resourceServer.getUserServerUrl() + path;
+		String jsonStr = client.getResource(url, accessToken.getAccess_token(), param);
+		JSONObject json = JSONObject.parseObject(jsonStr);
+		if(json.containsKey("error")) {
+			String description = json.getString("error_description");
+			throw new RuntimeException(json.getString(description));
+		}
+		return json;
+	}
 }

@@ -149,4 +149,20 @@ public class User implements Serializable {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	public void copy(User user) {
+		this.setId(user.getId());
+		this.setUsername(user.getUsername());
+		this.setPassword(user.getPassword());
+		this.setName(user.getName());
+		this.setType(user.getType());
+		this.setStatus(user.getStatus());
+		this.setEmail(user.getEmail());
+		this.setMobile(user.getMobile());
+		this.setRoleId(user.getRoleId());
+		this.setRoleName(user.getRoleName());
+		this.setGroupId(user.getGroupId());
+		this.setCreateTime(user.getCreateTime());
+		this.setUpdateTime(user.getUpdateTime());
+	}
 }

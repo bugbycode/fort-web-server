@@ -69,7 +69,7 @@
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a th:href="@{/user/edit}" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-plus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-trash-alt"></i></a>
+						<a href="javascript:;" onclick="delChecked()" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-trash-alt"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-cloud-upload-alt"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-cloud-download-alt"></i></a>
 						<!-- 
@@ -112,7 +112,6 @@
 											<th class="text-nowrap">电子邮件</th>
 											<th class="text-nowrap" width="1%">状态</th>
 											<th class="text-nowrap">创建时间</th>
-											<th class="text-nowrap">修改时间</th>
 											<th class="text-nowrap">操作</th>
 										</tr>
 									</thead>
@@ -123,7 +122,7 @@
 										<tr class="odd gradeA" th:each="e:${list}">
 											<td>
 												<div class="checkbox checkbox-css cssTabCheckBox">
-			                                         <input type="checkbox" th:id="${'cssCheckbox' + e.id}" th:value="${e.id}" />
+			                                         <input type="checkbox" name="userIds" th:id="${'cssCheckbox' + e.id}" th:value="${e.id}" />
 			                                         <label class="hand" th:for="${'cssCheckbox' + e.id}"></label>
 			                                     </div>
 											</td>
@@ -137,8 +136,10 @@
 												<span th:text="${e.status eq 0 ? '锁定' : '激活'}"></span>
 											</td>
 											<td th:text="${e.createTime==null ? '' : #dates.format(e.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-											<td th:text="${e.updateTime==null ? '' : #dates.format(e.updateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-											<td></td>
+											<td>
+												<a href="javascript:;" th:onclick="'location.href=\'/user/edit?id=' + ${e.id} + '\';'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-edit"></i></a>
+												<a href="javascript:;" th:onclick="'javascript:del(\'' + ${e.id} + '\');'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-trash-alt"></i></a>
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -150,6 +151,9 @@
 							<div th:include="pages/commons/page :: page"></div>
 						</div>
 					</div>
+					</form>
+					<form id="deleteForm" th:action="@{/user/delete}" method="post">
+						<input type="hidden" name="ids" />
 					</form>
 				</div>
 			</div>
@@ -213,6 +217,22 @@
 				$("div.checkbox").find("input").prop("checked",false);
 			}
 		});
+		
+		function delChecked(){
+			var ids = "";
+			$("input[name='userIds']:checked").each(function(){
+				if(ids != ""){
+					ids += ",";
+				}
+				ids += $(this).val();
+			});
+			del(ids);
+		}
+		
+		function del(ids){
+			$("#deleteForm").find("input[name='ids']").val(ids);
+			$("#deleteForm").submit();
+		}
 	</script>
 </body>
 </html>
