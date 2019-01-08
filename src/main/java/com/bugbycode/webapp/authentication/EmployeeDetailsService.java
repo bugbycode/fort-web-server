@@ -43,7 +43,6 @@ public class EmployeeDetailsService implements UserDetailsService {
 			throw new RuntimeException(accessToken.getError_description());
 		}
 		String token = auth.getToken().getAccess_token();
-		System.out.println("===============" + token);
 		LoginRole role = tokenRequestService.checkToken(checkTokenUrl, token, clientId, clientSecret);
 		LoginUserDetails user = new LoginUserDetails();
 		user.setPassword("");
