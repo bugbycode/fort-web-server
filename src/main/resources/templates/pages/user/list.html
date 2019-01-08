@@ -108,7 +108,7 @@
 								<div class="dataTables_filter">
 									<label>
 										<input type="text" name="paramQuery" th:value="${paramQuery}" class="form-control input-sm" placeholder="请输入查询条件" aria-controls="data-table-default">
-										<i class="ion-ios-search-strong fa-2x fa-fw pull-right m-r-0 text-black-lighter hand"></i>
+										<i class="ion-ios-search fa-2x fa-fw pull-right m-r-0 text-black-lighter hand"></i>
 									</label>
 								</div>
 							</div>
@@ -235,7 +235,7 @@
 				query();
 			}
 		});
-		$(".ion-ios-search-strong").click(function(){
+		$(".ion-ios-search").click(function(){
 			query();
 		});
 		$(".logout").click(function(){

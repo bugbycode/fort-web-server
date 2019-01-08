@@ -130,16 +130,17 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">角色</label>
 										<div class="col-md-9">
-											<select id="roleId" name="roleId" class="form-control is-valid">
-												<option value="1">普通用户</option>
-												<option value="1">系统管理员</option>
+											<select id="roleId" name="roleId" class="form-control selectpicker is-valid" data-size="10" data-live-search="true" data-style="btn-white">
+												<option value="0">请选择</option>
+												<option value="1" th:selected="*{roleId == 1}">系统管理员</option>
+												<option value="2">普通用户</option>
 											</select>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">所属组</label>
 										<div class="col-md-9">
-											<select id="groupId" name="groupId" class="form-control is-valid">
+											<select id="groupId" name="groupId" class="form-control selectpicker is-valid" data-size="10" data-live-search="true" data-style="btn-white">
 												<option value="0">请选择</option>
 												<option value="1" th:selected="*{groupId == 1}">系统管理员</option>
 												<option value="2" th:selected="*{groupId == 2}">普通用户</option>
