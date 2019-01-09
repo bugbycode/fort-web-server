@@ -164,6 +164,9 @@
 						</div>
 					</div>
 					</form>
+					<form id="deleteForm" th:action="@{/userGroup/delete}" method="post">
+						<input type="hidden" name="ids" />
+					</form>
 				</div>
 			</div>
 		</div>
@@ -237,6 +240,73 @@
 			}else{
 				$("div.checkbox").find("input").prop("checked",false);
 			}
+		});
+		
+		function delChecked(e){
+			var ids = "";
+			$("input[name='userGroupIds']:checked").each(function(){
+				if(ids != ""){
+					ids += ",";
+				}
+				ids += $(this).val();
+			});
+			if(ids == ""){
+				e.preventDefault();
+				swal({
+					title: '请选择要删除的用户分组！',
+					text: '',
+					icon: 'warning',
+					buttons: {
+						confirm: {
+							text: '确定',
+							value: true,
+							visible: true,
+							className: 'btn btn-warning',
+							closeModal: true
+						}
+					}
+				})
+			}else{
+				del(e,ids);
+			}
+		}
+		
+		function del(e,ids){
+			e.preventDefault();
+			swal({
+				title: '您确定删除所选的用户分组吗？',
+				text: '您执行该操作后用户分组会被永久删除，是否继续？',
+				icon: 'warning',
+				buttons: {
+					cancel: {
+						text: '取消',
+						value: false,
+						visible: true,
+						className: 'btn btn-default',
+						closeModal: true,
+					},
+					confirm: {
+						text: '确定',
+						value: true,
+						visible: true,
+						className: 'btn btn-warning',
+						closeModal: true
+					}
+				}
+			}).then(function(value){
+				if(value == true){
+					$("#deleteForm").find("input[name='ids']").val(ids);
+					$("#deleteForm").submit();
+				}
+			});
+		}
+		
+		$(".delChecked").click(function(e){
+			delChecked(e);
+		});
+		
+		$(".del").click(function(e){
+			del(e,$(this).prop("id"));
 		});
 	</script>
 </body>

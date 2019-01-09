@@ -127,13 +127,14 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">描述信息</label>
 										<div class="col-md-9">
+											<textarea name="description" id="description" class="form-control" rows="6" th:text="*{description}"></textarea>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label"></label>
 										<div class="col-md-9">
 											<button type="submit" class="btn btn-sm btn-primary m-r-5">提交</button>
-											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/user/query\';'">返回</button>
+											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/userGroup/query\';'">返回</button>
 										</div>
 									</div>
 								</fieldset>
@@ -260,6 +261,8 @@
 				min:2,
 				max:10,
 				checkGroupName:true
+			},description:{
+				max:30
 			}
 		};
 		
@@ -270,6 +273,8 @@
 				min:"分组名称至少由两个字符组成",
 				max:"分组名称不能超过十个字符",
 				checkGroupName:"该分组名称已存在"
+			},description:{
+				max:"分组描述内容不能超过三十个字符"
 			}	
 		};
 		
