@@ -13,7 +13,7 @@ $(function() {
 		if (title != undefined) {
 			$(this).tooltip({
 				title: title,
-				placement: 'bottom',
+				placement: 'top',
 				trigger: 'hover',
 				container: 'body'
 			});
