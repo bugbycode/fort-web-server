@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bugbycode.config.AppConfig;
 import com.bugbycode.module.server.ResourceServer;
@@ -56,5 +57,20 @@ public class UserGroupController {
 			group.copy(tmp);
 		}
 		return "pages/userGroup/edit";
+	}
+	
+	@RequestMapping(value = "/checkGroupName")
+	@ResponseBody
+	public Map<String,Object> checkGroupName(String groupName){
+		Map<String,Object> param = new HashMap<String,Object>();
+		param.put("groupName", groupName);
+		UserGroup group = dataRequestService.query(resourceServer.getUserServerUrl() + AppConfig.USER_GROUP_QUERY_BY_GROUPNAME_PATH, param, UserGroup.class); 
+		int groupId = 0;
+		if(group != null) {
+			groupId = group.getId();
+		}
+		param.clear();
+		param.put("id", groupId);
+		return param;
 	}
 }

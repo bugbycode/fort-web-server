@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bugbycode.config.AppConfig;
+import com.bugbycode.module.role.Role;
 import com.bugbycode.module.server.ResourceServer;
 import com.bugbycode.module.user.User;
 import com.bugbycode.module.user.UserGroup;
@@ -133,7 +134,7 @@ public class UserController {
 	public Map<String,Object> checkUserName(String userName){
 		Map<String,Object> param = new HashMap<String,Object>();
 		param.put("userName", userName);
-		User user = dataRequestService.query(resourceServer.getUserServerUrl() + AppConfig.USER_QUERY_BY_USERNAME, param, User.class);
+		User user = dataRequestService.query(resourceServer.getUserServerUrl() + AppConfig.USER_QUERY_BY_USERNAME_PATH, param, User.class);
 		param.clear();
 		int userId = 0;
 		if(user != null) {
@@ -147,9 +148,23 @@ public class UserController {
 	@ResponseBody
 	public SearchResult<UserGroup> queryGroup(String groupName){
 		Map<String,Object> param = new HashMap<String,Object>();
-		param.put("groupName", groupName);
+		if(StringUtil.isNotBlank(groupName)) {
+			param.put("groupName", groupName);
+		}
 		param.put("startIndex", 0);
 		param.put("pageSize", Page.DEFAULT_PAGE_SIZE);
-		return dataRequestService.search(resourceServer.getUserServerUrl() + AppConfig.USER_GROUP_QUERY_PATH, param, UserGroup.class);
+		return dataRequestService.search(resourceServer.getUserServerUrl() + AppConfig.USER_QUERY_GROUP_PATH, param, UserGroup.class);
+	}
+	
+	@RequestMapping(value = "/queryRole")
+	@ResponseBody
+	public SearchResult<Role> queryRole(String roleName){
+		Map<String,Object> param = new HashMap<String,Object>();
+		if(StringUtil.isNotBlank(roleName)) {
+			param.put("roleName", roleName);
+		}
+		param.put("startIndex", 0);
+		param.put("pageSize", Page.DEFAULT_PAGE_SIZE);
+		return dataRequestService.search(resourceServer.getUserServerUrl() + AppConfig.USER_QUERY_ROLE_PATH, param, Role.class);
 	}
 }

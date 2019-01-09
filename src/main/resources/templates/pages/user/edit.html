@@ -378,31 +378,6 @@
 				mobile:"请输入正确的手机号码"
 			}	
 		};
-		/*$("#groupId").select2({
-	    	ajax:{
-	    		type:"get",
-	    		url: function (params) {
-    				var groupName = params.term;
-    				if(groupName == undefined){
-    					groupName = "";
-    				}
-    		      	return '/user/queryGroup?groupName=' + groupName;
-    		    },processResults:function(data,params){
-    		    	var list = data.list;
-    		    	var result = [{id:0,text:'请选择所属组'}];
-    		    	$.each(list,function(index,item){
-    		    		result.push({
-    		    			id:item.id,
-    		    			text:item.name
-    		    		});
-    		    	});
-    		    	var rs = {
-   		    			results:result
-    		    	};
-    		    	return rs;
-    		    }
-	    	}
-		});*/
 		
 		function select2Format(selector,url,defaultText){
 			$(selector).select2({
@@ -433,7 +408,7 @@
 		}
 		var type = $("#type").val();
 		if(type == 1){
-			select2Format("#roleId","/user/queryGroup?groupName=","请选择角色");
+			select2Format("#roleId","/user/queryRole?roleName=","请选择角色");
 		}
 		select2Format("#groupId","/user/queryGroup?groupName=","请选择所属组");
 		//$("#groupId").addClass({"is-valid"});

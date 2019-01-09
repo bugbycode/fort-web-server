@@ -76,14 +76,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/user/delete").hasRole(RoleConfig.USER_DELETE)
 		
 		//用户分组
-		.antMatchers("/userGroup/query","/userGroup/edit").hasAnyRole(RoleConfig.USER_GROUP_QUERY,
-				RoleConfig.USER_GROUP_INSERT,RoleConfig.USER_GROUP_UPDATE,
-				RoleConfig.USER_GROUP_DELETE)
-		
-		.antMatchers("/userGroup/checkGroupName","/userGroup/queryUser","/userGroup/queryRole").hasAnyRole(
-				RoleConfig.USER_QUERY,RoleConfig.USER_INSERT,
-				RoleConfig.USER_UPDATE)
-		
+		.antMatchers("/userGroup/query","/userGroup/edit","/userGroup/queryRole","/userGroup/checkGroupName",
+				"/userGroup/queryUser")
+			.hasAnyRole(RoleConfig.USER_GROUP_QUERY,RoleConfig.USER_GROUP_DELETE,
+				RoleConfig.USER_GROUP_INSERT,RoleConfig.USER_GROUP_UPDATE)
+			
+		.antMatchers("/userGroup/update").hasRole(RoleConfig.USER_GROUP_UPDATE)
+		.antMatchers("/userGroup/insert").hasRole(RoleConfig.USER_GROUP_INSERT)
+		.antMatchers("/userGroup/delete").hasRole(RoleConfig.USER_GROUP_DELETE)
+			
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问
 				.and().formLogin().loginPage("/login").permitAll()

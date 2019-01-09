@@ -85,7 +85,7 @@
 		
 		<!-- begin #content -->
 		<div id="content" class="content">
-			<form id="userForm" method="post" th:object="${userGroup}" th:action="*{id eq 0 ? '/userGroup/insert' : '/userGroup/update'}" autocomplete="off">
+			<form id="userGroupForm" method="post" th:object="${userGroup}" th:action="*{id eq 0 ? '/userGroup/insert' : '/userGroup/update'}" autocomplete="off">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/userGroup/query\';'">分组列表</a></li>
@@ -236,18 +236,15 @@
 				$("#logoutForm").submit();
 			});
 		});
-		$.addValidator('checkUserName',function(element,value){
+		$.addValidator('checkGroupName',function(element,value){
 			var flag = true;
 			$.ajaxSettings.async = false;
-			$.get("/user/checkUserName",{userName:value},function(data){
+			$.get("/userGroup/checkGroupName",{groupName:value},function(data){
 				var userId = data.id;
 				var id = $("#id").val();
 				flag = (userId == 0 || userId == id);
 			});
 			return flag;
-		});
-		$.addValidator('checkName',function(element,value){
-			return true;
 		});
 		
 		var id = $("#id").val();
@@ -262,52 +259,17 @@
 				name:true,
 				min:2,
 				max:10,
-				checkName:true
-			},email:{
-				email:true
-			},username:{
-				required:true,
-				username:true,
-				min:4,
-				max:20,
-				checkUserName:true
-			},password:{
-				required:checkPwd
-			},password2:{
-				required:checkPwd,
-				compare:"password"
-			},auth:{
-				required:false
-			},mobile:{
-				mobile:true
+				checkGroupName:true
 			}
 		};
 		
 		var messages = {
 			name:{
-				required:"请输入用户姓名",
-				name:"用户姓名格式错误，请输入中文、字母、数字或下划线",
-				min:"用户姓名至少由两个字符组成",
-				max:"用户姓名不能超过十个字符",
-				checkName:"该姓名已存在"
-			},email:{
-				required:"请输入邮箱地址",
-				email:"邮箱地址格式不正确"
-			},username:{
-				required:"请输入用户名",
-				username:"用户名格式错误，请输入字母、数字或下划线",
-				min:"用户名至少由四个字符组成",
-				max:"用户名不能超过二十个字符",
-				checkUserName:"该用户名已存在"
-			},password:{
-				required:"请输入密码",
-			},password2:{
-				required:"请输入密码",
-				compare:"两次输入的密码不一致"
-			},auth:{
-				required:"请选择至少一项认证方式"
-			},mobile:{
-				mobile:"请输入正确的手机号码"
+				required:"请输入分组名称",
+				name:"分组名称格式错误，请输入中文、字母、数字或下划线",
+				min:"分组名称至少由两个字符组成",
+				max:"分组名称不能超过十个字符",
+				checkGroupName:"该分组名称已存在"
 			}	
 		};
 		
@@ -338,7 +300,9 @@
 		    	}
 			});
 		}
-		select2Format("#roleId","/user/queryGroup?groupName=","请选择角色");
+		select2Format("#roleId","/userGroup/queryRole?roleName=","请选择角色");
+		
+		$.validator("#userGroupForm");
 	</script>
 </body>
 </html>
