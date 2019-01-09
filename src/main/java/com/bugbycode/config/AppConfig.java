@@ -15,4 +15,6 @@ public class AppConfig {
 	public final static String USER_DELETE_PATH = "/user/delete";
 	
 	public final static String USER_GROUP_QUERY_PATH = "/userGroup/query";
+	
+	public final static String USER_GROUP_QUERY_BYID_PATH = "/userGroup/queryByGroupId";
 }

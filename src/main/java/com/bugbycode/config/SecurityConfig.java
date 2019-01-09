@@ -65,16 +65,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//凡是登录成功的用户都可访问
 		.antMatchers("/main").hasRole(RoleConfig.LOGIN_USER)
 		
-		.antMatchers("/user/query").hasAnyRole(RoleConfig.USER_QUERY,RoleConfig.USER_DELETE)
-		.antMatchers("/user/edit","/user/checkUserName","/user/queryGroup").hasAnyRole(
-				RoleConfig.USER_QUERY,RoleConfig.USER_INSERT,
-				RoleConfig.USER_UPDATE)
+		.antMatchers("/user/query","/user/edit",
+				"/user/checkUserName","/user/queryGroup",
+				"/user/queryRole")
+		.hasAnyRole(RoleConfig.USER_QUERY,RoleConfig.USER_DELETE,
+				RoleConfig.USER_INSERT,RoleConfig.USER_UPDATE)
+		
 		.antMatchers("/user/update").hasRole(RoleConfig.USER_UPDATE)
 		.antMatchers("/user/insert").hasRole(RoleConfig.USER_INSERT)
 		.antMatchers("/user/delete").hasRole(RoleConfig.USER_DELETE)
 		
 		//用户分组
-		.antMatchers("/userGroup/query").hasAnyRole(RoleConfig.USER_GROUP_QUERY)
+		.antMatchers("/userGroup/query","/userGroup/edit").hasAnyRole(RoleConfig.USER_GROUP_QUERY,
+				RoleConfig.USER_GROUP_INSERT,RoleConfig.USER_GROUP_UPDATE,
+				RoleConfig.USER_GROUP_DELETE)
+		
+		.antMatchers("/userGroup/checkGroupName","/userGroup/queryUser","/userGroup/queryRole").hasAnyRole(
+				RoleConfig.USER_QUERY,RoleConfig.USER_INSERT,
+				RoleConfig.USER_UPDATE)
 		
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问

@@ -79,4 +79,14 @@ public class UserGroup implements Serializable {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+	
+	public void copy(UserGroup g) {
+		this.setId(g.getId());
+		this.setName(g.getName());
+		this.setRoleId(g.getRoleId());
+		this.setRoleName(g.getRoleName());
+		this.setDescription(g.getDescription());
+		this.setCreateTime(g.getCreateTime());
+		this.setUpdateTime(g.getUpdateTime());
+	}
 }

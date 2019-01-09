@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -42,5 +43,18 @@ public class UserGroupController {
 		model.put("page", sr.getPage());
 		model.put("paramQuery", keyword);
 		return "pages/userGroup/list";
+	}
+	
+	@RequestMapping("/edit")
+	public String edit(@ModelAttribute("userGroup") UserGroup group,
+			@RequestParam(name="id",defaultValue="0")
+			int id) {
+		Map<String,Object> param = new HashMap<String,Object>();
+		if(id > 0) {
+			param.put("groupId", id);
+			UserGroup tmp = dataRequestService.query(resourceServer.getUserServerUrl() + AppConfig.USER_GROUP_QUERY_BYID_PATH, param, UserGroup.class);
+			group.copy(tmp);
+		}
+		return "pages/userGroup/edit";
 	}
 }
