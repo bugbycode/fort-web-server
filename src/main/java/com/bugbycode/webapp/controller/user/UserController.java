@@ -62,6 +62,7 @@ public class UserController {
 		if(id > 0) {
 			param.put("userId", id);
 			User tmp = dataRequestService.query(resourceServer.getUserServerUrl() + AppConfig.USER_QUERY_BYID_PATH, param, User.class);
+			tmp.setPassword("");
 			user.copy(tmp);
 		}
 		return "pages/user/edit";
@@ -81,8 +82,9 @@ public class UserController {
 		}
 		param.clear();
 		int type = tmp.getType();
-		if(type == 0) {//内置用户不修改角色
+		if(type == 0) {//内置用户不修改角色和状态
 			user.setRoleId(tmp.getRoleId());
+			user.setStatus(tmp.getStatus());
 		}
 		String jsonStr = JSONObject.toJSONString(user);
 		param.put("jsonStr", jsonStr);

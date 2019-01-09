@@ -10,7 +10,6 @@ $(function() {
 
    $("a").on('hover',function(e) {
 	   var title = $(this).prop('title');
-	   console.log(title);
 		if (title != undefined) {
 			$(this).tooltip({
 				title: title,
