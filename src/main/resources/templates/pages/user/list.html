@@ -89,7 +89,7 @@
 					<div class="panel-heading-btn">
 						<!-- 
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" title="全屏"><i class="fa fa-expand"></i></a> -->
-						<a th:href="@{/user/edit}" class="btn btn-xs btn-icon btn-circle btn-default" ><i class="fa fa-plus" title="添加用户"></i></a>
+						<a th:href="@{/user/edit}" class="btn btn-xs btn-icon btn-circle btn-default" title="添加用户"><i class="fa fa-plus"></i></a>
 						<a href="javascript:;" onclick="delChecked()" class="btn btn-xs btn-icon btn-circle btn-default" title="删除用户"><i class="fa fa-trash-alt"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" title="导入用户"><i class="fa fa-cloud-upload-alt"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" title="导出用户"><i class="fa fa-cloud-download-alt"></i></a>
@@ -158,8 +158,8 @@
 											</td>
 											<td th:text="${e.createTime==null ? '' : #dates.format(e.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
 											<td>
-												<a href="javascript:;" th:onclick="'location.href=\'/user/edit?id=' + ${e.id} + '\';'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-edit"></i></a>
-												<a href="javascript:;" th:onclick="'javascript:del(\'' + ${e.id} + '\');'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-trash-alt"></i></a>
+												<a href="javascript:;" title="查看详情" th:onclick="'location.href=\'/user/edit?id=' + ${e.id} + '\';'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-edit"></i></a>
+												<a href="javascript:;" title="删除用户" th:onclick="'javascript:del(\'' + ${e.id} + '\');'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-trash-alt"></i></a>
 											</td>
 										</tr>
 									</tbody>
