@@ -61,6 +61,12 @@
 		.cssTabCheckBox{
 			margin-top: -6px;
 		}
+		
+		.select2-container .select2-selection--single, .select2-container--default .select2-selection--multiple {
+		    min-height: 34px!important;
+		    border-color: #4CD964!important;
+		    outline: 0!important;
+		}
 	</style>
 </head>
 <body>
@@ -114,6 +120,7 @@
 										<label class="col-md-3 col-form-label">姓名</label>
 										<div class="col-md-9">
 											<input type="hidden" th:field="*{id}"/>
+											<input type="hidden" th:field="*{type}"/>
 											<input name="name" id="name" type="text" class="form-control is-invalid" th:value="*{name}">
 											<div class="invalid-feedback">请输入姓名</div>
 										</div>
@@ -130,20 +137,18 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">角色</label>
 										<div class="col-md-9">
-											<select id="roleId" name="roleId" class="form-control selectpicker is-valid" data-size="10" data-live-search="true" data-style="btn-white">
-												<option value="0">请选择</option>
-												<option value="1" th:selected="*{roleId == 1}">系统管理员</option>
-												<option value="2">普通用户</option>
+											<select id="roleId" name="roleId" class="form-control is-valid" data-style="btn-white">
+												<option th:if="*{roleId ne 0}" th:value="*{roleId}" selected="selected" th:text="*{roleName}"></option>
+												<option th:if="*{roleId eq 0}" th:value="*{roleId}" selected="selected" th:text="'请选择角色'"></option>
 											</select>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">所属组</label>
 										<div class="col-md-9">
-											<select id="groupId" name="groupId" class="form-control selectpicker is-valid" data-size="10" data-live-search="true" data-style="btn-white">
-												<option value="0">请选择</option>
-												<option value="1" th:selected="*{groupId == 1}">系统管理员</option>
-												<option value="2" th:selected="*{groupId == 2}">普通用户</option>
+											<select id="groupId" name="groupId" class="form-control is-valid" data-style="btn-white">
+												<option th:if="*{groupId ne 0}" th:value="*{groupId}" selected="selected" th:text="*{groupName}"></option>
+												<option th:if="*{groupId eq 0}" th:value="*{groupId}" selected="selected" th:text="'请选择所属组'"></option>
 											</select>
 										</div>
 									</div>
@@ -202,14 +207,6 @@
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">认证方式</label>
-										<div class="col-md-9">
-											<select id="authType" name="authType" class="form-control is-valid">
-												<option value="0">密码认证</option>
-											</select>
-										</div>
-									</div>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label"></label>
 										<div class="col-md-9">
 											<div class="checkbox checkbox-css checkbox-inline">
 												<input name="auth" type="checkbox" value="dymic" id="dymic"/>
@@ -308,11 +305,16 @@
 			});
 		});
 		$.addValidator('checkUserName',function(element,value){
-			console.log(value);
-			return true;
+			var flag = true;
+			$.ajaxSettings.async = false;
+			$.get("/user/checkUserName",{userName:value},function(data){
+				var userId = data.id;
+				var id = $("#id").val();
+				flag = (userId == 0 || userId == id);
+			});
+			return flag;
 		});
 		$.addValidator('checkName',function(element,value){
-			console.log(value);
 			return true;
 		});
 		
@@ -376,7 +378,65 @@
 				mobile:"请输入正确的手机号码"
 			}	
 		};
+		/*$("#groupId").select2({
+	    	ajax:{
+	    		type:"get",
+	    		url: function (params) {
+    				var groupName = params.term;
+    				if(groupName == undefined){
+    					groupName = "";
+    				}
+    		      	return '/user/queryGroup?groupName=' + groupName;
+    		    },processResults:function(data,params){
+    		    	var list = data.list;
+    		    	var result = [{id:0,text:'请选择所属组'}];
+    		    	$.each(list,function(index,item){
+    		    		result.push({
+    		    			id:item.id,
+    		    			text:item.name
+    		    		});
+    		    	});
+    		    	var rs = {
+   		    			results:result
+    		    	};
+    		    	return rs;
+    		    }
+	    	}
+		});*/
 		
+		function select2Format(selector,url,defaultText){
+			$(selector).select2({
+				ajax:{
+		    		type:"get",
+		    		url: function (params) {
+	    				var value = params.term;
+	    				if(value == undefined){
+	    					value = "";
+	    				}
+	    		      	return url + value;
+	    		    },processResults:function(data,params){
+	    		    	var list = data.list;
+	    		    	var result = [{id:0,text:defaultText}];
+	    		    	$.each(list,function(index,item){
+	    		    		result.push({
+	    		    			id:item.id,
+	    		    			text:item.name
+	    		    		});
+	    		    	});
+	    		    	var rs = {
+	   		    			results:result
+	    		    	};
+	    		    	return rs;
+	    		    }
+		    	}
+			});
+		}
+		var type = $("#type").val();
+		if(type == 1){
+			select2Format("#roleId","/user/queryGroup?groupName=","请选择角色");
+		}
+		select2Format("#groupId","/user/queryGroup?groupName=","请选择所属组");
+		//$("#groupId").addClass({"is-valid"});
 		$.validator("#userForm");
 		//$.validatorForm("#userForm");
 	</script>

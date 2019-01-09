@@ -164,5 +164,9 @@ public class User implements Serializable {
 		this.setGroupId(user.getGroupId());
 		this.setCreateTime(user.getCreateTime());
 		this.setUpdateTime(user.getUpdateTime());
+		this.setGroupId(user.getGroupId());
+		this.setGroupName(user.getGroupName());
+		this.setRoleId(user.getRoleId());
+		this.setRoleName(roleName);
 	}
 }

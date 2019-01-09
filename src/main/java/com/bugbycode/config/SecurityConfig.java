@@ -65,9 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//凡是登录成功的用户都可访问
 		.antMatchers("/main").hasRole(RoleConfig.LOGIN_USER)
 		
-		.antMatchers("/user/query").hasAnyRole(RoleConfig.USER_QUERY)
-		.antMatchers("/user/edit").hasAnyRole(RoleConfig.USER_QUERY,RoleConfig.USER_INSERT,
-				RoleConfig.USER_UPDATE,RoleConfig.USER_DELETE)
+		.antMatchers("/user/query").hasAnyRole(RoleConfig.USER_QUERY,RoleConfig.USER_DELETE)
+		.antMatchers("/user/edit","/user/checkUserName","/user/queryGroup").hasAnyRole(
+				RoleConfig.USER_QUERY,RoleConfig.USER_INSERT,
+				RoleConfig.USER_UPDATE)
 		.antMatchers("/user/update").hasRole(RoleConfig.USER_UPDATE)
 		.antMatchers("/user/insert").hasRole(RoleConfig.USER_INSERT)
 		.antMatchers("/user/delete").hasRole(RoleConfig.USER_DELETE)

@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.bugbycode.config.RoleConfig;
 import com.bugbycode.module.login.LoginRole;
 import com.bugbycode.module.login.LoginUserDetails;
 import com.bugbycode.module.login.UserAuthentication;
