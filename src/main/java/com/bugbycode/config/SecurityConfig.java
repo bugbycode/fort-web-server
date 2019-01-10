@@ -84,6 +84,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/userGroup/update").hasRole(RoleConfig.USER_GROUP_UPDATE)
 		.antMatchers("/userGroup/insert").hasRole(RoleConfig.USER_GROUP_INSERT)
 		.antMatchers("/userGroup/delete").hasRole(RoleConfig.USER_GROUP_DELETE)
+		
+		//角色
+		.antMatchers("/role/query","/role/edit",
+				"/role/checkRoleName")
+		.hasAnyRole(RoleConfig.ROLE_QUERY,RoleConfig.ROLE_DELETE,
+				RoleConfig.ROLE_INSERT,RoleConfig.ROLE_UPDATE)
+		
+		.antMatchers("/role/update").hasRole(RoleConfig.ROLE_UPDATE)
+		.antMatchers("/role/insert").hasRole(RoleConfig.ROLE_INSERT)
+		.antMatchers("/role/delete").hasRole(RoleConfig.ROLE_DELETE)
 			
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问

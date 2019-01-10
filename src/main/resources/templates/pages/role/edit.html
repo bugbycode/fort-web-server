@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>运维审计系统</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/font-awesome/5.3/css/all.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../assets/css/apple/style.min.css" rel="stylesheet" />
+	<link href="../assets/css/apple/style-responsive.min.css" rel="stylesheet" />
+	<link href="../assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
+	<link href="../assets/plugins/ionRangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
+	<link href="../assets/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/password-indicator/css/password-indicator.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-combobox/css/bootstrap-combobox.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-tag-it/css/jquery.tagit.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+	<link href="../assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	<style type="text/css">
+		.dataTables_filter{
+			text-align: right;
+		}
+		.hand{
+			cursor: pointer;
+		}
+		.cssCheckboxAll{
+			margin-top: -24px;
+		}
+		
+		.cssTabCheckBox{
+			margin-top: -6px;
+		}
+		
+		.select2-container .select2-selection--single, .select2-container--default .select2-selection--multiple {
+		    min-height: 34px!important;
+		    border-color: #4CD964!important;
+		    outline: 0!important;
+		}
+		
+		.checkboxRowHeight{
+			height: 30px;
+		}
+		
+		.checkboxSplitLine{
+			height:1px;
+			border:none;
+			border-top:1px dashed #111111;
+		}
+		
+		.checkboxRowTop{
+			margin-top: 10px;
+		}
+		
+		textarea{
+			resize:none;
+		}
+	</style>
+</head>
+<body>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div th:include="pages/layout/head :: head"></div>
+		<!-- end #header -->
+		
+		<!-- 左侧菜单 -->
+		<div th:include="pages/layout/left :: left('user','role')"></div>
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<form id="roleForm" method="post" th:object="${role}" th:action="*{id eq 0 ? '/role/insert' : '/role/update'}" autocomplete="off">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/role/query\';'">角色列表</a></li>
+				<li class="breadcrumb-item active" th:text="*{id > 0 ? '编辑角色' : '添加角色'}">添加角色</li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header" th:text="*{id > 0 ? '编辑角色' : '添加角色'}">角色信息<small></small></h1>
+			<!-- end page-header -->
+			<!-- <div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+						
+					</div>
+					<h4 class="panel-title"><span class="hand" th:onclick="'location.href=\'/user/query\';'">用户列表</span>&nbsp;/&nbsp;新建用户</h4>
+				</div>
+			</div> -->
+			
+			<div class="row">
+				<div class="col-lg-6">
+					<div>
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">基本信息</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">角色名称</label>
+										<div class="col-md-9">
+											<input type="hidden" th:field="*{id}"/>
+											<input type="hidden" th:field="*{type}"/>
+											<input th:readonly="*{type eq 0}" name="name" id="name" type="text" class="form-control is-invalid" th:value="*{name}">
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">描述信息</label>
+										<div class="col-md-9">
+											<textarea th:readonly="*{type eq 0}" name="description" id="description" class="form-control" rows="6" th:text="*{description}"></textarea>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label"></label>
+										<div class="col-md-9">
+											<button type="submit" class="btn btn-sm btn-primary m-r-5" th:disabled="*{type eq 0}">提交</button>
+											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/role/query\';'">返回</button>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div>
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">用户管理权限</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<!-- 用户管理 -->
+									<div class="form-group row m-b-10">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllUserRole" 
+													th:checked="*{userInsert eq 1 && userUpdate eq 1 && userDelete eq 1 && userQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllUserRole' : ''}">用户信息</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_QUERY" id="userQuery" th:checked="*{userQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userQuery' : ''}">查看用户</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_INSERT" id="userInsert" th:checked="*{userInsert eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userInsert' : ''}">添加用户</label>
+												</div>
+											</div>
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_UPDATE" id="userUpdate" th:checked="*{userUpdate eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userUpdate' : ''}">修改用户</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_DELETE" id="userDelete" th:checked="*{userDelete eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userDelete' : ''}">删除用户</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="checkboxSplitLine"></div>
+									<!-- 用户管理 END-->
+									<!-- 分组管理 -->
+									<div class="form-group row m-b-10 checkboxRowTop">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllUserGroupRole" 
+													th:checked="*{userGroupInsert eq 1 && userGroupUpdate eq 1 && userGroupDelete eq 1 && userGroupQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllUserGroupRole' : ''}">分组信息</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_GROUP_QUERY" id="userGroupQuery" th:checked="*{userGroupQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userGroupQuery' : ''}">查看分组</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_GROUP_INSERT" id="userGroupInsert" th:checked="*{userGroupInsert eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userGroupInsert' : ''}">添加分组</label>
+												</div>
+											</div>
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_GROUP_UPDATE" id="userGroupUpdate" th:checked="*{userGroupUpdate eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userGroupUpdate' : ''}">修改分组</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="USER_GROUP_DELETE" id="userGroupDelete" th:checked="*{userGroupDelete eq 1}" />
+													<label  th:for="*{type eq 1 ? 'userGroupDelete' : ''}">删除分组</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 分组管理 AND -->
+									<div class="checkboxSplitLine"></div>
+									<!-- 角色管理 -->
+									<div class="form-group row m-b-10 checkboxRowTop">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllRoleRole" 
+													th:checked="*{roleInsert eq 1 && roleUpdate eq 1 && roleDelete eq 1 && roleQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllRoleRole' : ''}">角色信息</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="ROLES_QUERY" id="roleQuery" th:checked="*{roleQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'roleQuery' : ''}">查看角色</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="ROLES_INSERT" id="roleInsert" th:checked="*{roleInsert eq 1}" />
+													<label  th:for="*{type eq 1 ? 'roleInsert' : ''}">添加角色</label>
+												</div>
+											</div>
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="ROLES_UPDATE" id="roleUpdate" th:checked="*{roleUpdate eq 1}" />
+													<label  th:for="*{type eq 1 ? 'roleUpdate' : ''}">修改角色</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="ROLES_DELETE" id="roleDelete" th:checked="*{roleDelete eq 1}" />
+													<label  th:for="*{type eq 1 ? 'roleDelete' : ''}">删除角色</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+						
+					</div>
+					<h4 class="panel-title"><span>修改记录</span></h4>
+				</div>
+				<div class="panel-body">
+					·admin 在 2019年01月06日18点38分16秒 修改了该用户，更新内容如下：<br/>
+					姓名：张三 => 李四<br/>
+					密码：****** => ****** <br/>
+					所属组：普通用户 => 系统管理员 <br/><br/>
+					·admin 在 2019年01月05日15点13分42秒 修改了该用户，更新内容如下：<br/>
+					密码：****** => ****** <br/>
+					所属组： => 普通用户<br/><br/>
+					·admin 在 2019年01月06日12点00分35秒 创建了该用户。 <br/><br/>
+					·没有了……
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../assets/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../assets/js/theme/apple.min.js"></script>
+	<script src="../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="../assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+	<script src="../assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+	<script src="../assets/plugins/masked-input/masked-input.min.js"></script>
+	<script src="../assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+	<script src="../assets/plugins/password-indicator/js/password-indicator.js"></script>
+	<script src="../assets/plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+	<script src="../assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+	<script src="../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
+	<script src="../assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
+	<script src="../assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+	<script src="../assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script src="../assets/plugins/select2/dist/js/select2.min.js"></script>
+	<script src="../assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="../assets/plugins/bootstrap-show-password/bootstrap-show-password.js"></script>
+	<script src="../assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+	<script src="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
+	<script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+	<script type="text/javascript" src="../javascript/custom/bugbycode.js"></script>
+	<script type="text/javascript" src="../validator/validator.js"></script>
+	
+	<script>
+		App.init();
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".logout").click(function(){
+				$("#logoutForm").submit();
+			});
+		});
+		$.addValidator('checkRoleName',function(element,value){
+			var flag = true;
+			$.ajaxSettings.async = false;
+			$.get("/role/checkRoleName",{roleName:value},function(data){
+				var userId = data.id;
+				var id = $("#id").val();
+				flag = (userId == 0 || userId == id);
+			});
+			return flag;
+		});
+		
+		var id = $("#id").val();
+		var checkPwd = true;
+		if(id > 0){
+			checkPwd = false;
+		}
+		
+		var rules = {
+			name:{
+				required:true,
+				name:true,
+				min:2,
+				max:10,
+				checkRoleName:true
+			},description:{
+				max:30
+			}
+		};
+		
+		var messages = {
+			name:{
+				required:"请输入角色名称",
+				name:"角色名称格式错误，请输入中文、字母、数字或下划线",
+				min:"角色名称至少由两个字符组成",
+				max:"角色名称不能超过十个字符",
+				checkRoleName:"该角色名称已存在"
+			},description:{
+				max:"角色描述内容不能超过三十个字符"
+			}	
+		};
+		
+		
+		/*var type = $("#type").val();
+		if(type == 1){
+			select2Format("#roleId","/user/queryRole?roleName=","请选择角色");
+		}
+		select2Format("#groupId","/user/queryGroup?groupName=","请选择所属组");
+		//$("#groupId").addClass({"is-valid"});*/
+		$.validator("#roleForm");
+		//$.validatorForm("#userForm");
+	</script>
+</body>
+</html>

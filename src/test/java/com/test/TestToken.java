@@ -1,10 +1,12 @@
 package com.test;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bugbycode.config.AppConfig;
 import com.bugbycode.module.user.User;
 import com.bugbycode.service.DataRequestService;
@@ -36,4 +38,5 @@ public class TestToken {
 		Map<String,Object> param = new HashMap<String,Object>();
 		//SearchResult<User> sr = service.search(AppConfig.USER_QUERY_PATH,param, null);
 	}
+	
 }

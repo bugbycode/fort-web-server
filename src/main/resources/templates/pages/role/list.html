@@ -79,34 +79,32 @@
 		<!-- end #header -->
 		
 		<!-- 左侧菜单 -->
-		<div th:include="pages/layout/left :: left('user','user')"></div>
+		<div th:include="pages/layout/left :: left('user','role')"></div>
 		
 		<!-- begin #content -->
 		<div id="content" class="content">
 			<ol class="breadcrumb pull-right">
-				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/user/query\';'">用户信息</a></li>
-				<li class="breadcrumb-item active">用户列表</li>
+				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/role/query\';'">角色信息</a></li>
+				<li class="breadcrumb-item active">角色列表</li>
 			</ol>
-			<h1 class="page-header">用户列表<small></small></h1>
+			<h1 class="page-header">角色列表<small></small></h1>
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
 						<!-- 
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" title="全屏"><i class="fa fa-expand"></i></a> -->
-						<a th:href="@{/user/edit}" class="btn btn-xs btn-icon btn-circle btn-default" title="添加用户"><i class="fa fa-plus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default delChecked" title="删除用户"><i class="fa fa-trash-alt"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" title="导入用户"><i class="fa fa-cloud-upload-alt"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" title="导出用户"><i class="fa fa-cloud-download-alt"></i></a>
+						<a th:href="@{/role/edit}" class="btn btn-xs btn-icon btn-circle btn-default" title="添加角色"><i class="fa fa-plus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default delChecked" title="删除角色"><i class="fa fa-trash-alt"></i></a>
 						<!-- 
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 						 -->
 					</div>
-					<h4 class="panel-title">用户列表</h4>
+					<h4 class="panel-title">角色列表</h4>
 				</div>
 				<div class="panel-body">
-					<form th:action="@{/user/query}" method="get" autocomplete="off">
+					<form th:action="@{/role/query}" method="get" autocomplete="off">
 					<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 						<div class="row">
 							<div class="col-sm-12">
@@ -129,41 +127,29 @@
 			                                         <label class="hand" for="cssCheckboxAll"></label>
 			                                     </div>
 											</th>
-											<th class="text-nowrap">姓名</th>
-											<th class="text-nowrap">用户名</th>
-											<th class="text-nowrap">角色</th>
-											<th class="text-nowrap">所属组</th>
-											<th class="text-nowrap">手机号码</th>
-											<th class="text-nowrap">电子邮件</th>
-											<th class="text-nowrap" width="1%">状态</th>
+											<th class="text-nowrap">角色名称</th>
+											<th class="text-nowrap">描述信息</th>
 											<th class="text-nowrap">创建时间</th>
-											<th class="text-nowrap">操作</th>
+											<th class="text-nowrap" width="80px">操作</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr class="gradeA odd" th:if="${#lists.isEmpty(list)}">
 											<td colspan="11" style="text-align: center;">没有查询到匹配的信息</td>
 										</tr>
-										<tr class="odd gradeA" th:each="e:${list}">
+										<tr class="odd gradeA" th:each="r:${list}">
 											<td>
 												<div class="checkbox checkbox-css cssTabCheckBox">
-			                                         <input type="checkbox" name="userIds" th:id="${'cssCheckbox' + e.id}" th:value="${e.id}" />
-			                                         <label class="hand" th:for="${'cssCheckbox' + e.id}"></label>
+			                                         <input type="checkbox" name="roleIds" th:id="${'cssCheckbox' + r.id}" th:value="${r.id}" />
+			                                         <label class="hand" th:for="${'cssCheckbox' + r.id}"></label>
 			                                     </div>
 											</td>
-											<td th:text="${e.name}"></td>
-											<td th:text="${e.username}"></td>
-											<td th:text="${e.roleName}"></td>
-											<td th:text="${e.groupName}"></td>
-											<td th:text="${e.mobile}"></td>
-											<td th:text="${e.email}"></td>
+											<td th:text="${r.name}"></td>
+											<td th:text="${r.description}"></td>
+											<td th:text="${r.createTime==null ? '' : #dates.format(r.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
 											<td>
-												<span th:text="${e.status eq 0 ? '锁定' : '激活'}"></span>
-											</td>
-											<td th:text="${e.createTime==null ? '' : #dates.format(e.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-											<td>
-												<a href="javascript:;" title="查看详情" th:onclick="'location.href=\'/user/edit?id=' + ${e.id} + '\';'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-edit"></i></a>
-												<a href="javascript:;" th:if="${e.type eq 1}" title="删除用户" th:id="${e.id}" class="btn btn-xs btn-icon btn-circle btn-default del"><i class="fas fa-lg fa-fw m-r-10 fa-trash-alt"></i></a>
+												<a href="javascript:;" title="查看详情" th:onclick="'location.href=\'/role/edit?id=' + ${r.id} + '\';'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-edit"></i></a>
+												<a href="javascript:;" th:if="${r.type eq 1}" title="删除角色" th:id="${r.id}" class="btn btn-xs btn-icon btn-circle btn-default del"><i class="fas fa-lg fa-fw m-r-10 fa-trash-alt"></i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -177,7 +163,7 @@
 						</div>
 					</div>
 					</form>
-					<form id="deleteForm" th:action="@{/user/delete}" method="post">
+					<form id="deleteForm" th:action="@{/role/delete}" method="post">
 						<input type="hidden" name="ids" />
 					</form>
 				</div>
@@ -260,7 +246,7 @@
 		
 		function delChecked(e){
 			var ids = "";
-			$("input[name='userIds']:checked").each(function(){
+			$("input[name='roleIds']:checked").each(function(){
 				if(ids != ""){
 					ids += ",";
 				}
@@ -269,7 +255,7 @@
 			if(ids == ""){
 				e.preventDefault();
 				swal({
-					title: '请选择要删除的用户！',
+					title: '请选择要删除的角色！',
 					text: '',
 					icon: 'warning',
 					buttons: {
@@ -290,8 +276,8 @@
 		function del(e,ids){
 			e.preventDefault();
 			swal({
-				title: '您确定删除所选的用户吗？',
-				text: '您执行该操作后用户会被永久删除，是否继续？',
+				title: '您确定删除所选的角色吗？',
+				text: '您执行该操作后角色会被永久删除，是否继续？',
 				icon: 'warning',
 				buttons: {
 					cancel: {

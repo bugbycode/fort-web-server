@@ -40,8 +40,8 @@
             <div class="error-content">
                 <div class="error-message">
                 	<span th:if="${status eq 403}">你没有权限访问该功能</span>
-					<span th:if="${status eq 404}">该页面被老鼠偷吃了</span>
-					<span th:if="${status eq 500}">系统出现了一点故障</span>
+					<span th:if="${status eq 404}">该页面被管理员删除了，您无法访问</span>
+					<span th:if="${status eq 500}">系统出现了一点故障，管理员正在抢修</span>
                 </div>
                 <div class="error-desc m-b-30">
 					<span th:text="${roncooException}"></span>

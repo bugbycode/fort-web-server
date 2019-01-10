@@ -32,4 +32,17 @@ public class AppConfig {
 	public final static String USER_GROUP_UPDATE_PATH = "/userGroup/update";
 	
 	public final static String USER_GROUP_DELETE_PATH = "/userGroup/delete";
+	
+	//角色管理
+	public final static String ROLE_QUERY_PATH = "/role/query";
+	
+	public final static String ROLE_INSERT_PATH = "/role/insert";
+	
+	public final static String ROLE_UPDATE_PATH = "/role/update";
+	
+	public final static String ROLE_DELETE_PATH = "/role/delete";
+	
+	public final static String ROLE_QUERY_BYID_PATH = "/role/queryByRoleId";
+	
+	public final static String ROLE_QUERY_BY_ROLENAME = "/role/queryByRoleName";
 }

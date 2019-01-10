@@ -20,5 +20,11 @@ public class RoleConfig {
 	
 	public final static String USER_GROUP_DELETE = "USER_GROUP_DELETE";
 	
+	public final static String ROLE_QUERY = "ROLES_QUERY";
 	
+	public final static String ROLE_INSERT = "ROLES_INSERT";
+	
+	public final static String ROLE_UPDATE = "ROLES_UPDATE";
+	
+	public final static String ROLE_DELETE = "ROLES_DELETE";
 }

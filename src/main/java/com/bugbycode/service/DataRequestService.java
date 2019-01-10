@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import com.util.page.SearchResult;
 
 @Service("dataRequestService")
 public class DataRequestService {
+	
+	private final Logger logger = LogManager.getLogger(DataRequestService.class);
 	
 	public <T> SearchResult<T> search(String path,Map<String,Object> param,Class<T> claszz) {
 		LoginUserDetails loginUser = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
