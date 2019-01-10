@@ -395,12 +395,33 @@
 			}	
 		};
 		
-		
-		/*var type = $("#type").val();
+		var type = $("#type").val();
 		if(type == 1){
-			select2Format("#roleId","/user/queryRole?roleName=","请选择角色");
+			$("#checkAllUserRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#userQuery").prop("checked",checked);
+				$("#userInsert").prop("checked",checked);
+				$("#userUpdate").prop("checked",checked);
+				$("#userDelete").prop("checked",checked);
+			});
+			
+			$("#checkAllUserGroupRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#userGroupQuery").prop("checked",checked);
+				$("#userGroupInsert").prop("checked",checked);
+				$("#userGroupUpdate").prop("checked",checked);
+				$("#userGroupDelete").prop("checked",checked);
+			});
+			
+			$("#checkAllRoleRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#roleQuery").prop("checked",checked);
+				$("#roleInsert").prop("checked",checked);
+				$("#roleUpdate").prop("checked",checked);
+				$("#roleDelete").prop("checked",checked);
+			});
 		}
-		select2Format("#groupId","/user/queryGroup?groupName=","请选择所属组");
+		
 		//$("#groupId").addClass({"is-valid"});*/
 		$.validator("#roleForm");
 		//$.validatorForm("#userForm");
