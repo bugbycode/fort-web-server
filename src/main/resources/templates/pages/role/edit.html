@@ -158,6 +158,85 @@
 								</fieldset>
 							</div>
 						</div>
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">设备管理权限</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<!-- 用户管理 -->
+									<div class="form-group row m-b-10">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllResourceRole" 
+													th:checked="*{resInsert eq 1 && resUpdate eq 1 && resDelete eq 1 && resQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllResourceRole' : ''}">设备信息</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RESOURCE_QUERY" id="resQuery" th:checked="*{resQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'resQuery' : ''}">查看设备</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RESOURCE_INSERT" id="resInsert" th:checked="*{resInsert eq 1}" />
+													<label  th:for="*{type eq 1 ? 'resInsert' : ''}">添加设备</label>
+												</div>
+											</div>
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RESOURCE_UPDATE" id="resUpdate" th:checked="*{resUpdate eq 1}" />
+													<label  th:for="*{type eq 1 ? 'resUpdate' : ''}">修改设备</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RESOURCE_DELETE" id="resDelete" th:checked="*{resDelete eq 1}" />
+													<label  th:for="*{type eq 1 ? 'resDelete' : ''}">删除设备</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="checkboxSplitLine"></div>
+									<!-- 设备管理 END-->
+									<!-- 网络管理 -->
+									<div class="form-group row m-b-10 checkboxRowTop">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllNetworkRole" 
+													th:checked="*{networkInsert eq 1 && networkUpdate eq 1 && networkDelete eq 1 && networkQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllNetworkRole' : ''}">网络信息</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="NETWORK_QUERY" id="networkQuery" th:checked="*{networkQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'networkQuery' : ''}">查看网络</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="NETWORK_INSERT" id="networkInsert" th:checked="*{networkInsert eq 1}" />
+													<label  th:for="*{type eq 1 ? 'networkInsert' : ''}">添加网络</label>
+												</div>
+											</div>
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="NETWORK_UPDATE" id="networkUpdate" th:checked="*{networkUpdate eq 1}" />
+													<label  th:for="*{type eq 1 ? 'networkUpdate' : ''}">修改网络</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="NETWORK_DELETE" id="networkDelete" th:checked="*{networkDelete eq 1}" />
+													<label  th:for="*{type eq 1 ? 'networkDelete' : ''}">删除网络</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 网络管理 AND -->
+								</fieldset>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -419,6 +498,22 @@
 				$("#roleInsert").prop("checked",checked);
 				$("#roleUpdate").prop("checked",checked);
 				$("#roleDelete").prop("checked",checked);
+			});
+			
+			$("#checkAllResourceRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#resQuery").prop("checked",checked);
+				$("#resInsert").prop("checked",checked);
+				$("#resUpdate").prop("checked",checked);
+				$("#resDelete").prop("checked",checked);
+			});
+			
+			$("#checkAllNetworkRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#networkQuery").prop("checked",checked);
+				$("#networkInsert").prop("checked",checked);
+				$("#networkUpdate").prop("checked",checked);
+				$("#networkDelete").prop("checked",checked);
 			});
 		}
 		

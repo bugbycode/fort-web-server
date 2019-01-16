@@ -19,6 +19,8 @@ jQuery.extend({
 				reg:/^[A-Za-z0-9_]*$/
 			},mobile:{
 				reg:/^(1([38]\d|5[0-35-9]|7[3678])\d{8})*$/
+			},resName:{
+				reg:/^[A-Za-z0-9_\.\-\u4e00-\u9fa5]*$/
 			}
 		};
 		return rule;
@@ -68,9 +70,10 @@ jQuery.extend({
 		if(value == undefined){
 			return checked;
 		}
+		
 		var keyMap = rules[key];
-		var regRule = vr[key];
 		for(var mk in keyMap){
+			var regRule = vr[mk];
 			if(mk == "required"){
 				if(rules[key].required && (value == null || value == "")){
 					$.showError(key,mk,form);

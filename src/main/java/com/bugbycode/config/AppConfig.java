@@ -45,4 +45,19 @@ public class AppConfig {
 	public final static String ROLE_QUERY_BYID_PATH = "/role/queryByRoleId";
 	
 	public final static String ROLE_QUERY_BY_ROLENAME = "/role/queryByRoleName";
+	
+	//资产管理
+	public final static String RESOURCE_QUERY_PATH = "/resource/query";
+	
+	public final static String RESOURCE_QUERY_BYID_PATH = "/resource/queryById";
+	
+	public final static String RESOURCE_QUERY_BY_NAME_PATH = "/resource/queryByName";
+	
+	public final static String RESOURCE_QUERY_BY_IP_PATH = "/resource/queryByIp";
+	
+	public final static String RESOURCE_INSERT_PATH = "/resource/insert";
+	
+	public final static String RESOURCE_UPDATE_PATH = "/resource/update";
+	
+	public final static String RESOURCE_DELETE_PATH = "/resource/delete";
 }

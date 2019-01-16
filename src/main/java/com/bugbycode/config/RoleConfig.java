@@ -27,4 +27,20 @@ public class RoleConfig {
 	public final static String ROLE_UPDATE = "ROLES_UPDATE";
 	
 	public final static String ROLE_DELETE = "ROLES_DELETE";
+	
+	public final static String RESOURCE_QUERY = "RESOURCE_QUERY";
+	
+	public final static String RESOURCE_INSERT = "RESOURCE_INSERT";
+	
+	public final static String RESOURCE_UPDATE = "RESOURCE_UPDATE";
+	
+	public final static String RESOURCE_DELETE = "RESOURCE_DELETE";
+	
+	public final static String NETWORK_QUERY = "NETWORK_QUERY";
+	
+	public final static String NETWORK_INSERT = "NETWORK_INSERT";
+	
+	public final static String NETWORK_UPDATE = "NETWORK_UPDATE";
+	
+	public final static String NETWORK_DELETE = "NETWORK_DELETE";
 }

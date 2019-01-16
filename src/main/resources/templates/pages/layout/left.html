@@ -43,7 +43,7 @@
 						    <li><a href="index_v2.html">运维分析</a></li>
 						</ul>
 					</li>
-					<li  th:class="${page=='user'} ? 'has-sub active' : 'has-sub'">
+					<li th:class="${page=='user'} ? 'has-sub active' : 'has-sub'">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="ion-ios-people bg-blue"></i> 
@@ -71,15 +71,15 @@
 						    <li><a href="email_compose.html">发送信息</a></li>
 						</ul>
 					</li>
-					<li class="has-sub">
+					<li th:class="${page=='resource'} ? 'has-sub active' : 'has-sub'">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="ion-ios-desktop bg-blue"></i> 
 							<span>设备管理</span>
 						</a>
 						<ul class="sub-menu">
-						    <li><a href="email_inbox.html">设备信息</a></li>
-						    <li><a href="email_compose.html">分组信息</a></li>
+						    <li th:class="${menu=='resource' ? 'active' : ''}"><a th:href="@{/resource/query}">设备信息</a></li>
+						    <li><a href="email_compose.html">网络管理</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -89,7 +89,7 @@
 							<span>运维工作</span>
 						</a>
 						<ul class="sub-menu">
-						    <li><a href="email_inbox.html">设备信息</a></li>
+						    <li><a >设备信息</a></li>
 						    <li><a href="email_compose.html">运维记录</a></li>
 						</ul>
 					</li>

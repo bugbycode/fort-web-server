@@ -15,5 +15,6 @@ spring:
   resource:
     server:
       userServerUrl: http://dev.server:9998
+      resourceServerUrl: http://localhost:9996
 logging:
   config: classpath:log4j2.xml

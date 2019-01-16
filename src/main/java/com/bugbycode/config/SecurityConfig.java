@@ -95,6 +95,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/role/insert").hasRole(RoleConfig.ROLE_INSERT)
 		.antMatchers("/role/delete").hasRole(RoleConfig.ROLE_DELETE)
 			
+		//资产管理
+		.antMatchers("/resource/query","/resource/edit",
+				"/resource/checkResName","/resource/queryNetWork")
+		.hasAnyRole(RoleConfig.RESOURCE_QUERY,RoleConfig.RESOURCE_DELETE,
+				RoleConfig.RESOURCE_INSERT,RoleConfig.RESOURCE_UPDATE)
+		
+		.antMatchers("/resource/update").hasRole(RoleConfig.RESOURCE_UPDATE)
+		.antMatchers("/resource/insert").hasRole(RoleConfig.RESOURCE_INSERT)
+		.antMatchers("/resource/delete").hasRole(RoleConfig.RESOURCE_DELETE)
+		
+		//网络管理
+		.antMatchers("/network/query","/network/edit",
+				"/network/checkName")
+		.hasAnyRole(RoleConfig.NETWORK_QUERY,RoleConfig.NETWORK_DELETE,
+				RoleConfig.NETWORK_INSERT,RoleConfig.NETWORK_UPDATE)
+		
+		.antMatchers("/network/update").hasRole(RoleConfig.NETWORK_UPDATE)
+		.antMatchers("/network/insert").hasRole(RoleConfig.NETWORK_INSERT)
+		.antMatchers("/network/delete").hasRole(RoleConfig.NETWORK_DELETE)
+		
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问
 				.and().formLogin().loginPage("/login").permitAll()

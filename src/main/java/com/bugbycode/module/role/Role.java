@@ -56,6 +56,22 @@ public class Role implements Serializable{
 	private int roleUpdate = 0;
 	
 	private int roleDelete = 0;
+	
+	private int resQuery = 0;
+	
+	private int resInsert = 0;
+	
+	private int resUpdate = 0;
+	
+	private int resDelete = 0;
+	
+	private int networkQuery = 0;
+	
+	private int networkInsert = 0;
+	
+	private int networkUpdate = 0;
+	
+	private int networkDelete = 0;
 
 	public int getId() {
 		return id;
@@ -127,6 +143,30 @@ public class Role implements Serializable{
 						break;
 					case RoleConfig.ROLE_DELETE:
 						this.roleDelete = 1;
+						break;
+					case RoleConfig.RESOURCE_QUERY:
+						this.resQuery = 1;
+						break;
+					case RoleConfig.RESOURCE_INSERT:
+						this.resInsert = 1;
+						break;
+					case RoleConfig.RESOURCE_UPDATE:
+						this.resUpdate = 1;
+						break;
+					case RoleConfig.RESOURCE_DELETE:
+						this.resDelete = 1;
+						break;
+					case RoleConfig.NETWORK_QUERY:
+						this.networkQuery = 1;
+						break;
+					case RoleConfig.NETWORK_INSERT:
+						this.networkInsert = 1;
+						break;
+					case RoleConfig.NETWORK_UPDATE:
+						this.networkUpdate = 1;
+						break;
+					case RoleConfig.NETWORK_DELETE:
+						this.networkDelete = 1;
 						break;
 					default:
 						break;
@@ -205,6 +245,38 @@ public class Role implements Serializable{
 
 	public int getRoleDelete() {
 		return roleDelete;
+	}
+
+	public int getResQuery() {
+		return resQuery;
+	}
+
+	public int getResInsert() {
+		return resInsert;
+	}
+
+	public int getResUpdate() {
+		return resUpdate;
+	}
+
+	public int getResDelete() {
+		return resDelete;
+	}
+
+	public int getNetworkQuery() {
+		return networkQuery;
+	}
+
+	public int getNetworkInsert() {
+		return networkInsert;
+	}
+
+	public int getNetworkUpdate() {
+		return networkUpdate;
+	}
+
+	public int getNetworkDelete() {
+		return networkDelete;
 	}
 
 	public void copy(Role r) {
