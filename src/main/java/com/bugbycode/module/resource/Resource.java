@@ -2,9 +2,7 @@ package com.bugbycode.module.resource;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import com.bugbycode.module.account.Account;
 
 public class Resource implements Serializable {
 
@@ -25,14 +23,6 @@ public class Resource implements Serializable {
 	
 	private String osType;
 	
-	private int useSsh;
-	
-	private int sshPort;
-	
-	private int useRdp;
-	
-	private int rdpPort;
-	
 	private int networkId;
 	
 	private String networkName;
@@ -41,8 +31,8 @@ public class Resource implements Serializable {
 	
 	private Date updateTime;
 	
-	private List<Account> accList;
-
+	private String serverList;
+	
 	public int getId() {
 		return id;
 	}
@@ -91,38 +81,6 @@ public class Resource implements Serializable {
 		this.osType = osType;
 	}
 
-	public int getUseSsh() {
-		return useSsh;
-	}
-
-	public void setUseSsh(int useSsh) {
-		this.useSsh = useSsh;
-	}
-
-	public int getSshPort() {
-		return sshPort;
-	}
-
-	public void setSshPort(int sshPort) {
-		this.sshPort = sshPort;
-	}
-
-	public int getUseRdp() {
-		return useRdp;
-	}
-
-	public void setUseRdp(int useRdp) {
-		this.useRdp = useRdp;
-	}
-
-	public int getRdpPort() {
-		return rdpPort;
-	}
-
-	public void setRdpPort(int rdpPort) {
-		this.rdpPort = rdpPort;
-	}
-
 	public int getNetworkId() {
 		return networkId;
 	}
@@ -155,12 +113,12 @@ public class Resource implements Serializable {
 		this.updateTime = updateTime;
 	}
 	
-	public List<Account> getAccList() {
-		return accList;
+	public String getServerList() {
+		return serverList;
 	}
 
-	public void setAccList(List<Account> accList) {
-		this.accList = accList;
+	public void setServerList(String serverList) {
+		this.serverList = serverList;
 	}
 
 	public void copy(Resource r) {
@@ -170,14 +128,9 @@ public class Resource implements Serializable {
 		this.setStatus(r.getStatus());
 		this.setType(r.getType());
 		this.setOsType(r.getOsType());
-		this.setUseSsh(r.getUseSsh());
-		this.setSshPort(r.getSshPort());
-		this.setUseRdp(r.getUseRdp());
-		this.setRdpPort(r.getRdpPort());
 		this.setNetworkId(r.getNetworkId());
 		this.setNetworkName(r.getNetworkName());
 		this.setCreateTime(r.getCreateTime());
 		this.setUpdateTime(r.getUpdateTime());
-		this.setAccList(r.getAccList());
 	}
 }

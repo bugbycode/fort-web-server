@@ -60,4 +60,21 @@ public class AppConfig {
 	public final static String RESOURCE_UPDATE_PATH = "/resource/update";
 	
 	public final static String RESOURCE_DELETE_PATH = "/resource/delete";
+	
+	public final static String RESOURCE_SERVER_QUERY_PATH = "/resourceServer/query";
+	
+	public final static String RESOURCE_SERVER_INSERT_PATH = "/resourceServer/insert";
+	
+	public final static String ACCOUNT_QUERY_PATH = "/account/query";
+	
+	public final static String ACCOUNT_INSERT_PATH = "/account/insert";
+	
+	public final static String ACCOUNT_UPDATE_PATH = "/account/update";
+	
+	public final static String ACCOUNT_DELETE_PATH = "/account/delete";
+	
+	public final static String ACCOUNT_INSERT_REL_PATH = "/account/insertRel";
+	
+	public final static String RESOURCE_NETWORK_QUERY_PATH = "/resource/queryNetWork";
+	
 }

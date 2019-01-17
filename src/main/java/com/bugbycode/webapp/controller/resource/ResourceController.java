@@ -1,20 +1,28 @@
 package com.bugbycode.webapp.controller.resource;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.bugbycode.config.AppConfig;
+import com.bugbycode.module.account.Account;
+import com.bugbycode.module.network.Network;
 import com.bugbycode.module.resource.Resource;
-import com.bugbycode.module.server.ResourceServer;
+import com.bugbycode.module.resource_server.ResourceServer;
 import com.bugbycode.service.DataRequestService;
 import com.util.StringUtil;
+import com.util.page.Page;
 import com.util.page.SearchResult;
 
 @Controller
@@ -22,7 +30,7 @@ import com.util.page.SearchResult;
 public class ResourceController {
 
 	@Autowired
-	private ResourceServer resourceServer;
+	private com.bugbycode.module.server.ResourceServer resourceServer;
 	
 	@Autowired
 	private DataRequestService dataRequestService;
@@ -45,15 +53,55 @@ public class ResourceController {
 		return "pages/resource/list";
 	}
 	
+	@RequestMapping("/queryNetwork")
+	@ResponseBody
+	public SearchResult<Network> queryNetwork(String name) {
+		Map<String,Object> param = new HashMap<String,Object>();
+		if(StringUtil.isNotBlank(name)) {
+			param.put("name", name);
+		}
+		param.put("startIndex", 0);
+		param.put("pageSize", Page.DEFAULT_PAGE_SIZE);
+		return dataRequestService.search(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_NETWORK_QUERY_PATH, param, Network.class);
+	}
+	
+	@RequestMapping(value = "/checkResName")
+	@ResponseBody
+	public Map<String,Object> checkResName(String resName){
+		Map<String,Object> param = new HashMap<String,Object>();
+		param.put("name", resName);
+		Resource r = dataRequestService.query(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_QUERY_BY_NAME_PATH, param, Resource.class);
+		int resId = 0;
+		if(r != null) {
+			resId = r.getId();
+		}
+		param.clear();
+		param.put("id", resId);
+		return param;
+	}
+	
 	@RequestMapping("/edit")
 	public String edit(@ModelAttribute("resource") Resource r,
 			@RequestParam(name="id",defaultValue="0")int id) {
 		Map<String,Object> param = new HashMap<String,Object>();
+		JSONArray serverJsonArr = new JSONArray();
 		if(id > 0) {
 			param.put("resId", id);
 			Resource tmp = dataRequestService.query(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_QUERY_BYID_PATH, param, Resource.class);
 			r.copy(tmp);
+			SearchResult<ResourceServer> sr = dataRequestService.search(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_SERVER_QUERY_PATH, param, ResourceServer.class);
+			List<ResourceServer> serverList = sr.getList();
+			param.clear();
+			if(!CollectionUtils.isEmpty(serverList)) {
+				for(ResourceServer server : serverList) {
+					param.put("serverId", server.getId());
+					SearchResult<Account> accSr = dataRequestService.search(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_SERVER_QUERY_PATH, param, Account.class);
+					server.setAccList(accSr.getList());
+					serverJsonArr.add(server);
+				}
+			}
 		}
+		r.setServerList(serverJsonArr.toString());
 		return "pages/resource/edit";
 	}
 }

@@ -16,10 +16,6 @@ public class Account implements Serializable {
 	private String password;
 	
 	private int type;
-	
-	private int resourceId;
-	
-	private int serverType;
 
 	public int getId() {
 		return id;
@@ -53,28 +49,10 @@ public class Account implements Serializable {
 		this.type = type;
 	}
 
-	public int getResourceId() {
-		return resourceId;
-	}
-
-	public void setResourceId(int resourceId) {
-		this.resourceId = resourceId;
-	}
-
-	public int getServerType() {
-		return serverType;
-	}
-
-	public void setServerType(int serverType) {
-		this.serverType = serverType;
-	}
-
 	public void copy(Account acc) {
 		this.setId(acc.getId());
 		this.setAccount(acc.getAccount());
 		this.setPassword(acc.getPassword());
 		this.setType(acc.getType());
-		this.setResourceId(acc.getResourceId());
-		this.setServerType(acc.getServerType());
 	}
 }
