@@ -95,7 +95,7 @@ public class ResourceController {
 			if(!CollectionUtils.isEmpty(serverList)) {
 				for(ResourceServer server : serverList) {
 					param.put("serverId", server.getId());
-					SearchResult<Account> accSr = dataRequestService.search(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_SERVER_QUERY_PATH, param, Account.class);
+					SearchResult<Account> accSr = dataRequestService.search(resourceServer.getResourceServerUrl() + AppConfig.ACCOUNT_QUERY_PATH, param, Account.class);
 					server.setAccList(accSr.getList());
 					serverJsonArr.add(server);
 				}
