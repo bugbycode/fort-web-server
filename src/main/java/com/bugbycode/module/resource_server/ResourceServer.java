@@ -1,9 +1,6 @@
 package com.bugbycode.module.resource_server;
 
 import java.io.Serializable;
-import java.util.List;
-
-import com.bugbycode.module.account.Account;
 
 public class ResourceServer implements Serializable{
 
@@ -24,8 +21,6 @@ public class ResourceServer implements Serializable{
 	
 	private int resId;
 	
-	private List<Account> accList;
-
 	public int getId() {
 		return id;
 	}
@@ -72,13 +67,5 @@ public class ResourceServer implements Serializable{
 
 	public void setResId(int resId) {
 		this.resId = resId;
-	}
-
-	public List<Account> getAccList() {
-		return accList;
-	}
-
-	public void setAccList(List<Account> accList) {
-		this.accList = accList;
 	}
 }

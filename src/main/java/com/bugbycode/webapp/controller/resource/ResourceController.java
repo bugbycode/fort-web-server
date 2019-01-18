@@ -3,6 +3,7 @@ package com.bugbycode.webapp.controller.resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,6 +86,7 @@ public class ResourceController {
 			@RequestParam(name="id",defaultValue="0")int id) {
 		Map<String,Object> param = new HashMap<String,Object>();
 		JSONArray serverJsonArr = new JSONArray();
+		JSONArray accountJsonArr = new JSONArray();
 		if(id > 0) {
 			param.put("resId", id);
 			Resource tmp = dataRequestService.query(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_QUERY_BYID_PATH, param, Resource.class);
@@ -93,15 +95,61 @@ public class ResourceController {
 			List<ResourceServer> serverList = sr.getList();
 			param.clear();
 			if(!CollectionUtils.isEmpty(serverList)) {
+				Map<Integer,Account> accMap = new HashMap<Integer,Account>();
+				int serverType = 0;
+				int accId = 0;
 				for(ResourceServer server : serverList) {
 					param.put("serverId", server.getId());
-					SearchResult<Account> accSr = dataRequestService.search(resourceServer.getResourceServerUrl() + AppConfig.ACCOUNT_QUERY_PATH, param, Account.class);
-					server.setAccList(accSr.getList());
 					serverJsonArr.add(server);
+					SearchResult<Account> accSr = dataRequestService.search(resourceServer.getResourceServerUrl() + AppConfig.ACCOUNT_QUERY_PATH, param, Account.class);
+					List<Account> accList = accSr.getList();
+					if(!CollectionUtils.isEmpty(accList)) {
+						serverType = server.getServerType();
+						for(Account accTmp : accList) {
+							accId = accTmp.getId();
+							Account acc = accMap.get(accId);
+							if(acc == null) {
+								acc = accTmp;
+								accMap.put(accId, acc);
+							}
+							switch (serverType) {
+								case AppConfig.USE_SSH:
+									acc.setUseSsh(1);
+									break;
+								case AppConfig.USE_FTP:
+									acc.setUseFtp(1);
+									break;
+								case AppConfig.USE_RDP:
+									acc.setUseRdp(1);
+									break;
+								case AppConfig.USE_SFTP:
+									acc.setUseSftp(1);
+									break;
+								case AppConfig.USE_TELNET:
+									acc.setUseTelnet(1);
+									break;
+								case AppConfig.USE_ORACLE:
+									acc.setUseOracle(1);
+									break;
+								case AppConfig.USE_SQLSERVER:
+									acc.setUseSqlServer(1);
+									break;
+								default:
+									break;
+							}
+						}
+					}
+				}
+
+				if(!accMap.isEmpty()) {
+					for(Entry<Integer,Account> entry : accMap.entrySet()) {
+						accountJsonArr.add(entry.getValue());
+					}
 				}
 			}
 		}
 		r.setServerList(serverJsonArr.toString());
+		r.setAccountList(accountJsonArr.toString());
 		return "pages/resource/edit";
 	}
 }

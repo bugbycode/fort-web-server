@@ -16,6 +16,20 @@ public class Account implements Serializable {
 	private String password;
 	
 	private int type;
+	
+	private int useSsh;
+	
+	private int useRdp;
+	
+	private int useSftp;
+	
+	private int useOracle;
+	
+	private int useSqlServer;
+	
+	private int useFtp;
+	
+	private int useTelnet;
 
 	public int getId() {
 		return id;
@@ -47,6 +61,62 @@ public class Account implements Serializable {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public int getUseSsh() {
+		return useSsh;
+	}
+
+	public void setUseSsh(int useSsh) {
+		this.useSsh = useSsh;
+	}
+
+	public int getUseRdp() {
+		return useRdp;
+	}
+
+	public void setUseRdp(int useRdp) {
+		this.useRdp = useRdp;
+	}
+
+	public int getUseSftp() {
+		return useSftp;
+	}
+
+	public void setUseSftp(int useSftp) {
+		this.useSftp = useSftp;
+	}
+
+	public int getUseOracle() {
+		return useOracle;
+	}
+
+	public void setUseOracle(int useOracle) {
+		this.useOracle = useOracle;
+	}
+
+	public int getUseSqlServer() {
+		return useSqlServer;
+	}
+
+	public void setUseSqlServer(int useSqlServer) {
+		this.useSqlServer = useSqlServer;
+	}
+
+	public int getUseFtp() {
+		return useFtp;
+	}
+
+	public void setUseFtp(int useFtp) {
+		this.useFtp = useFtp;
+	}
+
+	public int getUseTelnet() {
+		return useTelnet;
+	}
+
+	public void setUseTelnet(int useTelnet) {
+		this.useTelnet = useTelnet;
 	}
 
 	public void copy(Account acc) {

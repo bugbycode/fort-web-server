@@ -33,6 +33,8 @@ public class Resource implements Serializable {
 	
 	private String serverList;
 	
+	private String accountList;
+	
 	public int getId() {
 		return id;
 	}
@@ -119,6 +121,14 @@ public class Resource implements Serializable {
 
 	public void setServerList(String serverList) {
 		this.serverList = serverList;
+	}
+
+	public String getAccountList() {
+		return accountList;
+	}
+
+	public void setAccountList(String accountList) {
+		this.accountList = accountList;
 	}
 
 	public void copy(Resource r) {

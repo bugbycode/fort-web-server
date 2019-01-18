@@ -21,4 +21,5 @@ $(function() {
 			$(this).attr('data-init', true);
 		}
 	});
+   
 });

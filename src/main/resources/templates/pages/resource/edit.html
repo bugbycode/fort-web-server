@@ -71,6 +71,14 @@
 		.tagit-choice > i {
 			margin-top: 7px;
 		}
+		
+		.modal{
+			top:20%;
+		}
+		
+		.account-body{
+			padding: 15px 30px 15px 30px;
+		}
 	</style>
 </head>
 <body>
@@ -126,6 +134,7 @@
 										<div class="col-md-9">
 											<input type="hidden" th:field="*{id}"/>
 											<input type="hidden" th:field="*{serverList}">
+											<input type="hidden" th:field="*{accountList}">
 											<input name="name" id="name" type="text" class="form-control is-invalid" th:value="*{name}">
 											<div class="invalid-feedback">请输入设备名称</div>
 										</div>
@@ -214,19 +223,19 @@
 										<label class="col-md-3 col-form-label">账号</label>
 										<div class="col-md-9">
 											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">sys</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">system</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">scott</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
 												<li class="tagit-choice addAcc" style="margin-left: -2px">
@@ -267,13 +276,13 @@
 										<label class="col-md-3 col-form-label">账号</label>
 										<div class="col-md-9">
 											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">sa</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
 												<li class="tagit-choice addAcc" style="margin-left: -2px">
@@ -318,20 +327,20 @@
 										<label class="col-md-3 col-form-label">账号</label>
 										<div class="col-md-9">
 											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
-													<span class="tagit-label hand">Administrator</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">Administrator</span><a class="tagit-close tagit-close-account"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a>
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
-													<span class="tagit-label hand">Guest</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">Guest</span><a class="tagit-close tagit-close-account"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
-													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">test</span><a class="tagit-close tagit-close-account"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
-													<span class="tagit-label hand">good</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">good</span><a class="tagit-close tagit-close-account"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
-													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close tagit-close-account"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
 												<li class="tagit-choice addAcc" style="margin-left: -2px">
 													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
@@ -371,19 +380,19 @@
 										<label class="col-md-3 col-form-label">账号</label>
 										<div class="col-md-9">
 											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">Administrator</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">Guest</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">good</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
 												<li class="tagit-choice addAcc" style="margin-left: -2px">
@@ -399,7 +408,7 @@
 							</div>
 						</div>
 						<!-- Telnet服务 END -->
-						<!-- SSH / SFTP 服务 -->
+						<!-- SSH 服务 -->
 						<div class="panel panel-inverse">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
@@ -408,7 +417,7 @@
 								<h4 class="panel-title">
 									<span class="checkbox checkbox-css">
 										<input type="checkbox" id="useSsh"  />
-										<label for="useSsh" style="color: white;">SSH / SFTP 服务</label>
+										<label for="useSsh" style="color: white;">SSH 服务</label>
 									</span>
 								</h4>
 							</div>
@@ -417,26 +426,26 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">端口</label>
 										<div class="col-md-9">
-											<input name="rdpPort" id="rdpPort" type="text" class="form-control is-valid" value="22">
+											<input name="sshPort" id="sshPort" type="text" class="form-control is-valid" value="22">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">账号</label>
 										<div class="col-md-9">
 											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">root</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">fort</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">good</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
 												<li class="tagit-choice addAcc" style="margin-left: -2px">
@@ -451,7 +460,60 @@
 								</fieldset>
 							</div>
 						</div>
-						<!-- SSH / SFTP 服务 END -->
+						<!-- SSH 服务 END -->
+						<!-- SFTP 服务 -->
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">
+									<span class="checkbox checkbox-css">
+										<input type="checkbox" id="useSftp"  />
+										<label for="useSftp" style="color: white;">SFTP 服务</label>
+									</span>
+								</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">端口</label>
+										<div class="col-md-9">
+											<input name="sftpPort" id="sftpPort" type="text" class="form-control is-valid" value="22">
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">账号</label>
+										<div class="col-md-9">
+											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">root</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">fort</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">good</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice addAcc" style="margin-left: -2px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
+												</li>
+												<li class="tagit-choice delAllAcc" style="margin-left: -14px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-trash-alt hand"></i>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+						<!-- SFTP 服务 END -->
 						<!-- FTP 服务 -->
 						<div class="panel panel-inverse">
 							<div class="panel-heading">
@@ -477,19 +539,19 @@
 										<label class="col-md-3 col-form-label">账号</label>
 										<div class="col-md-9">
 											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">root</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">fort</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">good</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
 												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
 													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
 												</li>
 												<li class="tagit-choice addAcc" style="margin-left: -2px">
@@ -536,6 +598,110 @@
 	</div>
 	<!-- end page container -->
 	
+	<!-- #account-modal-dialog -->
+	<div class="modal fade" id="account-modal-dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">账号信息</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body account-body">
+					<fieldset>
+						<form id="accountForm">
+						<div class="row form-group m-b-10">
+							<label class="col-md-3 col-form-label">账号</label>
+							<div class="col-md-9">
+								<input type="hidden" name="serverID" id="serverID"/>
+								<input name="accountName" id="accountName" type="text" class="form-control is-valid" value="">
+							</div>
+						</div>
+						<div class="row form-group m-b-10">
+							<label class="col-md-3 col-form-label">密码</label>
+							<div class="col-md-9">
+								<input name="accountPwd" id="accountPwd" type="password" class="form-control is-valid" value="">
+							</div>
+						</div>
+						<div class="row form-group m-b-10">
+							<label class="col-md-3 col-form-label">账号类型</label>
+							<div class="col-md-9">
+								<select style="width: 100%;" class="form-control is-valid">
+									<option value="0">管理员</option>
+									<option value="1">普通账号</option>
+								</select>
+							</div>
+						</div>
+						</form>
+						<div class="row form-group m-b-10">
+							<label class="col-md-3 col-form-label">所属服务</label>
+							<div class="col-md-9">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="checkbox checkbox-css checkbox-inline">
+											<input name="rdpServer" type="checkbox" id="rdpServer"/>
+											<label for="rdpServer">远程桌面服务</label>
+										 </div>
+									</div>
+									<div class="col-md-6">
+										<div class="checkbox checkbox-css checkbox-inline">
+											<input name="telnetServer" type="checkbox" id="telnetServer"/>
+											<label for="telnetServer">Telnet 服务</label>
+										 </div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="checkbox checkbox-css checkbox-inline">
+											<input name="sshServer" type="checkbox" id="sshServer"/>
+											<label for="sshServer">SSH 服务</label>
+										 </div>
+									</div>
+									<div class="col-md-6">
+										<div class="checkbox checkbox-css checkbox-inline">
+											<input name="sftpServer" type="checkbox" id="sftpServer"/>
+											<label for="sftpServer">SFTP 服务</label>
+										 </div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="checkbox checkbox-css checkbox-inline">
+											<input name="oracleServer" type="checkbox" id="oracleServer"/>
+											<label for="oracleServer">Oracle 服务</label>
+										 </div>
+									</div>
+									<div class="col-md-6">
+										<div class="checkbox checkbox-css checkbox-inline">
+											<input name="mssqlServer" type="checkbox" id="mssqlServer"/>
+											<label for="mssqlServer">SQL Server 服务</label>
+										 </div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="checkbox checkbox-css checkbox-inline">
+											<input name="ftpServer" type="checkbox" id="ftpServer"/>
+											<label for="ftpServer">FTP 服务</label>
+										 </div>
+									</div>
+									<div class="col-md-6">
+									</div>
+								</div>
+								<ul class="parsley-errors-list filled" id="parsley-id-multiple-mincheck">
+									<li class="parsley-required">账号创建后将无法变更所属服务，如需变更请重新创建</li>
+								</ul>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<a href="javascript:;" class="btn btn-white" data-dismiss="modal">关闭</a>
+					<a href="javascript:;" class="btn btn-primary">确定</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
 	<script src="../assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
@@ -575,7 +741,10 @@
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	<script type="text/javascript" src="../javascript/custom/bugbycode.js"></script>
 	<script type="text/javascript" src="../validator/validator.js"></script>
-	
+	<!-- 模态框  BEGIN-->
+	<script src="../assets/plugins/gritter/js/jquery.gritter.js"></script>
+	<script src="../assets/plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
+	<!-- 模态框  END-->
 	<script>
 		App.init();
 	</script>
@@ -584,13 +753,335 @@
 			$(".logout").click(function(){
 				$("#logoutForm").submit();
 			});
+			$(".delAllAcc").click(function(e){
+				var this_e = this;
+				e.preventDefault();
+				swal({
+					title: '您确定删除该服务下的所有账号吗？',
+					text: '您执行该操作后该服务下的所有账号将会被删除，是否继续？',
+					icon: 'warning',
+					buttons: {
+						cancel: {
+							text: '取消',
+							value: false,
+							visible: true,
+							className: 'btn btn-default',
+							closeModal: true,
+						},
+						confirm: {
+							text: '确定',
+							value: true,
+							visible: true,
+							className: 'btn btn-warning',
+							closeModal: true
+						}
+					}
+				}).then(function(value){
+					if(value == true){
+						$(this_e).parent().find(".tagit-account").remove();
+					}
+				});
+			});
+			
+			function showMsgError(form,key,msg){
+				$(form).find("#" + key).removeClass("is-valid");
+				$(form).find("#" + key).removeClass("is-invalid");
+				$(form).find("#" + key).addClass("is-invalid");
+				$(form).find("#" + key).parent().find("div.invalid-feedback").remove();
+				$(form).find("#" + key).after("<div class=\"invalid-feedback\">" + msg + "</div>");
+			}
+			
+			function removeMsgError(form,key){
+				$(form).find("#" + key).removeClass("is-valid");
+				$(form).find("#" + key).addClass("is-valid");
+				$(form).find("#" + key).removeClass("is-invalid");
+				$(form).find("#" + key).parent().find("div.invalid-feedback").remove();
+			}
+			
+			function checkAccountName(form,accountName){
+				var reg = /^[A-Za-z0-9_\\@\\.]+$/
+				var flag = true;
+				if(accountName == ""){
+					flag = false;
+					showMsgError(form,"accountName","请输入账号");
+				}else if(!reg.test(accountName)){
+					flag = false;
+					showMsgError(form,"accountName","账号格式错误，请输入字母、数字、下划线等普通字符");
+				}else if(accountName.length > 50){
+					flag = false;
+					showMsgError(form,"accountName","账号格式错误，输入的内容不能超过五十个字符");
+				}else{
+					removeMsgError(form,"accountName");
+				}
+				return flag;
+			}
+			
+			function checkPassword(form,password){
+				var flag = true;
+				if(password.length > 20){
+					flag = false;
+					showMsgError(form,"accountPwd","密码不能超过二十个字符");
+				}else{
+					removeMsgError(form,"accountPwd");
+				}
+				return flag;
+			}
+			
+			$("#accountForm").find("#accountName").bind({
+				"blur":function(){
+					checkAccountName("#accountForm",$(this).val());
+				},"change":function(){
+					checkAccountName("#accountForm",$(this).val());
+				},"keyup":function(){
+					checkAccountName("#accountForm",$(this).val());
+				}
+			});
+			
+			$("#accountForm").find("#accountPwd").bind({
+				"blur":function(){
+					checkPassword("#accountForm",$(this).val());
+				},"change":function(){
+					checkPassword("#accountForm",$(this).val());
+				},"keyup":function(){
+					checkPassword("#accountForm",$(this).val());
+				}
+			});
+			
+			$("#account-modal-dialog .btn-primary").click(function(){
+				var form = "#accountForm";
+				var accountName = $(form).find("#accountName").val();
+				var accountPwd = $(form).find("#accountPwd").val();
+				var serverID = $("#serverID").val();
+				if(checkAccountName(form,accountName) && checkPassword(form,accountPwd)){
+					var account = {
+						account:accountName,
+						password:accountPwd
+					};
+					var useSqlServer = $("#account-modal-dialog").find("#mssqlServer").prop("checked") ? 1 : 0;
+					var useOracle = $("#account-modal-dialog").find("#oracleServer").prop("checked") ? 1 : 0;
+					var useFtp = $("#account-modal-dialog").find("#ftpServer").prop("checked") ? 1 : 0;
+					var useTelnet = $("#account-modal-dialog").find("#telnetServer").prop("checked") ? 1 : 0;
+					var useRdp = $("#account-modal-dialog").find("#rdpServer").prop("checked") ? 1 : 0;
+					var useSsh = $("#account-modal-dialog").find("#sshServer").prop("checked") ? 1 : 0;
+					var useSftp = $("#account-modal-dialog").find("#sftpServer").prop("checked") ? 1 : 0;
+					
+				}
+			});
+			
+			$("#sshPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
+			$("#sftpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
+			$("#rdpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
+			$("#ftpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
+			$("#telnetPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
+			$("#oraclePort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
+			$("#sqlServerPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
+
+			function uncheckServer(){
+				removeMsgError("#accountForm","accountName");
+				removeMsgError("#accountForm","accountPwd");
+				$("#account-modal-dialog").find("#mssqlServer").parent().find("label").prop("for","");
+				$("#account-modal-dialog").find("#mssqlServer").prop("checked",false);
+				$("#account-modal-dialog").find("#oracleServer").parent().find("label").prop("for","");
+				$("#account-modal-dialog").find("#oracleServer").prop("checked",false);
+				$("#account-modal-dialog").find("#ftpServer").parent().find("label").prop("for","");
+				$("#account-modal-dialog").find("#ftpServer").prop("checked",false);
+				$("#account-modal-dialog").find("#telnetServer").parent().find("label").prop("for","");
+				$("#account-modal-dialog").find("#telnetServer").prop("checked",false);
+				$("#account-modal-dialog").find("#rdpServer").parent().find("label").prop("for","");
+				$("#account-modal-dialog").find("#rdpServer").prop("checked",false);
+				$("#account-modal-dialog").find("#sshServer").parent().find("label").prop("for","");
+				$("#account-modal-dialog").find("#sshServer").prop("checked",false);
+				$("#account-modal-dialog").find("#sftpServer").parent().find("label").prop("for","");
+				$("#account-modal-dialog").find("#sftpServer").prop("checked",false);
+			}
+			function checkServer(item){
+				uncheckServer();
+				
+				$("#account-modal-dialog").find("#mssqlServer").prop("checked",item.useSqlServer == 1);
+				$("#account-modal-dialog").find("#oracleServer").prop("checked",item.useOracle == 1);
+				$("#account-modal-dialog").find("#ftpServer").prop("checked",item.useFtp == 1);
+				$("#account-modal-dialog").find("#telnetServer").prop("checked",item.useTelnet == 1);
+				$("#account-modal-dialog").find("#rdpServer").prop("checked",item.useRdp == 1);
+				$("#account-modal-dialog").find("#sshServer").prop("checked",item.useSsh == 1);
+				$("#account-modal-dialog").find("#sftpServer").prop("checked",item.useSftp == 1);
+			}
+			
+			$(document).on('click','.tagit-label-account',function(e){
+				$("#account-modal-dialog").modal("show");
+				$("#account-modal-dialog").find("#accountName").prop("readonly",true);
+				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
+				var account = $(this).text().trim();
+				$("#account-modal-dialog").find("#accountName").val(account);
+				$("#account-modal-dialog").find("#accountPwd").val("");
+				var accountArray = eval($("#accountList").val());
+				$("#serverID").val(serverID);
+				$(accountArray).each(function(index,item){
+					if(account == item.account && serverID == "useSsh" && item.useSsh == 1){
+						checkServer(item);
+					}else if(account == item.account && serverID == "useFtp" && item.useFtp == 1){
+						checkServer(item);
+					}else if(account == item.account && serverID == "useSftp" && item.useSftp == 1){
+						checkServer(item);
+					}else if(account == item.account && serverID == "useRdp" && item.useRdp == 1){
+						checkServer(item);
+					}else if(account == item.account && serverID == "useTelnet" && item.useTelnet == 1){
+						checkServer(item);
+					}else if(account == item.account && serverID == "useOracle" && item.useOracle == 1){
+						checkServer(item);
+					}else if(account == item.account && serverID == "useSqlServer" && item.useSqlServer == 1){
+						checkServer(item);
+					}
+				});
+			});
+			
+			$(".addAcc").click(function(){
+				uncheckServer();
+				
+				$("#account-modal-dialog").find("#mssqlServer").parent().find("label").prop("for","mssqlServer");
+				$("#account-modal-dialog").find("#oracleServer").parent().find("label").prop("for","oracleServer");
+				$("#account-modal-dialog").find("#ftpServer").parent().find("label").prop("for","ftpServer");
+				$("#account-modal-dialog").find("#telnetServer").parent().find("label").prop("for","telnetServer");
+				$("#account-modal-dialog").find("#rdpServer").parent().find("label").prop("for","rdpServer");
+				$("#account-modal-dialog").find("#sshServer").parent().find("label").prop("for","sshServer");
+				$("#account-modal-dialog").find("#sftpServer").parent().find("label").prop("for","sftpServer");
+				
+				
+				$("#account-modal-dialog").modal("show");
+				$("#account-modal-dialog").find("#accountName").prop("readonly",false);
+				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
+				$("#serverID").val(serverID);
+				$("#account-modal-dialog").find("#accountName").val("");
+				$("#account-modal-dialog").find("#accountPwd").val("");
+				if(serverID == 'useRdp'){
+					$("#account-modal-dialog").find("#rdpServer").parent().find("label").prop("for","");
+					$("#account-modal-dialog").find("#rdpServer").prop("checked",true);
+				}else if(serverID == 'useSqlServer'){
+					$("#account-modal-dialog").find("#mssqlServer").parent().find("label").prop("for","");
+					$("#account-modal-dialog").find("#mssqlServer").prop("checked",true);
+				}else if(serverID == 'useOracle'){
+					$("#account-modal-dialog").find("#oracleServer").parent().find("label").prop("for","");
+					$("#account-modal-dialog").find("#oracleServer").prop("checked",true);
+				}else if(serverID == 'useFtp'){
+					$("#account-modal-dialog").find("#ftpServer").parent().find("label").prop("for","");
+					$("#account-modal-dialog").find("#ftpServer").prop("checked",true);
+				}else if(serverID == 'useTelnet'){
+					$("#account-modal-dialog").find("#telnetServer").parent().find("label").prop("for","");
+					$("#account-modal-dialog").find("#telnetServer").prop("checked",true);
+				}else if(serverID == 'useSsh'){
+					$("#account-modal-dialog").find("#sshServer").parent().find("label").prop("for","");
+					$("#account-modal-dialog").find("#sshServer").prop("checked",true);
+				}else if(serverID == 'useSftp'){
+					$("#account-modal-dialog").find("#sftpServer").parent().find("label").prop("for","");
+					$("#account-modal-dialog").find("#sftpServer").prop("checked",true);
+				}
+			});
+			
+			$(document).on('click',".tagit-close-account",function(e){
+				var this_e = this;
+				e.preventDefault();
+				swal({
+					title: '您确定删除所选的账号吗？',
+					text: '您执行该操作后账号将从对应的服务中删除，是否继续？',
+					icon: 'warning',
+					buttons: {
+						cancel: {
+							text: '取消',
+							value: false,
+							visible: true,
+							className: 'btn btn-default',
+							closeModal: true,
+						},
+						confirm: {
+							text: '确定',
+							value: true,
+							visible: true,
+							className: 'btn btn-warning',
+							closeModal: true
+						}
+					}
+				}).then(function(value){
+					if(value == true){
+						$(this_e).parent().remove();
+					}
+				});
+			});
+			var serverArray = eval($("#serverList").val());
+			var accountArray = eval($("#accountList").val());
+			$(serverArray).each(function(index,item){
+				var serverType = item.serverType;
+				var port = item.port;
+				var use = item.use;
+				var dbName = item.dbName;
+				if(serverType == 0){
+					$("#sshPort").val(port);
+					$("#useSsh").prop("checked",use == 1);
+				}else if(serverType == 1){
+					$("#sftpPort").val(port);
+					$("#useSftp").prop("checked",use == 1);
+				}else if(serverType == 2){
+					$("#rdpPort").val(port);
+					$("#useRdp").prop("checked",use == 1);
+				}else if(serverType == 3){
+					$("#telnetPort").val(port);
+					$("#useTelnet").prop("checked",use == 1);
+				}else if(serverType == 4){
+					$("#oraclePort").val(port);
+					$("#oracleDb").val(dbName);
+					$("#useOracle").prop("checked",use == 1);
+				}else if(serverType == 5){
+					$("#sqlServerPort").val(port);
+					$("#useSqlServer").prop("checked",use == 1);
+				}else if(serverType == 6){
+					$("#ftpPort").val(port);
+					$("#useFtp").prop("checked",use == 1);
+				}
+			});
+			$(accountArray).each(function(index,item){
+				var accStr = "<li class=\"tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account\"><span class=\"tagit-label tagit-label-account hand\">";
+				accStr += item.account;
+				accStr += "</span><a class=\"tagit-close tagit-close-account\"><span class=\"text-icon\">×</span><span class=\"ui-icon ui-icon-close\"></span></a></li>";
+				if(item.useSsh == 1){
+					$("#sshPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useSftp == 1){
+					$("#sftpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useRdp == 1){
+					$("#rdpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useTelnet == 1){
+					$("#telnetPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useFtp == 1){
+					$("#ftpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useOracle == 1){
+					$("#oraclePort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useSqlServer == 1){
+					$("#sqlServerPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+			});
 		});
+		
+		$.addValidator('checkResName',function(element,value){
+			var flag = true;
+			$.ajaxSettings.async = false;
+			$.get("/resource/checkResName",{resName:value},function(data){
+				var resId = data.id;
+				var id = $("#id").val();
+				flag = (resId == 0 || resId == id);
+			});
+			return flag;
+		});
+		
 		var rules = {
 			name:{
 				required:true,
 				min:2,
 				max:20,
-				resName:true
+				resName:true,
+				checkResName:true
 			},ip:{
 				required:true,
 			}
@@ -601,7 +1092,8 @@
 				required:"请输入设备名称",
 				min:"设备名称至少由两个字符组成",
 				max:"设备名称不能超过二十个字符",
-				resName:"设备名称格式错误，请输入中文、字母、数字以及下划线等普通字符"
+				resName:"设备名称格式错误，请输入中文、字母、数字以及下划线等普通字符",
+				checkResName:"该资产名称已存在"
 			},ip:{
 				required:"请输入设备连接地址"
 			}
@@ -664,6 +1156,7 @@
 		}
 		select2Format("#networkId","/resource/queryNetwork?name=","请选择所属网络");
 		$.validator("#resForm");
+		//$.validator("#accountForm");
 	</script>
 </body>
 </html>

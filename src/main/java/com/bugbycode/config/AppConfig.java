@@ -77,4 +77,19 @@ public class AppConfig {
 	
 	public final static String RESOURCE_NETWORK_QUERY_PATH = "/resource/queryNetWork";
 	
+	//协议服务类型
+	public final static int USE_SSH = 0;
+	
+	public final static int USE_SFTP = 1;
+	
+	public final static int USE_RDP = 2;
+	
+	public final static int USE_TELNET = 3;
+	
+	public final static int USE_ORACLE = 4;
+	
+	public final static int USE_SQLSERVER = 5;
+	
+	public final static int USE_FTP = 6;
+	
 }
