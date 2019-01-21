@@ -625,7 +625,7 @@
 						<div class="row form-group m-b-10">
 							<label class="col-md-3 col-form-label">账号类型</label>
 							<div class="col-md-9">
-								<select style="width: 100%;" class="form-control is-valid">
+								<select style="width: 100%;" id="accountType" class="form-control is-valid">
 									<option value="0">管理员</option>
 									<option value="1">普通账号</option>
 								</select>
@@ -750,11 +750,131 @@
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			function findAccount(account,useType){
+				var acc = null;
+				var accountArray = eval($("#accountList").val());
+				for(var index = 0;index < accountArray.length;index++){
+					var accObj = accountArray[index];
+					var use = 0;
+					if(useType == 0){
+						use = accObj.useSsh;
+					}else if(useType == 1){
+						use = accObj.useSftp;
+					}else if(useType == 2){
+						use = accObj.useRdp;
+					}else if(useType == 3){
+						use = accObj.useTelnet;
+					}else if(useType == 4){
+						use = accObj.useOracle;
+					}else if(useType == 5){
+						use = accObj.useSqlServer;
+					}else if(useType == 6){
+						use = accObj.useFtp;
+					}
+					if(accObj.account == account && use == 1){
+						acc = accObj;
+						break;
+					}
+				}
+				return acc;
+			}
+			
+			function updateAccount(account,useType){
+				var accountArray = eval($("#accountList").val());
+				for(var index = 0;index < accountArray.length;index++){
+					var accObj = accountArray[index];
+					var use = 0;
+					if(useType == 0){
+						use = accObj.useSsh;
+					}else if(useType == 1){
+						use = accObj.useSftp;
+					}else if(useType == 2){
+						use = accObj.useRdp;
+					}else if(useType == 3){
+						use = accObj.useTelnet;
+					}else if(useType == 4){
+						use = accObj.useOracle;
+					}else if(useType == 5){
+						use = accObj.useSqlServer;
+					}else if(useType == 6){
+						use = accObj.useFtp;
+					}
+					if(accObj.account == account.account && use == 1){
+						if(account.password != ''){
+							accObj.password = account.password;
+						}
+						accObj.type = account.type;
+						break;
+					}
+				}
+				$("#accountList").val(JSON.stringify(accountArray));
+			}
+			
+			function removeAccount(account,useType){
+				var accountArray = eval($("#accountList").val());
+				var newAccountArray = [];
+				for(var index = 0;index < accountArray.length;index++){
+					var accObj = accountArray[index];
+					if(account == accObj.account){
+						if(useType == 0){
+							accObj.useSsh = 0;
+						}else if(useType == 1){
+							accObj.useSftp = 0;
+						}else if(useType == 2){
+							accObj.useRdp = 0;
+						}else if(useType == 3){
+							accObj.useTelnet = 0;
+						}else if(useType == 4){
+							accObj.useOracle = 0;
+						}else if(useType == 5){
+							accObj.useSqlServer = 0;
+						}else if(useType == 6){
+							accObj.useFtp = 0;
+						}
+						if(accObj.useSsh == 0 && accObj.useSftp == 0 && accObj.useRdp == 0 &&
+								accObj.useTelnet == 0 && accObj.useOracle == 0 && accObj.useSqlServer == 0
+								&& accObj.useFtp == 0){
+							continue;
+						}
+					}
+					newAccountArray.push(accObj);
+				}
+				$("#accountList").val(JSON.stringify(newAccountArray));
+			}
+			
+			function addAccountToHtml(item){
+				var accStr = "<li class=\"tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account\"><span class=\"tagit-label tagit-label-account hand\">";
+				accStr += item.account;
+				accStr += "</span><a class=\"tagit-close tagit-close-account\"><span class=\"text-icon\">×</span><span class=\"ui-icon ui-icon-close\"></span></a></li>";
+				if(item.useSsh == 1){
+					$("#sshPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useSftp == 1){
+					$("#sftpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useRdp == 1){
+					$("#rdpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useTelnet == 1){
+					$("#telnetPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useFtp == 1){
+					$("#ftpPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useOracle == 1){
+					$("#oraclePort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+				if(item.useSqlServer == 1){
+					$("#sqlServerPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".addAcc").before(accStr);
+				}
+			}
+			
 			$(".logout").click(function(){
 				$("#logoutForm").submit();
 			});
 			$(".delAllAcc").click(function(e){
 				var this_e = this;
+				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
 				e.preventDefault();
 				swal({
 					title: '您确定删除该服务下的所有账号吗？',
@@ -778,7 +898,29 @@
 					}
 				}).then(function(value){
 					if(value == true){
-						$(this_e).parent().find(".tagit-account").remove();
+						var useType = -1;
+						if(serverID == 'useSsh'){
+							useType = 0;
+						}else if(serverID == 'useSftp'){
+							useType = 1;
+						}else if(serverID == 'useRdp'){
+							useType = 2;
+						}else if(serverID == 'useTelnet'){
+							useType = 3;
+						}else if(serverID == 'useOracle'){
+							useType = 4;
+						}else if(serverID == 'useSqlServer'){
+							useType = 5;
+						}else if(serverID == 'useFtp'){
+							useType = 6;
+						}
+						if(useType > -1){
+							$(this_e).parent().find(".tagit-account").each(function(index,item){
+								var account = $(item).find(".tagit-label-account").text().trim();
+								removeAccount(account,useType);
+							});
+							$(this_e).parent().find(".tagit-account").remove();
+						}
 					}
 				});
 			});
@@ -810,7 +952,67 @@
 				}else if(accountName.length > 50){
 					flag = false;
 					showMsgError(form,"accountName","账号格式错误，输入的内容不能超过五十个字符");
-				}else{
+				}
+				var readonly = $(form).find("#accountName").prop("readonly");
+				if(!readonly){
+					var useSqlServer = $("#account-modal-dialog").find("#mssqlServer").prop("checked") ? 1 : 0;
+					var useOracle = $("#account-modal-dialog").find("#oracleServer").prop("checked") ? 1 : 0;
+					var useFtp = $("#account-modal-dialog").find("#ftpServer").prop("checked") ? 1 : 0;
+					var useTelnet = $("#account-modal-dialog").find("#telnetServer").prop("checked") ? 1 : 0;
+					var useRdp = $("#account-modal-dialog").find("#rdpServer").prop("checked") ? 1 : 0;
+					var useSsh = $("#account-modal-dialog").find("#sshServer").prop("checked") ? 1 : 0;
+					var useSftp = $("#account-modal-dialog").find("#sftpServer").prop("checked") ? 1 : 0;
+					if(useSsh == 1 && flag){
+						var acc = findAccount(accountName,0);
+						if(acc != null){
+							flag = false;
+							showMsgError(form,"accountName","SSH服务已存在该账号");
+						}
+					}
+					if(useSftp == 1 && flag){
+						var acc = findAccount(accountName,1);
+						if(acc != null){
+							flag = false;
+							showMsgError(form,"accountName","SFTP服务已存在该账号");
+						}
+					}
+					if(useRdp == 1 && flag){
+						var acc = findAccount(accountName,2);
+						if(acc != null){
+							flag = false;
+							showMsgError(form,"accountName","远程桌面服务已存在该账号");
+						}
+					}
+					if(useTelnet == 1 && flag){
+						var acc = findAccount(accountName,3);
+						if(acc != null){
+							flag = false;
+							showMsgError(form,"accountName","Telnet服务已存在该账号");
+						}
+					}
+					if(useOracle == 1 && flag){
+						var acc = findAccount(accountName,4);
+						if(acc != null){
+							flag = false;
+							showMsgError(form,"accountName","Oracle服务已存在该账号");
+						}
+					}
+					if(useSqlServer == 1 && flag){
+						var acc = findAccount(accountName,5);
+						if(acc != null){
+							flag = false;
+							showMsgError(form,"accountName","SQLSERVER服务已存在该账号");
+						}
+					}
+					if(useFtp == 1 && flag){
+						var acc = findAccount(accountName,6);
+						if(acc != null){
+							flag = false;
+							showMsgError(form,"accountName","FTP服务已存在该账号");
+						}
+					}
+				}
+				if(flag){
 					removeMsgError(form,"accountName");
 				}
 				return flag;
@@ -852,19 +1054,61 @@
 				var accountName = $(form).find("#accountName").val();
 				var accountPwd = $(form).find("#accountPwd").val();
 				var serverID = $("#serverID").val();
+				var accountArray = eval($("#accountList").val());
+				var type = $("#account-modal-dialog").find("#accountType option:selected").val();
+				var readonly = $(form).find("#accountName").prop("readonly");//只读情况下为编辑模式
 				if(checkAccountName(form,accountName) && checkPassword(form,accountPwd)){
 					var account = {
-						account:accountName,
-						password:accountPwd
+						account : accountName,
+						password : accountPwd,
+						type : type
 					};
-					var useSqlServer = $("#account-modal-dialog").find("#mssqlServer").prop("checked") ? 1 : 0;
-					var useOracle = $("#account-modal-dialog").find("#oracleServer").prop("checked") ? 1 : 0;
-					var useFtp = $("#account-modal-dialog").find("#ftpServer").prop("checked") ? 1 : 0;
-					var useTelnet = $("#account-modal-dialog").find("#telnetServer").prop("checked") ? 1 : 0;
-					var useRdp = $("#account-modal-dialog").find("#rdpServer").prop("checked") ? 1 : 0;
-					var useSsh = $("#account-modal-dialog").find("#sshServer").prop("checked") ? 1 : 0;
-					var useSftp = $("#account-modal-dialog").find("#sftpServer").prop("checked") ? 1 : 0;
-					
+					account.useSqlServer = $("#account-modal-dialog").find("#mssqlServer").prop("checked") ? 1 : 0;
+					account.useOracle = $("#account-modal-dialog").find("#oracleServer").prop("checked") ? 1 : 0;
+					account.useFtp = $("#account-modal-dialog").find("#ftpServer").prop("checked") ? 1 : 0;
+					account.useTelnet = $("#account-modal-dialog").find("#telnetServer").prop("checked") ? 1 : 0;
+					account.useRdp = $("#account-modal-dialog").find("#rdpServer").prop("checked") ? 1 : 0;
+					account.useSsh = $("#account-modal-dialog").find("#sshServer").prop("checked") ? 1 : 0;
+					account.useSftp = $("#account-modal-dialog").find("#sftpServer").prop("checked") ? 1 : 0;
+					if(readonly){
+						var acc = null;
+						var useType = -1;
+						if(serverID == 'useSsh'){
+							acc = findAccount(accountName,0);
+							useType = 0;
+						}else if(serverID == 'useSftp'){
+							acc = findAccount(accountName,1);
+							useType = 1;
+						}else if(serverID == 'useRdp'){
+							acc = findAccount(accountName,2);
+							useType = 2;
+						}else if(serverID == 'useTelnet'){
+							acc = findAccount(accountName,3);
+							useType = 3;
+						}else if(serverID == 'useOracle'){
+							acc = findAccount(accountName,4);
+							useType = 4;
+						}else if(serverID == 'useSqlServer'){
+							acc = findAccount(accountName,5);
+							useType = 5;
+						}else if(serverID == 'useFtp'){
+							acc = findAccount(accountName,6);
+							useType = 6;
+						}
+						if(acc == null){
+							alert('账号异常');
+							return false;
+						}
+						acc.password = accountPwd;
+						acc.type = type;
+						if(useType > -1){
+							updateAccount(acc,useType);
+						}
+					}else{
+						accountArray.push(account);
+						addAccountToHtml(account);
+					}
+					$("#account-modal-dialog").modal("hide");
 				}
 			});
 			
@@ -877,6 +1121,8 @@
 			$("#sqlServerPort").parents("fieldset").find("#jquery-tagIt-inverse").find(".tagit-account").remove();
 
 			function uncheckServer(){
+				$("#account-modal-dialog").find("#accountType").find("option[value=\"1\"]").prop("selected",true);
+				$("#account-modal-dialog").find("#accountType").find("option[value=\"0\"]").prop("selected",false);
 				removeMsgError("#accountForm","accountName");
 				removeMsgError("#accountForm","accountPwd");
 				$("#account-modal-dialog").find("#mssqlServer").parent().find("label").prop("for","");
@@ -918,18 +1164,25 @@
 				$(accountArray).each(function(index,item){
 					if(account == item.account && serverID == "useSsh" && item.useSsh == 1){
 						checkServer(item);
+						$("#account-modal-dialog").find("#accountType").find("option[value=\"" + item.type +"\"]").prop("selected",true);
 					}else if(account == item.account && serverID == "useFtp" && item.useFtp == 1){
 						checkServer(item);
+						$("#account-modal-dialog").find("#accountType").find("option[value=\"" + item.type +"\"]").prop("selected",true);
 					}else if(account == item.account && serverID == "useSftp" && item.useSftp == 1){
 						checkServer(item);
+						$("#account-modal-dialog").find("#accountType").find("option[value=\"" + item.type +"\"]").prop("selected",true);
 					}else if(account == item.account && serverID == "useRdp" && item.useRdp == 1){
 						checkServer(item);
+						$("#account-modal-dialog").find("#accountType").find("option[value=\"" + item.type +"\"]").prop("selected",true);
 					}else if(account == item.account && serverID == "useTelnet" && item.useTelnet == 1){
 						checkServer(item);
+						$("#account-modal-dialog").find("#accountType").find("option[value=\"" + item.type +"\"]").prop("selected",true);
 					}else if(account == item.account && serverID == "useOracle" && item.useOracle == 1){
 						checkServer(item);
+						$("#account-modal-dialog").find("#accountType").find("option[value=\"" + item.type +"\"]").prop("selected",true);
 					}else if(account == item.account && serverID == "useSqlServer" && item.useSqlServer == 1){
 						checkServer(item);
+						$("#account-modal-dialog").find("#accountType").find("option[value=\"" + item.type +"\"]").prop("selected",true);
 					}
 				});
 			});
@@ -978,6 +1231,8 @@
 			
 			$(document).on('click',".tagit-close-account",function(e){
 				var this_e = this;
+				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
+				var account = $(this).prev().text().trim();
 				e.preventDefault();
 				swal({
 					title: '您确定删除所选的账号吗？',
@@ -1001,7 +1256,26 @@
 					}
 				}).then(function(value){
 					if(value == true){
-						$(this_e).parent().remove();
+						var useType = -1;
+						if(serverID == 'useSsh'){
+							useType = 0;
+						}else if(serverID == 'useSftp'){
+							useType = 1;
+						}else if(serverID == 'useRdp'){
+							useType = 2;
+						}else if(serverID == 'useTelnet'){
+							useType = 3;
+						}else if(serverID == 'useOracle'){
+							useType = 4;
+						}else if(serverID == 'useSqlServer'){
+							useType = 5;
+						}else if(serverID == 'useFtp'){
+							useType = 6;
+						}
+						if(useType > -1){
+							removeAccount(account,useType);
+							$(this_e).parent().remove();
+						}
 					}
 				});
 			});
