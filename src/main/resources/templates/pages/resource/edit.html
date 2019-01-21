@@ -1107,6 +1107,7 @@
 					}else{
 						accountArray.push(account);
 						addAccountToHtml(account);
+						$("#accountList").val(JSON.stringify(accountArray));
 					}
 					$("#account-modal-dialog").modal("hide");
 				}
