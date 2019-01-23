@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bugbycode.config.AppConfig;
@@ -30,6 +33,8 @@ import com.util.page.SearchResult;
 @RequestMapping("/resource")
 public class ResourceController {
 
+	private final Logger logger = LogManager.getLogger(ResourceController.class);
+	
 	@Autowired
 	private com.bugbycode.module.server.ResourceServer resourceServer;
 	
@@ -151,5 +156,18 @@ public class ResourceController {
 		r.setServerList(serverJsonArr.toString());
 		r.setAccountList(accountJsonArr.toString());
 		return "pages/resource/edit";
+	}
+	
+	@RequestMapping("/insert")
+	public String insert(@ModelAttribute("resource") Resource r) {
+		List<Account> accList = JSONObject.parseArray(r.getAccountList(), Account.class);
+		List<ResourceServer> serverList = JSONObject.parseArray(r.getServerList(), ResourceServer.class);
+		logger.info(accList);
+		return "redirect:/resource/query";
+	}
+	
+	@RequestMapping("/update")
+	public String update(@ModelAttribute("resource") Resource r) {
+		return "redirect:/resource/query";
 	}
 }

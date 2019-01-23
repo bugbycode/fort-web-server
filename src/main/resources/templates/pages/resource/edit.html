@@ -184,7 +184,7 @@
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label"></label>
 										<div class="col-md-9">
-											<button type="submit" class="btn btn-sm btn-primary m-r-5">提交</button>
+											<button type="button" class="btn btn-sm btn-primary m-r-5 data-submit">提交</button>
 											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/resource/query\';'">返回</button>
 										</div>
 									</div>
@@ -1350,6 +1350,17 @@
 			return flag;
 		});
 		
+		$.addValidator('checkPort',function(element,value){
+			var reg = /^[0-9]+$/
+			if(!reg.test(value)){
+				return false;
+			}
+			if(!(value > -1 && value < 65536)){
+				return false;
+			}
+			return true;
+		});
+		
 		var rules = {
 			name:{
 				required:true,
@@ -1358,7 +1369,30 @@
 				resName:true,
 				checkResName:true
 			},ip:{
+				required:true
+			},rdpPort:{
 				required:true,
+				checkPort:true
+			},sshPort:{
+				required:true,
+				checkPort:true
+			},sftpPort:{
+				required:true,
+				checkPort:true
+			},ftpPort:{
+				required:true,
+				checkPort:true
+			},telnetPort:{
+				required:true,
+				checkPort:true
+			},oraclePort:{
+				required:true,
+				checkPort:true
+			},sqlServerPort:{
+				required:true,
+				checkPort:true
+			},oracleDb:{
+				max:30
 			}
 		};
 		
@@ -1371,6 +1405,29 @@
 				checkResName:"该资产名称已存在"
 			},ip:{
 				required:"请输入设备连接地址"
+			},rdpPort:{
+				required:"请输入端口号",
+				checkPort:"请输入0~65535之间的数字"
+			},sshPort:{
+				required:"请输入端口号",
+				checkPort:"请输入0~65535之间的数字"
+			},sftpPort:{
+				required:"请输入端口号",
+				checkPort:"请输入0~65535之间的数字"
+			},ftpPort:{
+				required:"请输入端口号",
+				checkPort:"请输入0~65535之间的数字"
+			},telnetPort:{
+				required:"请输入端口号",
+				checkPort:"请输入0~65535之间的数字"
+			},oraclePort:{
+				required:"请输入端口号",
+				checkPort:"请输入0~65535之间的数字"
+			},sqlServerPort:{
+				required:"请输入端口号",
+				checkPort:"请输入0~65535之间的数字"
+			},oracleDb:{
+				max:"数据库名不能超过三十个字符"
 			}
 		};
 		
@@ -1431,6 +1488,42 @@
 		}
 		select2Format("#networkId","/resource/queryNetwork?name=","请选择所属网络");
 		$.validator("#resForm");
+		$(".data-submit").click(function(){
+			var server = [
+				{
+					serverType:0,
+					port:$("#sshPort").val(),
+					use:$("#useSsh").prop("checked") ? 1 : 0
+				},{
+					serverType:1,
+					port:$("#sftpPort").val(),
+					use:$("#useSftp").prop("checked") ? 1 : 0
+				},{
+					serverType:2,
+					port:$("#rdpPort").val(),
+					use:$("#useRdp").prop("checked") ? 1 : 0
+				},{
+					serverType:3,
+					port:$("#telnetPort").val(),
+					use:$("#useTelnet").prop("checked") ? 1 : 0
+				},{
+					serverType:4,
+					port:$("#oraclePort").val(),
+					use:$("#useOracle").prop("checked") ? 1 : 0,
+					dbName:$("#oracleDb").val()
+				},{
+					serverType:5,
+					port:$("#sqlServerPort").val(),
+					use:$("#useSqlServer").prop("checked") ? 1 : 0
+				},{
+					serverType:6,
+					port:$("#ftpPort").val(),
+					use:$("#useFtp").prop("checked") ? 1 : 0
+				}
+			];
+			$("#serverList").val(JSON.stringify(server));
+			$("#resForm").submit();
+		});
 		//$.validator("#accountForm");
 	</script>
 </body>
