@@ -99,7 +99,7 @@
 			<form id="networkForm" method="post" th:object="${network}" th:action="*{id eq 0 ? '/network/insert' : '/network/update'}" autocomplete="off">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/network/query\';'">分组列表</a></li>
+				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/network/query\';'">网络列表</a></li>
 				<li class="breadcrumb-item active" th:text="*{id > 0 ? '编辑网络' : '添加网络'}">添加网络</li>
 			</ol>
 			<!-- end breadcrumb -->
@@ -258,10 +258,10 @@
 				$("#logoutForm").submit();
 			});
 		});
-		$.addValidator('checkGroupName',function(element,value){
+		$.addValidator('checkName',function(element,value){
 			var flag = true;
 			$.ajaxSettings.async = false;
-			$.get("/network/checkGroupName",{groupName:value},function(data){
+			$.get("/network/checkName",{name:value},function(data){
 				var userId = data.id;
 				var id = $("#id").val();
 				flag = (userId == 0 || userId == id);
@@ -269,19 +269,13 @@
 			return flag;
 		});
 		
-		var id = $("#id").val();
-		var checkPwd = true;
-		if(id > 0){
-			checkPwd = false;
-		}
-		
 		var rules = {
 			name:{
 				required:true,
 				name:true,
 				min:2,
 				max:10,
-				checkGroupName:true
+				checkName:true
 			},description:{
 				max:30
 			}
@@ -289,45 +283,15 @@
 		
 		var messages = {
 			name:{
-				required:"请输入分组名称",
-				name:"分组名称格式错误，请输入中文、字母、数字或下划线",
-				min:"分组名称至少由两个字符组成",
-				max:"分组名称不能超过十个字符",
-				checkGroupName:"该分组名称已存在"
+				required:"请输入网络名称",
+				name:"网络名称格式错误，请输入中文、字母、数字或下划线",
+				min:"网络名称至少由两个字符组成",
+				max:"网络名称不能超过十个字符",
+				checkName:"该网络名称已存在"
 			},description:{
-				max:"分组描述内容不能超过三十个字符"
+				max:"网络描述内容不能超过三十个字符"
 			}	
 		};
-		
-		function select2Format(selector,url,defaultText){
-			$(selector).select2({
-				width:'100%',
-				ajax:{
-		    		type:"get",
-		    		url: function (params) {
-	    				var value = params.term;
-	    				if(value == undefined){
-	    					value = "";
-	    				}
-	    		      	return url + value;
-	    		    },processResults:function(data,params){
-	    		    	var list = data.list;
-	    		    	var result = [{id:0,text:defaultText}];
-	    		    	$.each(list,function(index,item){
-	    		    		result.push({
-	    		    			id:item.id,
-	    		    			text:item.name
-	    		    		});
-	    		    	});
-	    		    	var rs = {
-	   		    			results:result
-	    		    	};
-	    		    	return rs;
-	    		    }
-		    	}
-			});
-		}
-		select2Format("#roleId","/network/queryRole?roleName=","请选择角色");
 		
 		$.validator("#networkForm");
 	</script>

@@ -82,7 +82,7 @@ public class AppConfig {
 	
 	public final static String NETWORK_INSERT_PATH = "/network/insert";
 	
-	public final static String NETWORK_UPATE_PATH = "/network/update";
+	public final static String NETWORK_UPDATE_PATH = "/network/update";
 	
 	public final static String NETWORK_DELETE_PATH = "/network/delete";
 	
