@@ -79,7 +79,7 @@
 						</a>
 						<ul class="sub-menu">
 						    <li th:class="${menu=='resource' ? 'active' : ''}"><a th:href="@{/resource/query}">设备信息</a></li>
-						    <li><a href="email_compose.html">网络管理</a></li>
+						    <li th:class="${menu=='network' ? 'active' : ''}"><a th:href="@{/network/query}">网络管理</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">

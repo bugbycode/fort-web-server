@@ -77,6 +77,19 @@ public class AppConfig {
 	
 	public final static String RESOURCE_NETWORK_QUERY_PATH = "/resource/queryNetWork";
 	
+	//网络信息
+	public final static String NETWORK_QUERY_PATH = "/network/query";
+	
+	public final static String NETWORK_INSERT_PATH = "/network/insert";
+	
+	public final static String NETWORK_UPATE_PATH = "/network/update";
+	
+	public final static String NETWORK_DELETE_PATH = "/network/delete";
+	
+	public final static String NETWORK_QUERY_BYID_PATH = "/network/queryById";
+	
+	public final static String NETWORK_QUERY_BY_NAME_PATH = "/network/queryByName";
+	
 	//协议服务类型
 	public final static int USE_SSH = 0;
 	

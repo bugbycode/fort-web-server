@@ -89,4 +89,15 @@ public class Network implements Serializable {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+	
+	public void copy(Network network) {
+		this.setId(network.getId());
+		this.setName(network.getName());
+		this.setType(network.getType());
+		this.setClientId(network.getClientId());
+		this.setClientSecret(network.getClientSecret());
+		this.setDescription(network.getDescription());
+		this.setCreateTime(network.getCreateTime());
+		this.setUpdateTime(network.getUpdateTime());
+	}
 }

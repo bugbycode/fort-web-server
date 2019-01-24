@@ -71,6 +71,13 @@
 		textarea{
 			resize:none;
 		}
+		
+		#chartdiv {
+		  width: 100%;
+		  height: 350px;
+		}
+		
+		a[href="http://www.amcharts.com"]{display: none !important;}
 	</style>
 </head>
 <body>
@@ -85,19 +92,19 @@
 		<!-- end #header -->
 		
 		<!-- 左侧菜单 -->
-		<div th:include="pages/layout/left :: left('user','userGroup')"></div>
+		<div th:include="pages/layout/left :: left('resource','network')"></div>
 		
 		<!-- begin #content -->
 		<div id="content" class="content">
-			<form id="userGroupForm" method="post" th:object="${userGroup}" th:action="*{id eq 0 ? '/userGroup/insert' : '/userGroup/update'}" autocomplete="off">
+			<form id="networkForm" method="post" th:object="${network}" th:action="*{id eq 0 ? '/network/insert' : '/network/update'}" autocomplete="off">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/userGroup/query\';'">分组列表</a></li>
-				<li class="breadcrumb-item active" th:text="*{id > 0 ? '编辑分组' : '添加分组'}">添加分组</li>
+				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/network/query\';'">分组列表</a></li>
+				<li class="breadcrumb-item active" th:text="*{id > 0 ? '编辑网络' : '添加网络'}">添加网络</li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header" th:text="*{id > 0 ? '编辑分组' : '添加分组'}">用户信息<small></small></h1>
+			<h1 class="page-header" th:text="*{id > 0 ? '编辑网络' : '添加网络'}">网络信息<small></small></h1>
 			<!-- end page-header -->
 			
 			<div class="row">
@@ -113,19 +120,31 @@
 							<div class="panel-body">
 								<fieldset>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">分组名称</label>
+										<label class="col-md-3 col-form-label">网络名称</label>
 										<div class="col-md-9">
 											<input type="hidden" th:field="*{id}"/>
 											<input name="name" id="name" type="text" class="form-control is-invalid" th:value="*{name}">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">角色</label>
+										<label class="col-md-3 col-form-label">网络类型</label>
 										<div class="col-md-9">
-											<select id="roleId" name="roleId" class="form-control is-valid" data-style="btn-white">
-												<option th:if="*{roleId ne 0}" th:value="*{roleId}" selected="selected" th:text="*{roleName}"></option>
-												<option th:if="*{roleId eq 0}" th:value="*{roleId}" selected="selected" th:text="'请选择角色'"></option>
+											<select id="type" name="type" class="form-control is-valid" data-style="btn-white">
+												<option value="0" th:selected="*{type eq 0}">私有网络</option>
+												<option value="1" th:selected="*{type eq 1}">公有网络</option>
 											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">Agent Key</label>
+										<div class="col-md-9">
+											<input name="clientId" id="clientId" type="text" class="form-control is-valid" th:value="*{clientId}">
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">Agent Secret</label>
+										<div class="col-md-9">
+											<input name="clientSecret" id="clientSecret" type="text" class="form-control is-valid" th:value="*{clientSecret}">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
@@ -138,7 +157,7 @@
 										<label class="col-md-3 col-form-label"></label>
 										<div class="col-md-9">
 											<button type="submit" class="btn btn-sm btn-primary m-r-5">提交</button>
-											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/userGroup/query\';'">返回</button>
+											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/network/query\';'">返回</button>
 										</div>
 									</div>
 								</fieldset>
@@ -147,21 +166,19 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<!-- <div>
+					<div>
 						<div class="panel panel-inverse">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
 								</div>
-								<h4 class="panel-title">认证信息</h4>
+								<h4 class="panel-title">设备统计</h4>
 							</div>
 							<div class="panel-body">
-								<fieldset>
-									
-								</fieldset>
+								
 							</div>
 						</div>
-					</div> -->
+					</div>
 				</div>
 			</div>
 			</form>
@@ -244,7 +261,7 @@
 		$.addValidator('checkGroupName',function(element,value){
 			var flag = true;
 			$.ajaxSettings.async = false;
-			$.get("/userGroup/checkGroupName",{groupName:value},function(data){
+			$.get("/network/checkGroupName",{groupName:value},function(data){
 				var userId = data.id;
 				var id = $("#id").val();
 				flag = (userId == 0 || userId == id);
@@ -310,9 +327,10 @@
 		    	}
 			});
 		}
-		select2Format("#roleId","/userGroup/queryRole?roleName=","请选择角色");
+		select2Format("#roleId","/network/queryRole?roleName=","请选择角色");
 		
-		$.validator("#userGroupForm");
+		$.validator("#networkForm");
 	</script>
+	
 </body>
 </html>
