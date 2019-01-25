@@ -1451,7 +1451,7 @@
 				{id:'CentOs',text:'CentOs'}
 			]
 		};
-		var osName = 'Windows';
+		var osName = $("#type").val();
 		var os = osType[osName];
 		$("#type").select2({width:'100%',data:type});
 		$("#type").bind({'change':function(){
