@@ -6,7 +6,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>运维审计系统</title>
+	<meta th:include="pages/layout/title :: title"></meta>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -43,7 +43,7 @@
 		    padding: 6px 12px;
 		    outline: none;
 		    margin-left: 10px;
-		    width: 194px;
+		    width: 196px;
 		}
 		#codeLink{
 			border-radius: 6px;
@@ -60,6 +60,12 @@
     		font-size: 20px;
     		color: red;
 		}
+		
+		.login .login-header .brand {
+		    padding: 0;
+		    font-size: 19px;
+		    color: #222;
+		}
 	</style>
 </head>
 <body class="pace-top">
@@ -74,7 +80,7 @@
             <!-- begin brand -->
             <div class="login-header">
                 <div class="brand">
-                    <span class="logo"><i class="ion-ios-cloud"></i></span> <b>运维审计系统</b>
+                    <span class="logo"><i class="ion-ios-cloud"></i></span> <b>ORACLE数据库运维审计系统</b>
                     <small>确保数据安全性，需要您先登录认证</small>
                 </div>
                 <div class="icon">
