@@ -90,6 +90,25 @@ public class AppConfig {
 	
 	public final static String NETWORK_QUERY_BY_NAME_PATH = "/network/queryByName";
 	
+	//授权规则
+	public final static String RULE_QUERY_PATH = "/rule/query";
+	
+	public final static String RULE_INSERT_PATH = "/rule/insert";
+	
+	public final static String RULE_UPDATE_PATH = "/rule/update";
+	
+	public final static String RULE_DELETE_PATH = "/rule/delete";
+	
+	public final static String RULE_QUERY_BYID_PATH = "/rule/queryById";
+	
+	public final static String RULE_ACCOUNT_QUERY_PATH = "/account/query";
+	
+	public final static String RULE_ACCOUNT_QUERY_BY_ACCOUNT_PATH = "/account/queryByAccount";
+	
+	public final static String RULE_ACCOUNT_INSERT_PATH = "/account/insert";
+	
+	public final static String RULE_ACCOUNT_DELETE_PATH = "/account/delete";
+	
 	//协议服务类型
 	public final static int USE_SSH = 0;
 	

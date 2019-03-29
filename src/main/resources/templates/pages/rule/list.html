@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<meta th:include="pages/layout/title :: title"></meta>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/font-awesome/5.3/css/all.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../assets/css/apple/style.min.css" rel="stylesheet" />
+	<link href="../assets/css/apple/style-responsive.min.css" rel="stylesheet" />
+	<link href="../assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
+	<link href="../assets/plugins/ionRangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
+	<link href="../assets/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/password-indicator/css/password-indicator.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-combobox/css/bootstrap-combobox.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-tag-it/css/jquery.tagit.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+	<link href="../assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+	<link href="../assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css" rel="stylesheet" />
+	<link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="../assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	<style type="text/css">
+		.dataTables_filter{
+			text-align: right;
+		}
+		.hand{
+			cursor: pointer;
+		}
+		.cssCheckboxAll{
+			margin-top: -24px;
+		}
+		
+		.cssTabCheckBox{
+			margin-top: -6px;
+		}
+	</style>
+</head>
+<body>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div th:include="pages/layout/head :: head"></div>
+		<!-- end #header -->
+		
+		<!-- 左侧菜单 -->
+		<div th:include="pages/layout/left :: left('rule','rule')"></div>
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<ol class="breadcrumb pull-right">
+				<li class="breadcrumb-item"><a href="javascript:;" th:onclick="'location.href=\'/rule/query\';'">授权信息</a></li>
+				<li class="breadcrumb-item active">授权列表</li>
+			</ol>
+			<h1 class="page-header">授权列表<small></small></h1>
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+						<!-- 
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" title="全屏"><i class="fa fa-expand"></i></a> -->
+						<a th:href="@{/rule/edit}" class="btn btn-xs btn-icon btn-circle btn-default" title="添加授权"><i class="fa fa-plus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default delChecked" title="删除授权"><i class="fa fa-trash-alt"></i></a>
+						<!-- 
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+						 -->
+					</div>
+					<h4 class="panel-title">授权列表</h4>
+				</div>
+				<div class="panel-body">
+					<form th:action="@{/rule/query}" method="get" autocomplete="off">
+					<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="dataTables_filter">
+									<label>
+										<input type="text" name="paramQuery" th:value="${paramQuery}" class="form-control input-sm" placeholder="请输入查询条件" aria-controls="data-table-default">
+										<i class="ion-ios-search fa-2x fa-fw pull-right m-r-0 text-black-lighter hand"></i>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 table-responsive">
+								<table id="data-table-default" class="table table-striped table-bordered dataTable no-footer dtr-inline table-hover">
+									<thead>
+										<tr>
+											<th width="40px">
+												<div class="checkbox checkbox-css cssCheckboxAll hand">
+			                                         <input type="checkbox" id="cssCheckboxAll" />
+			                                         <label class="hand" for="cssCheckboxAll"></label>
+			                                     </div>
+											</th>
+											<th class="text-nowrap">授权用户</th>
+											<th class="text-nowrap">所属分组</th>
+											<th class="text-nowrap">所属角色</th>
+											<th class="text-nowrap">授权设备</th>
+											<th class="text-nowrap">操作系统</th>
+											<th class="text-nowrap">所属网络</th>
+											<th class="text-nowrap" width="80px">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="gradeA odd" th:if="${#lists.isEmpty(list)}">
+											<td colspan="11" style="text-align: center;">没有查询到匹配的信息</td>
+										</tr>
+										<tr class="odd gradeA" th:each="r:${list}">
+											<td>
+												<div class="checkbox checkbox-css cssTabCheckBox">
+			                                         <input type="checkbox" name="ruleIds" th:id="${'cssCheckbox' + r.id}" th:value="${r.id}" />
+			                                         <label class="hand" th:for="${'cssCheckbox' + r.id}"></label>
+			                                     </div>
+											</td>
+											<td th:text="${r.empUserName + '(' + r.empName + ')'}"></td>
+											<td th:text="${r.empGroupName}"></td>
+											<td th:text="${r.empRoleName}"></td>
+											<td th:text="${r.resName + '(' + r.resIp + ')'}"></td>
+											<td th:text="${r.resOsType}"></td>
+											<td th:text="${r.networkName}"></td>
+											<td>
+												<a href="javascript:;" title="查看详情" th:onclick="'location.href=\'/rule/edit?id=' + ${r.id} + '\';'" class="btn btn-xs btn-icon btn-circle btn-default"><i class="fas fa-lg fa-fw m-r-10 fa-edit"></i></a>
+												<a href="javascript:;" title="删除授权" th:id="${r.id}" class="btn btn-xs btn-icon btn-circle btn-default del"><i class="fas fa-lg fa-fw m-r-10 fa-trash-alt"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div th:include="pages/commons/page :: page"></div>
+						</div>
+					</div>
+					</form>
+					<form id="deleteForm" th:action="@{/rule/delete}" method="post">
+						<input type="hidden" name="ids" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- end #content -->
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../assets/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../assets/js/theme/apple.min.js"></script>
+	<script src="../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="../assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+	<script src="../assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+	<script src="../assets/plugins/masked-input/masked-input.min.js"></script>
+	<script src="../assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+	<script src="../assets/plugins/password-indicator/js/password-indicator.js"></script>
+	<script src="../assets/plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+	<script src="../assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+	<script src="../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
+	<script src="../assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
+	<script src="../assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+	<script src="../assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script src="../assets/plugins/select2/dist/js/select2.min.js"></script>
+	<script src="../assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="../assets/plugins/bootstrap-show-password/bootstrap-show-password.js"></script>
+	<script src="../assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+	<script src="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
+	<script src="../assets/plugins/clipboard/clipboard.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+	<!-- 模态框  BEGIN-->
+	<script src="../assets/plugins/gritter/js/jquery.gritter.js"></script>
+	<script src="../assets/plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
+	<!-- 模态框  END-->
+	<script type="text/javascript" src="../javascript/custom/bugbycode.js"></script>
+	
+	<script>
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+	<script type="text/javascript">
+		$("input[name='paramQuery']").keypress(function(event){
+			if(event.keyCode == 13){
+				query();
+			}
+		});
+		$(".ion-ios-search").click(function(){
+			query();
+		});
+		$(".logout").click(function(){
+			$("#logoutForm").submit();
+		});
+		$("#cssCheckboxAll").click(function(){
+			if($(this).prop("checked")){
+				$("div.checkbox").find("input").prop("checked",true);
+			}else{
+				$("div.checkbox").find("input").prop("checked",false);
+			}
+		});
+		
+		function delChecked(e){
+			var ids = "";
+			$("input[name='ruleIds']:checked").each(function(){
+				if(ids != ""){
+					ids += ",";
+				}
+				ids += $(this).val();
+			});
+			if(ids == ""){
+				e.preventDefault();
+				swal({
+					title: '请选择要删除的授权！',
+					text: '',
+					icon: 'warning',
+					buttons: {
+						confirm: {
+							text: '确定',
+							value: true,
+							visible: true,
+							className: 'btn btn-warning',
+							closeModal: true
+						}
+					}
+				})
+			}else{
+				del(e,ids);
+			}
+		}
+		
+		function del(e,ids){
+			e.preventDefault();
+			swal({
+				title: '您确定删除所选的授权吗？',
+				text: '您执行该操作后授权会被永久删除，是否继续？',
+				icon: 'warning',
+				buttons: {
+					cancel: {
+						text: '取消',
+						value: false,
+						visible: true,
+						className: 'btn btn-default',
+						closeModal: true,
+					},
+					confirm: {
+						text: '确定',
+						value: true,
+						visible: true,
+						className: 'btn btn-warning',
+						closeModal: true
+					}
+				}
+			}).then(function(value){
+				if(value == true){
+					$("#deleteForm").find("input[name='ids']").val(ids);
+					$("#deleteForm").submit();
+				}
+			});
+		}
+		
+		$(".delChecked").click(function(e){
+			delChecked(e);
+		});
+		
+		$(".del").click(function(e){
+			del(e,$(this).prop("id"));
+		});
+	</script>
+</body>
+</html>

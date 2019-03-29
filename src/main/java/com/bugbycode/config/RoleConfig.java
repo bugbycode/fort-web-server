@@ -43,4 +43,12 @@ public class RoleConfig {
 	public final static String NETWORK_UPDATE = "NETWORK_UPDATE";
 	
 	public final static String NETWORK_DELETE = "NETWORK_DELETE";
+	
+	public final static String RULE_QUERY = "RULE_QUERY";
+	
+	public final static String RULE_INSERT = "RULE_INSERT";
+	
+	public final static String RULE_UPDATE = "RULE_UPDATE";
+	
+	public final static String RULE_DELETE = "RULE_DELETE";
 }

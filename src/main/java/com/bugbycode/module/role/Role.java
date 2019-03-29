@@ -72,6 +72,14 @@ public class Role implements Serializable{
 	private int networkUpdate = 0;
 	
 	private int networkDelete = 0;
+	
+	private int ruleQuery = 0;
+	
+	private int ruleInsert = 0;
+	
+	private int ruleUpdate = 0;
+	
+	private int ruleDelete = 0;
 
 	public int getId() {
 		return id;
@@ -167,6 +175,18 @@ public class Role implements Serializable{
 						break;
 					case RoleConfig.NETWORK_DELETE:
 						this.networkDelete = 1;
+						break;
+					case RoleConfig.RULE_QUERY:
+						this.ruleQuery = 1;
+						break;
+					case RoleConfig.RULE_INSERT:
+						this.ruleInsert = 1;
+						break;
+					case RoleConfig.RULE_UPDATE:
+						this.ruleUpdate = 1;
+						break;
+					case RoleConfig.RULE_DELETE:
+						this.ruleDelete = 1;
 						break;
 					default:
 						break;
@@ -277,6 +297,22 @@ public class Role implements Serializable{
 
 	public int getNetworkDelete() {
 		return networkDelete;
+	}
+
+	public int getRuleQuery() {
+		return ruleQuery;
+	}
+
+	public int getRuleInsert() {
+		return ruleInsert;
+	}
+
+	public int getRuleUpdate() {
+		return ruleUpdate;
+	}
+
+	public int getRuleDelete() {
+		return ruleDelete;
 	}
 
 	public void copy(Role r) {

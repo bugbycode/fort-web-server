@@ -353,11 +353,55 @@
 								</fieldset>
 							</div>
 						</div>
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">授权管理权限</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<!-- 授权管理 -->
+									<div class="form-group row m-b-10">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllRuleRole" 
+													th:checked="*{ruleInsert eq 1 && ruleUpdate eq 1 && ruleDelete eq 1 && ruleQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllRuleRole' : ''}">授权信息</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RULE_QUERY" id="ruleQuery" th:checked="*{ruleQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'ruleQuery' : ''}">查看授权</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RULE_INSERT" id="ruleInsert" th:checked="*{ruleInsert eq 1}" />
+													<label  th:for="*{type eq 1 ? 'ruleInsert' : ''}">添加授权</label>
+												</div>
+											</div>
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RULE_UPDATE" id="ruleUpdate" th:checked="*{ruleUpdate eq 1}" />
+													<label  th:for="*{type eq 1 ? 'ruleUpdate' : ''}">修改授权</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="RULE_DELETE" id="ruleDelete" th:checked="*{ruleDelete eq 1}" />
+													<label  th:for="*{type eq 1 ? 'ruleDelete' : ''}">删除授权</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 			</form>
-			<div class="panel panel-inverse">
+			<div class="panel panel-inverse" style="display: none;">
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
 						

@@ -82,6 +82,16 @@
 						    <li th:class="${menu=='network' ? 'active' : ''}"><a th:href="@{/network/query}">网络管理</a></li>
 						</ul>
 					</li>
+					<li th:class="${page=='rule'} ? 'has-sub active' : 'has-sub'">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="ion-ios-clipboard bg-blue"></i> 
+							<span>运维授权</span>
+						</a>
+						<ul class="sub-menu">
+						    <li th:class="${menu=='rule' ? 'active' : ''}"><a th:href="@{/rule/query}">授权信息</a></li>
+						</ul>
+					</li>
 					<li class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
@@ -102,17 +112,6 @@
 						<ul class="sub-menu">
 						    <li><a href="email_inbox.html">实时监控</a></li>
 						    <li><a href="email_compose.html">运维记录</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							<i class="ion-ios-clipboard bg-blue"></i> 
-							<span>运维工单</span>
-						</a>
-						<ul class="sub-menu">
-						    <li><a href="email_inbox.html">我的工单</a></li>
-						    <li><a href="email_compose.html">其他工单</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">

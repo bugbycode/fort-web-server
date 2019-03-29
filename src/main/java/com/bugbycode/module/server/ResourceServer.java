@@ -12,6 +12,8 @@ public class ResourceServer implements Serializable{
 	private String userServerUrl;
 	
 	private String resourceServerUrl;
+	
+	private String ruleServerUrl;
 
 	public String getUserServerUrl() {
 		return userServerUrl;
@@ -27,6 +29,14 @@ public class ResourceServer implements Serializable{
 
 	public void setResourceServerUrl(String resourceServerUrl) {
 		this.resourceServerUrl = resourceServerUrl;
+	}
+
+	public String getRuleServerUrl() {
+		return ruleServerUrl;
+	}
+
+	public void setRuleServerUrl(String ruleServerUrl) {
+		this.ruleServerUrl = ruleServerUrl;
 	}
 	
 }

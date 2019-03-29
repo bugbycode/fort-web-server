@@ -15,6 +15,7 @@ spring:
   resource:
     server:
       userServerUrl: http://dev.server:8080/fort-user-server
-      resourceServerUrl: http://localhost:9996
+      resourceServerUrl: http://dev.server:8080/fort-resource-server
+      ruleServerUrl: http://localhost:9995
 logging:
   config: classpath:log4j2.xml

@@ -21,5 +21,21 @@ $(function() {
 			$(this).attr('data-init', true);
 		}
 	});
-   
 });
+
+function showMsg(msg){
+	swal({
+		title: msg,
+		text: '',
+		icon: 'warning',
+		buttons: {
+			confirm: {
+				text: '确定',
+				value: true,
+				visible: true,
+				className: 'btn btn-warning',
+				closeModal: true
+			}
+		}
+	})
+}

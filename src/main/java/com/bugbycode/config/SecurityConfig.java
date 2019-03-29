@@ -115,6 +115,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/network/insert").hasRole(RoleConfig.NETWORK_INSERT)
 		.antMatchers("/network/delete").hasRole(RoleConfig.NETWORK_DELETE)
 		
+		//授权规则
+		.antMatchers("/rule/update").hasRole(RoleConfig.RULE_UPDATE)
+		.antMatchers("/rule/insert").hasRole(RoleConfig.RULE_INSERT)
+		.antMatchers("/rule/delete").hasRole(RoleConfig.RULE_DELETE)
+		
+		.antMatchers("/rule/query","/rule/queryById","/rule/queryResource",
+				"/rule/queryUser","/rule/queryAccount","/rule/edit")
+			.hasAnyRole(RoleConfig.RULE_QUERY,RoleConfig.RULE_DELETE,
+				RoleConfig.RULE_INSERT,RoleConfig.RULE_UPDATE)
+		
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问
 				.and().formLogin().loginPage("/login").permitAll()
