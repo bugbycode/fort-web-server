@@ -397,6 +397,54 @@
 								</fieldset>
 							</div>
 						</div>
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">系统日志权限</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<!-- 系统日志 -->
+									<div class="form-group row m-b-10">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllLoginLogRole" 
+													th:checked="*{loginLogQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllLoginLogRole' : ''}">访问记录</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="LOGIN_LOG_QUERY" id="loginLogQuery" th:checked="*{loginLogQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'loginLogQuery' : ''}">查看记录</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="checkboxSplitLine"></div>
+									<div class="form-group row m-b-10 checkboxRowTop">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllSystemLogRole" 
+													th:checked="*{systemLogQuery eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllSystemLogRole' : ''}">操作记录</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="SYSTEM_LOG_QUERY" id="systemLogQuery" th:checked="*{systemLogQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'systemLogQuery' : ''}">查看记录</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -542,6 +590,24 @@
 				$("#roleInsert").prop("checked",checked);
 				$("#roleUpdate").prop("checked",checked);
 				$("#roleDelete").prop("checked",checked);
+			});
+			
+			$("#checkAllRuleRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#ruleQuery").prop("checked",checked);
+				$("#ruleInsert").prop("checked",checked);
+				$("#ruleUpdate").prop("checked",checked);
+				$("#ruleDelete").prop("checked",checked);
+			});
+			
+			$("#checkAllLoginLogRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#loginLogQuery").prop("checked",checked);
+			});
+			
+			$("#checkAllSystemLogRole").click(function(){
+				var checked = $(this).prop("checked");
+				$("#systemLogQuery").prop("checked",checked);
 			});
 			
 			$("#checkAllResourceRole").click(function(){

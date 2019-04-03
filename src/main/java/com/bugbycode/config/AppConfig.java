@@ -109,6 +109,17 @@ public class AppConfig {
 	
 	public final static String RULE_ACCOUNT_DELETE_PATH = "/account/delete";
 	
+	//日志
+	public final static String LOGIN_LOG_SAVE_PATH = "/loginLog/save";
+	
+	public final static String LOGIN_LOG_QUERY_PATH = "/loginLog/query";
+	
+	public final static String SYSTEM_LOG_SAVE_PATH = "/systemLog/save";
+	
+	public final static String SYSTEM_LOG_QUERY_PATH = "/systemLog/query";
+	
+	public final static String SYSTEM_LOG_FIND_BY_MODULE_ID_PATH = "/systemLog/findByModuleId";
+	
 	//协议服务类型
 	public final static int USE_SSH = 0;
 	

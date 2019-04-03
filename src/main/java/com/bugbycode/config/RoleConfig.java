@@ -51,4 +51,8 @@ public class RoleConfig {
 	public final static String RULE_UPDATE = "RULE_UPDATE";
 	
 	public final static String RULE_DELETE = "RULE_DELETE";
+	
+	public final static String LOGIN_LOG_QUERY = "LOGIN_LOG_QUERY";
+	
+	public final static String SYSTEM_LOG_QUERY = "SYSTEM_LOG_QUERY";
 }

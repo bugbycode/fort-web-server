@@ -115,14 +115,15 @@
 						    <li><a href="email_compose.html">运维记录</a></li>
 						</ul>
 					</li>
-					<li class="has-sub">
+					<li th:class="${page=='log'} ? 'has-sub active' : 'has-sub'" class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="ion-ios-create bg-blue"></i> 
 							<span>系统日志</span>
 						</a>
 						<ul class="sub-menu">
-						    <li><a href="email_inbox.html">操作记录</a></li>
+						    <li th:class="${menu=='systemLog' ? 'active' : ''}"><a th:href="@{/systemLog/query}">操作记录</a></li>
+						    <li th:class="${menu=='loginLog' ? 'active' : ''}"><a th:href="@{/loginLog/query}">访问记录</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">

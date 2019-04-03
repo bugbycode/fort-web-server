@@ -18,6 +18,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.bugbycode.module.server.ResourceServer;
+import com.bugbycode.module.token.TokenServerInfo;
+import com.bugbycode.service.DataRequestService;
 import com.bugbycode.service.TokenRequestService;
 import com.bugbycode.webapp.authentication.EmployeeDetailsService;
 import com.bugbycode.webapp.authentication.FortAuthenticationFailureHandler;
@@ -48,8 +50,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Value("${spring.web.oauth.checkTokenUrl}")
 	private String checkTokenUrl;
 	
+	@Value("${spring.resource.server.logServerUrl}")
+	private String logServerUrl;
+	
+	@Value("${spring.resource.server.userServerUrl}")
+	private String userServerUrl;
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private DataRequestService dataRequestService;
 	
 	@Autowired
 	private AuthenticationFailureHandler authenticationFailureHandler;
@@ -124,6 +135,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/rule/queryUser","/rule/queryAccount","/rule/edit")
 			.hasAnyRole(RoleConfig.RULE_QUERY,RoleConfig.RULE_DELETE,
 				RoleConfig.RULE_INSERT,RoleConfig.RULE_UPDATE)
+			
+		//访问记录
+		.antMatchers("/loginLog/query").hasRole(RoleConfig.LOGIN_LOG_QUERY)	
+		
+		//操作记录
+		.antMatchers("/systemLog/query").hasRole(RoleConfig.SYSTEM_LOG_QUERY)	
 		
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问
@@ -135,7 +152,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private Filter getUsernamePasswordAuthenticationFilter() throws Exception {
 		UsernamePasswordAuthenticationFilter authFilter = 
 				new FortUsernamePasswordAuthenticationFilter(clientId, clientSecret, 
-						scope,tokenUrl, refreshTokenUrl, checkTokenUrl,tokenRequestService());
+						scope,tokenUrl, refreshTokenUrl, checkTokenUrl,logServerUrl,tokenRequestService(),dataRequestService);
 		authFilter.setAuthenticationManager(this.authenticationManager());
 		authFilter.setAuthenticationFailureHandler(authenticationFailureHandler);
 		authFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
@@ -157,11 +174,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService);
 	}
 	
+	/*
 	@Bean("userDetailsService")
 	public UserDetailsService getUserDetailsService() {
 		return new EmployeeDetailsService(clientId, clientSecret, 
-				refreshTokenUrl, checkTokenUrl,tokenRequestService());
-	}
+				refreshTokenUrl, checkTokenUrl,userServerUrl,tokenRequestService(),dataRequestService);
+	}*/
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -189,5 +207,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@ConfigurationProperties(prefix="spring.resource.server")
 	public ResourceServer resourceServer() {
 		return new ResourceServer();
+	}
+	
+	@Bean
+	@ConfigurationProperties(prefix="spring.web.oauth")
+	public TokenServerInfo tokenServerInfo() {
+		return new TokenServerInfo();
 	}
 }

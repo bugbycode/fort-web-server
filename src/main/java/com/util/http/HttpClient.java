@@ -35,6 +35,17 @@ public class HttpClient {
 		return sendData(url,null,build.toString().getBytes(),null);
 	}
 	
+	public String getToken(String url,String grant_type,String client_id,String client_secret,String scope) {
+		
+		StringBuilder build = new StringBuilder();
+		build.append("grant_type=" + grant_type);
+		build.append("&client_id=" + client_id);
+		build.append("&client_secret=" + client_secret);
+		build.append("&scope=" + scope);
+		
+		return sendData(url,null,build.toString().getBytes(),null);
+	}
+	
 	public String refreshToken(String url,String grant_type,String client_id,
 			String client_secret,String refresh_token) {
 		StringBuilder build = new StringBuilder();

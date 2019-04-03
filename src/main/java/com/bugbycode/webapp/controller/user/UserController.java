@@ -1,12 +1,14 @@
 package com.bugbycode.webapp.controller.user;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bugbycode.config.AppConfig;
+import com.bugbycode.module.config.LogConfig;
+import com.bugbycode.module.log.SystemLog;
+import com.bugbycode.module.login.LoginUserDetails;
 import com.bugbycode.module.role.Role;
 import com.bugbycode.module.server.ResourceServer;
 import com.bugbycode.module.user.User;
@@ -71,6 +76,8 @@ public class UserController {
 	
 	@RequestMapping(value = "/update",method= RequestMethod.POST)
 	public String update(@ModelAttribute("user") User user) {
+		LoginUserDetails online = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		int userId = user.getId();
 		if(userId == 0) {
 			throw new RuntimeException("该用户不存在或已被删除");
@@ -94,20 +101,48 @@ public class UserController {
 		if(code == 1) {
 			throw new RuntimeException(result.getString("msg"));
 		}
+		//操作日志
+		SystemLog log = new SystemLog();
+		log.setCreateTime(new Date().getTime());
+		log.setUserName(online.getName());
+		log.setUserLoginName(online.getUsername());
+		log.setType(LogConfig.UPDATE_TYPE);
+		log.setModuleId(String.valueOf(user.getId()));
+		log.setModule(LogConfig.USER_MODULE);
+		log.setLevel(LogConfig.USER_LEVEL);
+		param.clear();
+		param.put("jsonStr", JSONObject.toJSONString(log));
+		dataRequestService.modifyLog(resourceServer.getLogServerUrl() + AppConfig.SYSTEM_LOG_SAVE_PATH, param);
 		return "redirect:/user/query";
 	}
 	
 	@RequestMapping(value = "/insert",method= RequestMethod.POST)
 	public String insert(@ModelAttribute("user") User user) {
+		LoginUserDetails online = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String jsonStr = JSONObject.toJSONString(user);
 		Map<String,Object> param = new HashMap<String,Object>();
 		param.put("jsonStr", jsonStr);
-		dataRequestService.modify(resourceServer.getUserServerUrl() + AppConfig.USER_INSERT_PATH, param);
+		JSONObject result = dataRequestService.modify(resourceServer.getUserServerUrl() + AppConfig.USER_INSERT_PATH, param);
+		if(result.getIntValue("code") == 0) {
+			//操作日志
+			SystemLog log = new SystemLog();
+			log.setCreateTime(new Date().getTime());
+			log.setUserName(online.getName());
+			log.setUserLoginName(online.getUsername());
+			log.setType(LogConfig.CREATE_TYPE);
+			log.setModuleId(result.getString("userId"));
+			log.setModule(LogConfig.USER_MODULE);
+			log.setLevel(LogConfig.USER_LEVEL);
+			param.clear();
+			param.put("jsonStr", JSONObject.toJSONString(log));
+			dataRequestService.modifyLog(resourceServer.getLogServerUrl() + AppConfig.SYSTEM_LOG_SAVE_PATH, param);
+		}
 		return "redirect:/user/query";
 	}
 	
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	public String delete(@RequestParam(name="ids",defaultValue="")String ids) {
+		LoginUserDetails online = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Integer> idList = new ArrayList<Integer>();
 		if(StringUtil.isNotBlank(ids)) {
 			Set<String> set = StringUtils.commaDelimitedListToSet(ids);
@@ -124,6 +159,19 @@ public class UserController {
 				continue;
 			}
 			dataRequestService.modify(resourceServer.getUserServerUrl() + AppConfig.USER_DELETE_PATH, param);
+			param.clear();
+			//操作日志
+			SystemLog log = new SystemLog();
+			log.setCreateTime(new Date().getTime());
+			log.setUserName(online.getName());
+			log.setUserLoginName(online.getUsername());
+			log.setType(LogConfig.DELETE_TYPE);
+			log.setModuleId(String.valueOf(tmp.getId()));
+			log.setModule(LogConfig.USER_MODULE);
+			log.setLevel(LogConfig.USER_LEVEL);
+			param.clear();
+			param.put("jsonStr", JSONObject.toJSONString(log));
+			dataRequestService.modifyLog(resourceServer.getLogServerUrl() + AppConfig.SYSTEM_LOG_SAVE_PATH, param);
 			param.clear();
 		}
 		return "redirect:/user/query";

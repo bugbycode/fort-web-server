@@ -201,72 +201,31 @@
 							</div>
 						</div>
 						<!-- 基本信息 END-->
-						<!-- SQLSERVER服务-->
-						<div class="panel panel-inverse hideDiv">
-							<div class="panel-heading">
-								<div class="panel-heading-btn">
-									
-								</div>
-								<h4 class="panel-title">
-									<span class="checkbox checkbox-css">
-										<input type="checkbox" id="useSqlServer"  />
-										<label for="useSqlServer" style="color: white;">SQLSERVER 服务</label>
-									</span>
-								</h4>
-							</div>
-							<div class="panel-body">
-								<fieldset>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">端口</label>
-										<div class="col-md-9">
-											<input name="sqlServerPort" id="sqlServerPort" type="text" class="form-control is-valid" value="1433">
-										</div>
-									</div>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">账号</label>
-										<div class="col-md-9">
-											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">sa</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice addAcc" style="margin-left: -2px">
-													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
-												</li>
-												<li class="tagit-choice delAllAcc" style="margin-left: -14px">
-													<i class="fas fa-lg fa-fw m-r-10 fa-trash-alt hand"></i>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</fieldset>
-							</div>
-						</div>
-						<!-- SQLSERVER服务 END-->
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div>
 						<!-- ORACLE服务-->
 						<div class="panel panel-inverse">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
 								</div>
-								<h4 class="panel-title">
+								<h4 class="panel-title"><!-- 
 									<span class="checkbox checkbox-css">
 										<input type="checkbox" id="useOracle"  />
 										<label for="useOracle" style="color: white;">Oracle 服务信息</label>
-									</span>
+									</span> -->
+									Oracle 服务信息
 								</h4>
 							</div>
 							<div class="panel-body">
 								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useOracle" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">端口</label>
 										<div class="col-md-9">
@@ -310,22 +269,143 @@
 								</fieldset>
 							</div>
 						</div>
-						<!-- ORACLE服务 END-->
-						<!-- 远程桌面服务 -->
+						<!-- SQLSERVER服务-->
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">
+									SQLSERVER 服务
+								</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useSqlServer" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">端口</label>
+										<div class="col-md-9">
+											<input name="sqlServerPort" id="sqlServerPort" type="text" class="form-control is-valid" value="1433">
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">账号</label>
+										<div class="col-md-9">
+											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">sa</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice addAcc" style="margin-left: -2px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
+												</li>
+												<li class="tagit-choice delAllAcc" style="margin-left: -14px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-trash-alt hand"></i>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+						<!-- SQLSERVER服务 END-->
+						<!-- FTP 服务 -->
 						<div class="panel panel-inverse hideDiv">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
 								</div>
 								<h4 class="panel-title">
-									<span class="checkbox checkbox-css">
-										<input type="checkbox" id="useRdp"  />
-										<label for="useRdp" style="color: white;">远程桌面服务</label>
-									</span>
+									FTP 服务
 								</h4>
 							</div>
 							<div class="panel-body">
 								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useFtp" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">端口</label>
+										<div class="col-md-9">
+											<input name="ftpPort" id="ftpPort" type="text" class="form-control is-valid" value="21">
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">账号</label>
+										<div class="col-md-9">
+											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">root</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">fort</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">good</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice addAcc" style="margin-left: -2px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
+												</li>
+												<li class="tagit-choice delAllAcc" style="margin-left: -14px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-trash-alt hand"></i>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+						<!-- FTP 服务 END -->
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div>
+						<!-- 远程桌面服务 -->
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">
+									远程桌面服务
+								</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useRdp" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">端口</label>
 										<div class="col-md-9">
@@ -365,20 +445,26 @@
 						</div>
 						<!-- 远程桌面服务 END -->
 						<!-- Telnet服务 -->
-						<div class="panel panel-inverse hideDiv">
+						<div class="panel panel-inverse">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
 								</div>
 								<h4 class="panel-title">
-									<span class="checkbox checkbox-css">
-										<input type="checkbox" id="useTelnet"  />
-										<label for="useTelnet" style="color: white;">Telnet服务</label>
-									</span>
+									Telnet服务
 								</h4>
 							</div>
 							<div class="panel-body">
 								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useTelnet" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">端口</label>
 										<div class="col-md-9">
@@ -418,20 +504,26 @@
 						</div>
 						<!-- Telnet服务 END -->
 						<!-- SSH 服务 -->
-						<div class="panel panel-inverse hideDiv">
+						<div class="panel panel-inverse">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
 								</div>
 								<h4 class="panel-title">
-									<span class="checkbox checkbox-css">
-										<input type="checkbox" id="useSsh"  />
-										<label for="useSsh" style="color: white;">SSH 服务</label>
-									</span>
+									SSH 服务
 								</h4>
 							</div>
 							<div class="panel-body">
 								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useSsh" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">端口</label>
 										<div class="col-md-9">
@@ -471,20 +563,26 @@
 						</div>
 						<!-- SSH 服务 END -->
 						<!-- SFTP 服务 -->
-						<div class="panel panel-inverse hideDiv">
+						<div class="panel panel-inverse">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
 								</div>
 								<h4 class="panel-title">
-									<span class="checkbox checkbox-css">
-										<input type="checkbox" id="useSftp"  />
-										<label for="useSftp" style="color: white;">SFTP 服务</label>
-									</span>
+									SFTP 服务
 								</h4>
 							</div>
 							<div class="panel-body">
 								<fieldset>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useSftp" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
 									<div class="row form-group m-b-10">
 										<label class="col-md-3 col-form-label">端口</label>
 										<div class="col-md-9">
@@ -523,59 +621,6 @@
 							</div>
 						</div>
 						<!-- SFTP 服务 END -->
-						<!-- FTP 服务 -->
-						<div class="panel panel-inverse hideDiv">
-							<div class="panel-heading">
-								<div class="panel-heading-btn">
-									
-								</div>
-								<h4 class="panel-title">
-									<span class="checkbox checkbox-css">
-										<input type="checkbox" id="useFtp"  />
-										<label for="useFtp" style="color: white;">FTP 服务</label>
-									</span>
-								</h4>
-							</div>
-							<div class="panel-body">
-								<fieldset>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">端口</label>
-										<div class="col-md-9">
-											<input name="ftpPort" id="ftpPort" type="text" class="form-control is-valid" value="21">
-										</div>
-									</div>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">账号</label>
-										<div class="col-md-9">
-											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">root</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">fort</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">good</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice addAcc" style="margin-left: -2px">
-													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
-												</li>
-												<li class="tagit-choice delAllAcc" style="margin-left: -14px">
-													<i class="fas fa-lg fa-fw m-r-10 fa-trash-alt hand"></i>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</fieldset>
-							</div>
-						</div>
-						<!-- FTP 服务 END -->
 					</div>
 				</div>
 			</div>
@@ -641,7 +686,7 @@
 							</div>
 						</div>
 						</form>
-						<div style="display: none" class="row form-group m-b-10">
+						<div class="row form-group m-b-10">
 							<label class="col-md-3 col-form-label">所属服务</label>
 							<div class="col-md-9">
 								<div class="row">
@@ -686,7 +731,7 @@
 										 </div>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row hideDiv">
 									<div class="col-md-6">
 										<div class="checkbox checkbox-css checkbox-inline">
 											<input name="ftpServer" type="checkbox" id="ftpServer"/>
@@ -883,7 +928,7 @@
 			});
 			$(".delAllAcc").click(function(e){
 				var this_e = this;
-				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
+				var serverID = $(this).parents(".panel-inverse").find("select").prop("id");
 				e.preventDefault();
 				swal({
 					title: '您确定删除该服务下的所有账号吗？',
@@ -1165,7 +1210,7 @@
 			$(document).on('click','.tagit-label-account',function(e){
 				$("#account-modal-dialog").modal("show");
 				$("#account-modal-dialog").find("#accountName").prop("readonly",true);
-				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
+				var serverID = $(this).parents(".panel-inverse").find("select").prop("id");
 				var account = $(this).text().trim();
 				$("#account-modal-dialog").find("#accountName").val(account);
 				$("#account-modal-dialog").find("#accountPwd").val("");
@@ -1211,7 +1256,7 @@
 				
 				$("#account-modal-dialog").modal("show");
 				$("#account-modal-dialog").find("#accountName").prop("readonly",false);
-				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
+				var serverID = $(this).parents(".panel-inverse").find("select").prop("id");
 				$("#serverID").val(serverID);
 				$("#account-modal-dialog").find("#accountName").val("");
 				$("#account-modal-dialog").find("#accountPwd").val("");
@@ -1241,7 +1286,7 @@
 			
 			$(document).on('click',".tagit-close-account",function(e){
 				var this_e = this;
-				var serverID = $(this).parents(".panel-inverse").find("input").prop("id");
+				var serverID = $(this).parents(".panel-inverse").find("select").prop("id");
 				var account = $(this).prev().text().trim();
 				e.preventDefault();
 				swal({
@@ -1298,26 +1343,26 @@
 				var dbName = item.dbName;
 				if(serverType == 0){
 					$("#sshPort").val(port);
-					$("#useSsh").prop("checked",use == 1);
+					$("#useSsh").find("option[value='" + use + "']").prop("selected",true);
 				}else if(serverType == 1){
 					$("#sftpPort").val(port);
-					$("#useSftp").prop("checked",use == 1);
+					$("#useSftp").find("option[value='" + use + "']").prop("selected",true);
 				}else if(serverType == 2){
 					$("#rdpPort").val(port);
-					$("#useRdp").prop("checked",use == 1);
+					$("#useRdp").find("option[value='" + use + "']").prop("selected",true);
 				}else if(serverType == 3){
 					$("#telnetPort").val(port);
-					$("#useTelnet").prop("checked",use == 1);
+					$("#useTelnet").find("option[value='" + use + "']").prop("selected",true);
 				}else if(serverType == 4){
 					$("#oraclePort").val(port);
 					$("#oracleDb").val(dbName);
-					$("#useOracle").prop("checked",use == 1);
+					$("#useOracle").find("option[value='" + use + "']").prop("selected",true);
 				}else if(serverType == 5){
 					$("#sqlServerPort").val(port);
-					$("#useSqlServer").prop("checked",use == 1);
+					$("#useSqlServer").find("option[value='" + use + "']").prop("selected",true);
 				}else if(serverType == 6){
 					$("#ftpPort").val(port);
-					$("#useFtp").prop("checked",use == 1);
+					$("#useFtp").find("option[value='" + use + "']").prop("selected",true);
 				}
 			});
 			$(accountArray).each(function(index,item){
@@ -1502,32 +1547,32 @@
 				{
 					serverType:0,
 					port:$("#sshPort").val(),
-					use:$("#useSsh").prop("checked") ? 1 : 0
+					use:$("#useSsh").val()
 				},{
 					serverType:1,
 					port:$("#sftpPort").val(),
-					use:$("#useSftp").prop("checked") ? 1 : 0
+					use:$("#useSftp").val()
 				},{
 					serverType:2,
 					port:$("#rdpPort").val(),
-					use:$("#useRdp").prop("checked") ? 1 : 0
+					use:$("#useRdp").val()
 				},{
 					serverType:3,
 					port:$("#telnetPort").val(),
-					use:$("#useTelnet").prop("checked") ? 1 : 0
+					use:$("#useTelnet").val()
 				},{
 					serverType:4,
 					port:$("#oraclePort").val(),
-					use:$("#useOracle").prop("checked") ? 1 : 0,
+					use:$("#useOracle").val(),
 					dbName:$("#oracleDb").val()
 				},{
 					serverType:5,
 					port:$("#sqlServerPort").val(),
-					use:$("#useSqlServer").prop("checked") ? 1 : 0
+					use:$("#useSqlServer").val()
 				},{
 					serverType:6,
 					port:$("#ftpPort").val(),
-					use:$("#useFtp").prop("checked") ? 1 : 0
+					use:$("#useFtp").val()
 				}
 			];
 			$("#serverList").val(JSON.stringify(server));

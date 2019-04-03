@@ -19,6 +19,8 @@ public class LoginUserDetails implements UserDetails{
 	 */
 	private static final long serialVersionUID = 3331276159128426543L;
 
+	private String name;
+	
 	private String username;
 	
 	private String password;
@@ -46,6 +48,14 @@ public class LoginUserDetails implements UserDetails{
 	@Override
 	public String getPassword() {
 		return this.password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override

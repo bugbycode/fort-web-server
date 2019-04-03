@@ -604,7 +604,7 @@
 			});
 			
 			$("#user-modal-dialog").find(".btn-primary").click(function(){
-				$("#user-modal-dialog").find("div.checkbox").find("input:checked").each(function(index,item){
+				$("#user-modal-dialog").find("div.checkbox").find("input[name='empIds']:checked").each(function(index,item){
 					var empId = $(item).val();
 					var empUserName = $(item).parent().parent().nextAll().eq(0).text();
 					var empName = $(item).parent().parent().nextAll().eq(1).text();

@@ -1,6 +1,7 @@
 package com.bugbycode.webapp.controller.resource;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map.Entry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
@@ -25,6 +27,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bugbycode.config.AppConfig;
 import com.bugbycode.module.account.Account;
+import com.bugbycode.module.config.LogConfig;
+import com.bugbycode.module.log.SystemLog;
+import com.bugbycode.module.login.LoginUserDetails;
 import com.bugbycode.module.network.Network;
 import com.bugbycode.module.resource.Resource;
 import com.bugbycode.module.resource_server.ResourceServer;
@@ -166,6 +171,7 @@ public class ResourceController {
 	
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
 	public String insert(@ModelAttribute("resource") Resource r) {
+		LoginUserDetails online = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Account> accList = JSONObject.parseArray(r.getAccountList(), Account.class);
 		List<ResourceServer> serverList = JSONObject.parseArray(r.getServerList(), ResourceServer.class);
 		r.setAccountList(null);
@@ -179,6 +185,20 @@ public class ResourceController {
 			throw new RuntimeException(result.getString("msg"));
 		}
 		int resId = result.getIntValue("resId");
+		
+		//操作日志
+		SystemLog log = new SystemLog();
+		log.setCreateTime(new Date().getTime());
+		log.setUserName(online.getName());
+		log.setUserLoginName(online.getUsername());
+		log.setType(LogConfig.CREATE_TYPE);
+		log.setModuleId(String.valueOf(resId));
+		log.setModule(LogConfig.RESOURCE_MODULE);
+		log.setLevel(LogConfig.USER_LEVEL);
+		param.clear();
+		param.put("jsonStr", JSONObject.toJSONString(log));
+		dataRequestService.modifyLog(resourceServer.getLogServerUrl() + AppConfig.SYSTEM_LOG_SAVE_PATH, param);
+		
 		if(!CollectionUtils.isEmpty(serverList)) {
 			int serverId = 0;
 			int serverType = 0;
@@ -285,6 +305,7 @@ public class ResourceController {
 	
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	public String update(@ModelAttribute("resource") Resource r) {
+		LoginUserDetails online = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		int resId = r.getId();
 		List<Account> accList = JSONObject.parseArray(r.getAccountList(), Account.class);
 		List<ResourceServer> serverList = JSONObject.parseArray(r.getServerList(), ResourceServer.class);
@@ -298,6 +319,21 @@ public class ResourceController {
 		if(code == 1) {
 			throw new RuntimeException(result.getString("msg"));
 		}
+		
+		//操作日志
+		SystemLog log = new SystemLog();
+		log.setCreateTime(new Date().getTime());
+		log.setUserName(online.getName());
+		log.setUserLoginName(online.getUsername());
+		log.setType(LogConfig.UPDATE_TYPE);
+		log.setModuleId(String.valueOf(resId));
+		log.setModule(LogConfig.RESOURCE_MODULE);
+		log.setLevel(LogConfig.USER_LEVEL);
+		param.clear();
+		param.put("jsonStr", JSONObject.toJSONString(log));
+		dataRequestService.modifyLog(resourceServer.getLogServerUrl() + AppConfig.SYSTEM_LOG_SAVE_PATH, param);
+		
+		
 		if(!CollectionUtils.isEmpty(accList)) {
 			for(Account acc : accList) {
 				acc.setId(0);
@@ -472,6 +508,7 @@ public class ResourceController {
 	
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	public String delete(@RequestParam(name="ids",defaultValue="")String ids) {
+		LoginUserDetails online = (LoginUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Integer> idList = new ArrayList<Integer>();
 		if(StringUtil.isNotBlank(ids)) {
 			Set<String> set = StringUtils.commaDelimitedListToSet(ids);
@@ -488,6 +525,19 @@ public class ResourceController {
 				continue;
 			}
 			dataRequestService.modify(resourceServer.getResourceServerUrl() + AppConfig.RESOURCE_DELETE_PATH, param);
+			param.clear();
+			//操作日志
+			SystemLog log = new SystemLog();
+			log.setCreateTime(new Date().getTime());
+			log.setUserName(online.getName());
+			log.setUserLoginName(online.getUsername());
+			log.setType(LogConfig.DELETE_TYPE);
+			log.setModuleId(String.valueOf(id));
+			log.setModule(LogConfig.RESOURCE_MODULE);
+			log.setLevel(LogConfig.USER_LEVEL);
+			param.clear();
+			param.put("jsonStr", JSONObject.toJSONString(log));
+			dataRequestService.modifyLog(resourceServer.getLogServerUrl() + AppConfig.SYSTEM_LOG_SAVE_PATH, param);
 			param.clear();
 		}
 		return "redirect:/resource/query";

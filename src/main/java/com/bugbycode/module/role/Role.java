@@ -80,6 +80,10 @@ public class Role implements Serializable{
 	private int ruleUpdate = 0;
 	
 	private int ruleDelete = 0;
+	
+	private int loginLogQuery = 0;
+	
+	private int systemLogQuery = 0;
 
 	public int getId() {
 		return id;
@@ -187,6 +191,12 @@ public class Role implements Serializable{
 						break;
 					case RoleConfig.RULE_DELETE:
 						this.ruleDelete = 1;
+						break;
+					case RoleConfig.LOGIN_LOG_QUERY:
+						this.loginLogQuery = 1;
+						break;
+					case RoleConfig.SYSTEM_LOG_QUERY:
+						this.systemLogQuery = 1;
 						break;
 					default:
 						break;
@@ -313,6 +323,14 @@ public class Role implements Serializable{
 
 	public int getRuleDelete() {
 		return ruleDelete;
+	}
+
+	public int getLoginLogQuery() {
+		return loginLogQuery;
+	}
+
+	public int getSystemLogQuery() {
+		return systemLogQuery;
 	}
 
 	public void copy(Role r) {
