@@ -201,76 +201,8 @@
 							</div>
 						</div>
 						<!-- 基本信息 END-->
-						<!-- ORACLE服务-->
-						<div class="panel panel-inverse">
-							<div class="panel-heading">
-								<div class="panel-heading-btn">
-									
-								</div>
-								<h4 class="panel-title"><!-- 
-									<span class="checkbox checkbox-css">
-										<input type="checkbox" id="useOracle"  />
-										<label for="useOracle" style="color: white;">Oracle 服务信息</label>
-									</span> -->
-									Oracle 服务信息
-								</h4>
-							</div>
-							<div class="panel-body">
-								<fieldset>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">服务状态</label>
-										<div class="col-md-9">
-											<select id="useOracle" class="form-control is-valid">
-												<option value="1">开启</option>
-												<option value="0">关闭</option>
-											</select>
-										</div>
-									</div>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">端口</label>
-										<div class="col-md-9">
-											<input name="oraclePort" id="oraclePort" type="text" class="form-control is-valid" value="1521">
-										</div>
-									</div>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">数据库</label>
-										<div class="col-md-9">
-											<input name="oracleDb" id="oracleDb" type="text" class="form-control is-valid" value="orcl">
-										</div>
-									</div>
-									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">账号</label>
-										<div class="col-md-9">
-											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">sys</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">system</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">scott</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
-													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
-												</li>
-												<li class="tagit-choice addAcc" style="margin-left: -2px">
-													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
-												</li>
-												<li class="tagit-choice delAllAcc" style="margin-left: -14px">
-													<i class="fas fa-lg fa-fw m-r-10 fa-trash-alt hand"></i>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</fieldset>
-							</div>
-						</div>
 						<!-- SQLSERVER服务-->
-						<div class="panel panel-inverse">
+						<div class="panel panel-inverse hideDiv">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
@@ -385,8 +317,76 @@
 				</div>
 				<div class="col-lg-6">
 					<div>
-						<!-- 远程桌面服务 -->
+						<!-- ORACLE服务-->
 						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title"><!-- 
+									<span class="checkbox checkbox-css">
+										<input type="checkbox" id="useOracle"  />
+										<label for="useOracle" style="color: white;">Oracle 服务信息</label>
+									</span> -->
+									Oracle 服务信息
+								</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<div class="row form-group m-b-10 hideDiv">
+										<label class="col-md-3 col-form-label">服务状态</label>
+										<div class="col-md-9">
+											<select id="useOracle" class="form-control is-valid">
+												<option value="1">开启</option>
+												<option value="0">关闭</option>
+											</select>
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">端口</label>
+										<div class="col-md-9">
+											<input name="oraclePort" id="oraclePort" type="text" class="form-control is-valid" value="1521">
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">数据库</label>
+										<div class="col-md-9">
+											<input name="oracleDb" id="oracleDb" type="text" class="form-control is-valid" value="orcl">
+										</div>
+									</div>
+									<div class="row form-group m-b-10">
+										<label class="col-md-3 col-form-label">账号</label>
+										<div class="col-md-9">
+											<ul id="jquery-tagIt-inverse" class="inverse tagit ui-widget ui-widget-content ui-corner-all">
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">sys</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">system</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">test</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">scott</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag1" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable tagit-account">
+													<span class="tagit-label hand">zhigongzhang</span><a class="tagit-close"><span class="text-icon">×</span><span class="ui-icon ui-icon-close"></span></a><input type="hidden" value="Tag2" name="tags" class="tagit-hidden-field">
+												</li>
+												<li class="tagit-choice addAcc" style="margin-left: -2px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-plus-circle hand"></i>
+												</li>
+												<li class="tagit-choice delAllAcc" style="margin-left: -14px">
+													<i class="fas fa-lg fa-fw m-r-10 fa-trash-alt hand"></i>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+						<!-- 远程桌面服务 -->
+						<div class="panel panel-inverse hideDiv">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
@@ -445,7 +445,7 @@
 						</div>
 						<!-- 远程桌面服务 END -->
 						<!-- Telnet服务 -->
-						<div class="panel panel-inverse">
+						<div class="panel panel-inverse hideDiv">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
@@ -504,7 +504,7 @@
 						</div>
 						<!-- Telnet服务 END -->
 						<!-- SSH 服务 -->
-						<div class="panel panel-inverse">
+						<div class="panel panel-inverse hideDiv">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
@@ -563,7 +563,7 @@
 						</div>
 						<!-- SSH 服务 END -->
 						<!-- SFTP 服务 -->
-						<div class="panel panel-inverse">
+						<div class="panel panel-inverse hideDiv">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
 									
@@ -686,7 +686,7 @@
 							</div>
 						</div>
 						</form>
-						<div class="row form-group m-b-10">
+						<div class="row form-group m-b-10 hideDiv">
 							<label class="col-md-3 col-form-label">所属服务</label>
 							<div class="col-md-9">
 								<div class="row">
@@ -731,7 +731,7 @@
 										 </div>
 									</div>
 								</div>
-								<div class="row hideDiv">
+								<div class="row">
 									<div class="col-md-6">
 										<div class="checkbox checkbox-css checkbox-inline">
 											<input name="ftpServer" type="checkbox" id="ftpServer"/>

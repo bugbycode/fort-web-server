@@ -1251,10 +1251,13 @@
 					});
 					var total = result.length;
 					if(total > 3){
-						var append_num = 3 - total % 3;
-						while(append_num > 0){
-							tableStr += "<td></td>";
-							append_num--;
+						var num = total % 3;
+						if(num > 0){
+							var append_num = 3 - num;
+							while(append_num > 0){
+								tableStr += "<td></td>";
+								append_num--;
+							}
 						}
 					}
 					if(total == 0){
