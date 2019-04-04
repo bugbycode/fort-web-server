@@ -142,6 +142,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//操作记录
 		.antMatchers("/systemLog/query").hasRole(RoleConfig.SYSTEM_LOG_QUERY)	
 		
+		.antMatchers("/sso/query").hasRole(RoleConfig.SSO_DEVICE_QUERY)
+		.antMatchers("/sso/createSession").hasRole(RoleConfig.SSO_DEVICE_CONNECT)
+		
 		.and().headers().frameOptions().disable()
 		//用户登录页面 所有人均可访问
 				.and().formLogin().loginPage("/login").permitAll()

@@ -18,5 +18,6 @@ spring:
       resourceServerUrl: http://dev.server:8080/fort-resource-server
       ruleServerUrl: http://dev.server:8080/fort-rule-server
       logServerUrl: http://dev.server:8080/fort-log-server
+      ssoServerUrl: http://dev.server:8080/fort-sso-server
 logging:
   config: classpath:log4j2.xml

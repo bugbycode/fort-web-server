@@ -85,6 +85,10 @@ public class Role implements Serializable{
 	
 	private int systemLogQuery = 0;
 
+	private int ssoDeviceQuery = 0;
+	
+	private int ssoDeviceConnect = 0;
+	
 	public int getId() {
 		return id;
 	}
@@ -197,6 +201,12 @@ public class Role implements Serializable{
 						break;
 					case RoleConfig.SYSTEM_LOG_QUERY:
 						this.systemLogQuery = 1;
+						break;
+					case RoleConfig.SSO_DEVICE_CONNECT:
+						this.ssoDeviceConnect = 1;
+						break;
+					case RoleConfig.SSO_DEVICE_QUERY:
+						this.ssoDeviceQuery = 1;
 						break;
 					default:
 						break;
@@ -331,6 +341,14 @@ public class Role implements Serializable{
 
 	public int getSystemLogQuery() {
 		return systemLogQuery;
+	}
+
+	public int getSsoDeviceQuery() {
+		return ssoDeviceQuery;
+	}
+
+	public int getSsoDeviceConnect() {
+		return ssoDeviceConnect;
 	}
 
 	public void copy(Role r) {

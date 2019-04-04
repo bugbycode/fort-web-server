@@ -17,6 +17,8 @@ public class ResourceServer implements Serializable{
 	
 	private String logServerUrl;
 	
+	private String ssoServerUrl;
+	
 	public String getUserServerUrl() {
 		return userServerUrl;
 	}
@@ -47,6 +49,14 @@ public class ResourceServer implements Serializable{
 
 	public void setLogServerUrl(String logServerUrl) {
 		this.logServerUrl = logServerUrl;
+	}
+
+	public String getSsoServerUrl() {
+		return ssoServerUrl;
+	}
+
+	public void setSsoServerUrl(String ssoServerUrl) {
+		this.ssoServerUrl = ssoServerUrl;
 	}
 
 }

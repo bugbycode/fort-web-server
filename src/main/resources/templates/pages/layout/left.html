@@ -93,15 +93,16 @@
 						    <li th:class="${menu=='rule' ? 'active' : ''}"><a th:href="@{/rule/query}">授权信息</a></li>
 						</ul>
 					</li>
-					<li class="has-sub">
+					<li th:class="${page=='sso'} ? 'has-sub active' : 'has-sub'" class="has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							<i class="ion-ios-construct bg-blue"></i> 
 							<span>运维工作</span>
 						</a>
 						<ul class="sub-menu">
-						    <li><a >设备信息</a></li>
-						    <li><a href="email_compose.html">运维记录</a></li>
+						    <li th:class="${menu=='sso' ? 'active' : ''}"><a th:href="@{/sso/query}">设备信息</a></li>
+						    <!-- 
+						    <li><a href="email_compose.html">运维记录</a></li> -->
 						</ul>
 					</li>
 					<li class="has-sub">

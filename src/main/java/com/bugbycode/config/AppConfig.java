@@ -120,6 +120,13 @@ public class AppConfig {
 	
 	public final static String SYSTEM_LOG_FIND_BY_MODULE_ID_PATH = "/systemLog/findByModuleId";
 	
+	//运维工作
+	public final static String SSO_DEVICE_QUERY_PATH = "/device/query";
+	
+	public final static String SSO_SESSION_CREATE_PATH = "/session/create";
+	
+	public final static String SSO_SESSION_QUERY_PATH = "/session/query";
+	
 	//协议服务类型
 	public final static int USE_SSH = 0;
 	

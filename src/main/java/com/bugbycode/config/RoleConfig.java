@@ -55,4 +55,8 @@ public class RoleConfig {
 	public final static String LOGIN_LOG_QUERY = "LOGIN_LOG_QUERY";
 	
 	public final static String SYSTEM_LOG_QUERY = "SYSTEM_LOG_QUERY";
+	
+	public final static String SSO_DEVICE_QUERY = "SSO_DEVICE_QUERY";
+	
+	public final static String SSO_DEVICE_CONNECT = "SSO_DEVICE_CONNECT";
 }

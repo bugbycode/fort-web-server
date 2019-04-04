@@ -237,6 +237,41 @@
 								</fieldset>
 							</div>
 						</div>
+						
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									
+								</div>
+								<h4 class="panel-title">运维工作权限</h4>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<!-- 运维工作 -->
+									<div class="form-group row m-b-10">
+										<div class="col-md-5">
+											<div class="checkbox checkbox-css">
+												<input type="checkbox" value="" id="checkAllSsoDeviceRole" 
+													th:checked="*{ssoDeviceQuery eq 1 && ssoDeviceConnect eq 1}" />
+												<label th:for="*{type eq 1 ? 'checkAllSsoDeviceRole' : ''}">设备信息</label>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div class="row checkboxRowHeight">
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="SSO_DEVICE_QUERY" id="ssoDeviceQuery" th:checked="*{ssoDeviceQuery eq 1}" />
+													<label  th:for="*{type eq 1 ? 'ssoDeviceQuery' : ''}">查看设备</label>
+												</div>
+												<div class="checkbox checkbox-css checkbox-inline">
+													<input name="grantedAuthority" type="checkbox" value="SSO_DEVICE_CONNECT" id="ssoDeviceConnect" th:checked="*{ssoDeviceConnect eq 1}" />
+													<label  th:for="*{type eq 1 ? 'ssoDeviceConnect' : ''}">连接设备</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
