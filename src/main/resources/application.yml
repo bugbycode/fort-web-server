@@ -1,6 +1,9 @@
 server: 
   port: 9997
 spring:
+  mvc:
+    servlet:
+      load-on-startup: 1
   thymeleaf:
     cache: false
     mode: HTML
