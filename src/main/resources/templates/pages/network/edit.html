@@ -108,7 +108,7 @@
 			<!-- end page-header -->
 			
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div>
 						<div class="panel panel-inverse">
 							<div class="panel-heading">
@@ -120,15 +120,15 @@
 							<div class="panel-body">
 								<fieldset>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">网络名称</label>
-										<div class="col-md-9">
+										<label class="col-md-2 col-form-label">网络名称</label>
+										<div class="col-md-5">
 											<input type="hidden" th:field="*{id}"/>
 											<input name="name" id="name" type="text" class="form-control is-invalid" th:value="*{name}">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">网络类型</label>
-										<div class="col-md-9">
+										<label class="col-md-2 col-form-label">网络类型</label>
+										<div class="col-md-5">
 											<select id="type" name="type" class="form-control is-valid" data-style="btn-white">
 												<option value="0" th:selected="*{type eq 0}">私有网络</option>
 												<option value="1" th:selected="*{type eq 1}">公有网络</option>
@@ -136,26 +136,26 @@
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">Agent Key</label>
-										<div class="col-md-9">
+										<label class="col-md-2 col-form-label">Agent Key</label>
+										<div class="col-md-5">
 											<input name="clientId" id="clientId" type="text" class="form-control is-valid" th:value="*{clientId}">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">Agent Secret</label>
-										<div class="col-md-9">
+										<label class="col-md-2 col-form-label">Agent Secret</label>
+										<div class="col-md-5">
 											<input name="clientSecret" id="clientSecret" type="text" class="form-control is-valid" th:value="*{clientSecret}">
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label">描述信息</label>
-										<div class="col-md-9">
+										<label class="col-md-2 col-form-label">描述信息</label>
+										<div class="col-md-5">
 											<textarea name="description" id="description" class="form-control" rows="6" th:text="*{description}"></textarea>
 										</div>
 									</div>
 									<div class="row form-group m-b-10">
-										<label class="col-md-3 col-form-label"></label>
-										<div class="col-md-9">
+										<label class="col-md-2 col-form-label"></label>
+										<div class="col-md-5">
 											<button type="submit" class="btn btn-sm btn-primary m-r-5">提交</button>
 											<button type="button" class="btn btn-sm btn-default m-r-5" th:onclick="'location.href=\'/network/query\';'">返回</button>
 										</div>
@@ -165,42 +165,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div>
-						<div class="panel panel-inverse">
-							<div class="panel-heading">
-								<div class="panel-heading-btn">
-									
-								</div>
-								<h4 class="panel-title">设备统计</h4>
-							</div>
-							<div class="panel-body">
-								
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 			</form>
-			<div class="panel panel-inverse">
-				<div class="panel-heading">
-					<div class="panel-heading-btn">
-						
-					</div>
-					<h4 class="panel-title"><span>修改记录</span></h4>
-				</div>
-				<div class="panel-body">
-					·admin 在 2019年01月06日18点38分16秒 修改了该用户，更新内容如下：<br/>
-					姓名：张三 => 李四<br/>
-					密码：****** => ****** <br/>
-					所属组：普通用户 => 系统管理员 <br/><br/>
-					·admin 在 2019年01月05日15点13分42秒 修改了该用户，更新内容如下：<br/>
-					密码：****** => ****** <br/>
-					所属组： => 普通用户<br/><br/>
-					·admin 在 2019年01月06日12点00分35秒 创建了该用户。 <br/><br/>
-					·没有了……
-				</div>
-			</div>
 		</div>
 		<!-- end #content -->
 		<!-- begin scroll to top btn -->
